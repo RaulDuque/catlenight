@@ -1,0 +1,15 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/verification/08_vida_do_jogador.tscn" id="1_piloto"]
+[ext_resource type="PackedScene" path="res://scenes/environment/sacada.tscn" id="2_sacada"]
+[ext_resource type="PackedScene" path="res://scenes/items/reliquia_do_salto.tscn" id="3_reliquia"]
+[ext_resource type="PackedScene" path="res://scenes/interface/mensagem_de_habilidade.tscn" id="4_mensagem"]
+
+[node name="ReliquiaDoSaltoDuplo" instance=ExtResource("1_piloto")]
+
+[node name="Sacada" parent="Vestibulo" instance=ExtResource("2_sacada")]
+
+[node name="ReliquiaDoSalto" parent="Galeria" instance=ExtResource("3_reliquia")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15, 1.2, 0)
+
+[node name="MensagemDaHabilidade" parent="." instance=ExtResource("4_mensagem")]

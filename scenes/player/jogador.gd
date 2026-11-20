@@ -10,6 +10,7 @@ extends CharacterBody3D
 @export_group("Movimento")
 @export_range(0.5, 12.0, 0.1, "suffix:m/s") var velocidade_caminhada_m_por_s: float = 3.5
 @export_range(0.5, 15.0, 0.1, "suffix:m/s") var velocidade_inicial_do_pulo_m_por_s: float = 5.5
+@export_range(0.5, 15.0, 0.1, "suffix:m/s") var velocidade_do_segundo_salto_m_por_s: float = 5.5
 
 @export_group("Queda")
 @export var altura_minima_da_sala_m: float = -2.0
@@ -35,6 +36,7 @@ var pontos_de_vida := 3
 var tempo_de_protecao_s := 0.0
 var retornos_por_derrota := 0
 var intervalo_do_ultimo_dano_s := 0.0
+var salto_duplo_adquirido := false
 
 var _ponto_de_retorno: Vector3 = Vector3.ZERO
 var _animacao: AnimationPlayer
@@ -55,6 +57,7 @@ var _pisca_acesa := false
 var _relogio_pisca := 0.0
 var _relogio_desde_o_dano := 0.0
 var _ja_sofreu_dano := false
+var _impulso_extra_disponivel := false
 
 const _CLIP := "corrida"
 const _ESPERA_DO_GOLPE_S := 0.06
@@ -115,6 +118,16 @@ func _soltar_area() -> void:
 	nova.add_to_group("area_do_golpe")
 
 
+func aprender_salto_duplo() -> void:
+	if salto_duplo_adquirido:
+		return
+	salto_duplo_adquirido = true
+	_impulso_extra_disponivel = true
+	var mensagem := get_tree().get_first_node_in_group("mensagem_de_habilidade")
+	if mensagem != null and mensagem.has_method("mostrar"):
+		mensagem.mostrar("Salto duplo adquirido — aperte Espaço outra vez no ar")
+
+
 func definir_ponto_de_retorno(ponto: Vector3) -> void:
 	# A passagem chama isto ao entrar em outra sala.
 	# A queda seguinte usa esse ponto, no lugar de onde a cena abriu.
@@ -126,8 +139,7 @@ func _physics_process(delta: float) -> void:
 	if not no_chao:
 		velocity += get_gravity() * delta
 
-	if no_chao and Input.is_action_just_pressed("pulo"):
-		velocity.y = velocidade_inicial_do_pulo_m_por_s
+	_atualizar_salto(no_chao)
 
 	var eixo_horizontal: float = Input.get_axis("esquerda", "direita")
 	velocity.x = eixo_horizontal * velocidade_caminhada_m_por_s
@@ -140,6 +152,24 @@ func _physics_process(delta: float) -> void:
 	_atualizar_corrida(is_on_floor(), eixo_horizontal)
 	_atualizar_golpe(delta, is_on_floor())
 	_atualizar_vida(delta)
+
+
+func _atualizar_salto(no_chao: bool) -> void:
+	if no_chao:
+		_impulso_extra_disponivel = salto_duplo_adquirido
+	if not Input.is_action_just_pressed("pulo"):
+		return
+	if no_chao:
+		velocity.y = velocidade_inicial_do_pulo_m_por_s
+		return
+	_usar_impulso_extra()
+
+
+func _usar_impulso_extra() -> void:
+	if not salto_duplo_adquirido or not _impulso_extra_disponivel:
+		return
+	velocity.y = velocidade_do_segundo_salto_m_por_s
+	_impulso_extra_disponivel = false
 
 
 func _orientar_visual(eixo_horizontal: float) -> void:

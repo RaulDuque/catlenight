@@ -10,6 +10,8 @@ O piloto do primeiro inimigo é `scenes/verification/07_primeiro_inimigo.tscn`. 
 
 O piloto da vida é `scenes/verification/08_vida_do_jogador.tscn`. Ele reaproveita a cena 07. O jogador começa com 3 pontos. Se a sentinela viva encosta nele, o canto da tela passa a “Vida 2/3” e o modelo pisca, sem deixar de mostrar o lado para o qual está virado. A proteção dura 1,0 s. Em zero, o mesmo jogador volta ao marcador `Retorno` da sala, com a vida cheia. Atravessar a porta conserva a vida atual. A cena 07 e o F5 da cena principal não usam essa regra.
 
+O piloto da relíquia é `scenes/verification/09_reliquia_do_salto_duplo.tscn`. No vestíbulo, à esquerda do arco, há uma sacada com uma janela iluminada. O salto simples não alcança o topo. Na galeria, uma gema violeta fica sobre a plataforma, longe da sentinela. Ao tocá-la, o texto “Salto duplo adquirido — aperte Espaço outra vez no ar” aparece embaixo, e o indicador de vida continua no canto. Depois disso, Espaço no ar dá o segundo impulso. A cena 08 continua sem a sacada e sem a relíquia.
+
 ## Versão do Godot
 
 O projeto foi escrito para **Godot 4.7 estável**, de preferência **4.7.2**, com **GDScript**. Use a build padrão, sem .NET. A build .NET serve para C# e este projeto não precisa dela.
@@ -85,7 +87,7 @@ Isso grava `config/name` em `project.godot` e muda o título da janela. A pasta 
 
 ## O que ainda não existe
 
-O indicador “Vida 3/3” existe só no piloto 08. O resto da interface, a progressão e o áudio ficam para as próximas tarefas. As salas ligadas, o primeiro golpe, a sentinela e a vida por contato estão nas cenas de verificação. A cena principal continua com o manequim, sem esqueleto, roupa nem equipamento. A animação definitiva da espada também fica para depois.
+O indicador “Vida 3/3” existe a partir do piloto 08. O salto duplo existe no piloto 09, depois da relíquia. O resto da interface, outras habilidades e o áudio ficam para as próximas tarefas. As salas ligadas, o primeiro golpe, a sentinela, a vida por contato e a sacada estão nas cenas de verificação. A cena principal continua com o manequim, sem esqueleto, roupa nem equipamento. A animação definitiva da espada também fica para depois.
 
 ## Mapa dos textos
 

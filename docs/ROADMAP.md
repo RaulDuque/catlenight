@@ -1,6 +1,6 @@
 # Roadmap
 
-Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06, 07 e 08 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. O restante da interface, a progressão, a animação e o áudio continuam sem começar.
+Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06, 07, 08 e 09 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. O restante da interface, outras habilidades, a animação e o áudio continuam sem começar.
 
 ## 01 — Fundação e cena de verificação
 
@@ -218,11 +218,25 @@ Esqueleto, ciclo de caminhada, roupa e equipamento ficam para as próximas taref
 
 O canto da tela do piloto 08 já mostra “Vida 3/3”. O restante da interface continua para quando houver mais informação de jogo sem esconder a câmera lateral.
 
+## 09 — Relíquia do salto duplo
+
+**Status: concluída na cena de verificação.** Medida no Godot 4.7.2 em 20/11/2026. O relatório está em `MD-usario/relatorios/09-reliquia-do-salto-duplo.md`. O F6 do editor não foi pressionado. A janela abriu a cena por `tests/capturar_09.tscn`. O percurso rodou em `tests/verificar_reliquia_09.gd`. A cena 08 e o F5 da cena principal não ganharam a sacada nem a relíquia.
+
+| Critério | Status |
+| --- | --- |
+| Sacada visível no vestíbulo, fora do arco | Verificado. `Vestibulo/Sacada/Laje`, topo em Y = 2,350. `Vestibulo/Sacada/Janela` acesa acima dela. O salto no arco voltou ao piso |
+| Salto simples fica abaixo do topo; o duplo deixa margem e o pouso sustenta | Verificado, no mesmo piso. Pico simples 1,590 m. Pico duplo 3,174 m. Pés finais em X = −4,225 e Y = 2,350, apoiados por 8 quadros. Dá para descer e seguir andando |
+| Relíquia alcançável sem a habilidade, longe da sentinela | Verificado. A coleta foi por contato na plataforma. A peça sumiu, o texto apareceu e “Vida 3/3” continuou no canto |
+| Segurar Espaço não gasta o extra; o terceiro toque não sobe; pousar devolve | Verificado. Segurar manteve o impulso. O terceiro toque passou de 4,520 para 3,867 m/s, sem novo impulso. No piso, o extra voltou |
+| A habilidade segue o mesmo jogador na porta, na queda e na derrota | Verificado. Depois da porta, da queda e de um retorno por derrota, `salto_duplo_adquirido` continuou verdadeiro. A queda não mudou a vida. A derrota devolveu vida 3 em X = 21,000 |
+| Testes anteriores | Verificado. `verificar_movimento.gd`, `verificar_inimigo_07.gd` e `verificar_vida_08.gd` deram `RESULTADO ok` |
+| F6 no editor | Pendente. A cena executada foi `scenes/verification/09_reliquia_do_salto_duplo.tscn`, aberta pelo teste, sem o atalho do editor |
+
 ## Estudo futuro — Progressão
 
-**Status: não iniciada.**
+**Status: não iniciada, fora o salto duplo da etapa 09.**
 
-Concluir quando uma capacidade nova abrir um caminho que já estava visível e fechado.
+A sacada do vestíbulo já pede a relíquia da galeria. Outras habilidades continuam para quando um caminho visível e fechado abrir com uma capacidade nova.
 
 ## Como atualizar este arquivo
 

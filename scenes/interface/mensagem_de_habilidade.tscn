@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/interface/mensagem_de_habilidade.gd" id="1_mensagem"]
+
+[node name="MensagemDaHabilidade" type="CanvasLayer"]
+script = ExtResource("1_mensagem")
+
+[node name="Texto" type="Label" parent="."]
+visible = false
+offset_left = 80.0
+offset_top = 620.0
+offset_right = 1200.0
+offset_bottom = 688.0
+theme_override_colors/font_color = Color(0.95, 0.93, 0.86, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.04, 0.03, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 28
+text = "Salto duplo adquirido — aperte Espaço outra vez no ar"
+horizontal_alignment = 1
