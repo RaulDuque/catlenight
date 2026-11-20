@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/verification/11_altar_de_salvamento.tscn" id="1_piloto"]
+[ext_resource type="PackedScene" path="res://scenes/interface/mapa_das_salas.tscn" id="2_mapa"]
+
+[node name="MapaDasSalasNoCastelo" instance=ExtResource("1_piloto")]
+
+[node name="MapaDasSalas" parent="." instance=ExtResource("2_mapa")]

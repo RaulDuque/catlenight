@@ -12,6 +12,7 @@ extends Node3D
 
 var _quadros_de_folga := 0
 var _passagem_pendente: Area3D
+var sala_atual: Node3D
 
 
 func _ready() -> void:
@@ -63,6 +64,12 @@ func _aplicar(passagem: Area3D) -> void:
 	_quadros_de_folga = 10
 
 
+func definir_sala_atual(sala: Node3D) -> void:
+	# A restauração do altar usa o mesmo enquadramento da travessia.
+	_enquadrar(sala)
+
+
 func _enquadrar(sala: Node3D) -> void:
+	sala_atual = sala
 	var marco := sala.get_node("Enquadramento") as Node3D
 	_camera.global_transform = marco.global_transform

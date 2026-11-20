@@ -1,6 +1,6 @@
 # Roadmap
 
-Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06, 07, 08, 09, 10 e 11 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. O restante da interface, outras habilidades, a animação e o áudio continuam sem começar.
+Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06, 07, 08, 09, 10, 11 e 12 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. O restante da interface, outras habilidades, a animação e o áudio continuam sem começar.
 
 ## 01 — Fundação e cena de verificação
 
@@ -263,11 +263,30 @@ O canto da tela do piloto 08 já mostra “Vida 3/3”. O restante da interface 
 | Testes 10, 07 e 08 | Verificado. `verificar_capela_10.gd`, `verificar_inimigo_07.gd` e `verificar_vida_08.gd` deram `RESULTADO ok` |
 | F6 no editor | Pendente. A cena executada foi `scenes/verification/11_altar_de_salvamento.tscn`, aberta pelo teste, sem o atalho do editor |
 
+## 12 — Mapa das salas exploradas
+
+**Status: concluída na cena de verificação.** Medida no Godot 4.7.2 em 20/11/2026. O relatório está em `MD-usario/relatorios/12-mapa-das-salas.md`. O F6 do editor não foi pressionado. A janela abriu a cena por `tests/capturar_12.tscn`. O percurso rodou em processos separados de `tests/verificar_mapa_12.gd`, com `APPDATA` apontando para `tests/dados_12`. A cena 11 continua disponível para o exercício de salvamento. O F5 continua em `main.tscn`.
+
+| Critério | Status |
+| --- | --- |
+| No nascimento, o mapa mostra só o vestíbulo | Verificado. Sala atual `vestibulo`. Visitadas: `vestibulo`. Sem ligação |
+| Na primeira chegada à galeria, as duas salas aparecem ligadas | Verificado. Sala atual `galeria`. Visitadas: `vestibulo`, `galeria`. Ligação `vestibulo-galeria` |
+| A volta com a relíquia muda o marcador e guarda o segredo da capela | Verificado. Sala atual de novo `vestibulo`. A lista continuou com duas salas. A capela não entrou no desenho |
+| A primeira entrada revela a capela e o marcador fica nela | Verificado. Visitadas: `vestibulo`, `galeria`, `capela_da_lua`. Ligações com a galeria e com a capela. Sala do percurso `CapelaDaLua` |
+| Consultar o mapa perto da sentinela pausa a partida por mais de 1 s | Verificado. 1103 ms. Jogador em X = 27,891. Sentinela em X = 29,770. Vida 3. Golpe vazio. Depois de fechar, a patrulha andou 0,080 m |
+| X, Espaço e ↑ durante a consulta não disparam ao voltar | Verificado. Dez quadros com as teclas presas: pés no chão, lâmina recolhida, câmera na galeria e nenhuma gravação |
+| Abrir e fechar o mapa no altar não grava | Verificado. `gravacoes` ficou em 0 e o arquivo continuou ausente até o toque de salvar |
+| Continuar restaura as três salas, o marcador na capela, a vida, a relíquia e a sentinela | Verificado. Sala atual `capela_da_lua`. Vida 3, salto duplo e sentinela em 3. Os bytes do arquivo não mudaram ao abrir o mapa |
+| Novo jogo com arquivo existente mostra só o vestíbulo e conserva o arquivo | Verificado. Visitadas: `vestibulo`. O texto do arquivo ficou igual |
+| Uma gravação da etapa 11, sem chaves de mapa, carrega o caminho completo antes de qualquer escrita | Verificado. Vida 2, sentinela 1, três salas e marcador na capela. Os bytes gravados no teste permaneceram iguais |
+| Testes 05, 10 e 11 | Verificado. `verificar_salas_05.gd`, `verificar_capela_10.gd` e as fases de `verificar_altar_11.gd` deram `RESULTADO ok` |
+| F6 no editor | Pendente. A cena executada foi `scenes/verification/12_mapa_das_salas.tscn`, aberta pelo teste, sem o atalho do editor |
+
 ## Estudo futuro — Progressão
 
-**Status: não iniciada, fora o salto duplo da etapa 09, a capela da etapa 10 e o altar da etapa 11.**
+**Status: não iniciada, fora o salto duplo da etapa 09, a capela da etapa 10, o altar da etapa 11 e o mapa da etapa 12.**
 
-A sacada do vestíbulo abre a Capela da Lua depois da relíquia. O altar dessa capela grava a vida, o salto duplo e a sentinela. Outras habilidades continuam para quando um caminho visível e fechado abrir com uma capacidade nova.
+A sacada do vestíbulo abre a Capela da Lua depois da relíquia. O altar dessa capela grava a vida, o salto duplo, a sentinela e as salas já visitadas. O mapa só desenha uma sala depois que a troca termina. Outras habilidades continuam para quando um caminho visível e fechado abrir com uma capacidade nova.
 
 ## Como atualizar este arquivo
 

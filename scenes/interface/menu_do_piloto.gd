@@ -51,6 +51,9 @@ func _confirmar() -> void:
 		if progresso == null or cena == null or not bool(progresso.restaurar(cena)):
 			_aguardando_soltar = false
 			return
+	var mapa := get_tree().get_first_node_in_group("mapa_das_salas")
+	if selecao == "novo" and mapa != null and mapa.has_method("iniciar_jogo_novo"):
+		mapa.call("iniciar_jogo_novo")
 	visible = false
 	get_tree().paused = false
 

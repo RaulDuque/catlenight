@@ -3,6 +3,8 @@ extends Node
 ## Gravação do piloto 11. Um arquivo, com versão.
 ## A escrita vai primeiro para um temporário. O arquivo anterior só sai do lugar
 ## depois que o temporário foi lido de volta e validado.
+## salas_visitadas e sala_atual são opcionais. Um arquivo da etapa 11, sem essas
+## chaves, continua válido: o altar só era alcançado depois das três salas.
 
 const VERSAO := 1
 const ARQUIVO := "user://catlenight_piloto_11.json"
@@ -23,6 +25,8 @@ const _CHAVES: Array[String] = [
 	"sentinela_vida",
 	"sentinela_derrotada",
 ]
+const _OPCIONAIS: Array[String] = ["salas_visitadas", "sala_atual"]
+const _SALAS_DO_MAPA: Array[String] = ["vestibulo", "galeria", "capela_da_lua"]
 
 var gravacoes := 0
 
@@ -34,7 +38,7 @@ func _ready() -> void:
 func reunir(cena: Node) -> Dictionary:
 	var jogador := cena.get_node("Jogador")
 	var sentinela := cena.get_node("Galeria/SentinelaDaGaleria")
-	return {
+	var ficha := {
 		"versao": VERSAO,
 		"sala": SALA,
 		"marcador": MARCADOR,
@@ -44,6 +48,12 @@ func reunir(cena: Node) -> Dictionary:
 		"sentinela_vida": int(sentinela.get("pontos_de_vida")),
 		"sentinela_derrotada": bool(sentinela.get("derrotada")),
 	}
+	var mapa := cena.get_tree().get_first_node_in_group("mapa_das_salas")
+	if mapa != null and mapa.has_method("para_gravacao"):
+		var extra := mapa.call("para_gravacao") as Dictionary
+		ficha["salas_visitadas"] = extra["salas_visitadas"]
+		ficha["sala_atual"] = extra["sala_atual"]
+	return ficha
 
 
 func validar(bruto: Variant) -> Dictionary:
@@ -54,8 +64,12 @@ func validar(bruto: Variant) -> Dictionary:
 		if not dados.has(chave):
 			return {}
 	for chave in dados.keys():
-		if not _CHAVES.has(String(chave)):
+		var nome := String(chave)
+		if not _CHAVES.has(nome) and not _OPCIONAIS.has(nome):
 			return {}
+	var mapa := _validar_mapa(dados)
+	if mapa.has("invalido"):
+		return {}
 	var versao: Variant = _inteiro(dados["versao"])
 	var vida: Variant = _inteiro(dados["vida"])
 	var vida_maxima: Variant = _inteiro(dados["vida_maxima"])
@@ -77,7 +91,7 @@ func validar(bruto: Variant) -> Dictionary:
 		return {}
 	if not derrotada and (int(sentinela_vida) < 1 or int(sentinela_vida) > 3):
 		return {}
-	return {
+	var ficha := {
 		"versao": int(versao),
 		"sala": SALA,
 		"marcador": MARCADOR,
@@ -87,6 +101,35 @@ func validar(bruto: Variant) -> Dictionary:
 		"sentinela_vida": int(sentinela_vida),
 		"sentinela_derrotada": derrotada,
 	}
+	if not mapa.is_empty():
+		ficha["salas_visitadas"] = mapa["salas_visitadas"]
+		ficha["sala_atual"] = mapa["sala_atual"]
+	return ficha
+
+
+func _validar_mapa(dados: Dictionary) -> Dictionary:
+	var tem_lista := dados.has("salas_visitadas")
+	var tem_atual := dados.has("sala_atual")
+	if not tem_lista and not tem_atual:
+		return {}
+	if tem_lista != tem_atual:
+		return {"invalido": true}
+	if typeof(dados["salas_visitadas"]) != TYPE_ARRAY or typeof(dados["sala_atual"]) != TYPE_STRING:
+		return {"invalido": true}
+	var atual := String(dados["sala_atual"])
+	if not _SALAS_DO_MAPA.has(atual):
+		return {"invalido": true}
+	var vistas: Array[String] = []
+	for item in dados["salas_visitadas"]:
+		if typeof(item) != TYPE_STRING:
+			return {"invalido": true}
+		var id := String(item)
+		if not _SALAS_DO_MAPA.has(id) or vistas.has(id):
+			return {"invalido": true}
+		vistas.append(id)
+	if vistas.is_empty() or not vistas.has("vestibulo") or not vistas.has(atual):
+		return {"invalido": true}
+	return {"salas_visitadas": vistas, "sala_atual": atual}
 
 
 func ler_valido() -> Dictionary:
@@ -155,7 +198,17 @@ func _aplicar(cena: Node, dados: Dictionary) -> bool:
 			gema.visible = false
 			gema.queue_free()
 	sentinela.call("aplicar_estado_gravado", int(dados["sentinela_vida"]))
-	camera.global_transform = enquadramento.global_transform
+	var capela := cena.get_node_or_null("CapelaDaLua") as Node3D
+	if capela != null and cena.has_method("definir_sala_atual"):
+		cena.call("definir_sala_atual", capela)
+	else:
+		camera.global_transform = enquadramento.global_transform
+	var mapa := cena.get_tree().get_first_node_in_group("mapa_das_salas")
+	if mapa != null:
+		if dados.has("salas_visitadas") and mapa.has_method("aplicar_gravacao"):
+			mapa.call("aplicar_gravacao", dados["salas_visitadas"], String(dados["sala_atual"]))
+		elif mapa.has_method("aplicar_legado"):
+			mapa.call("aplicar_legado")
 	return true
 
 

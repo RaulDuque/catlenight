@@ -8,5 +8,6 @@ molde3d/white_mesh.obj
 # Traduções binárias geradas a partir de CSV. A documentação estável do Godot 4.1+ pede para ignorá-las.
 *.translation
 
-# Partidas do piloto 11 ficam em user://. Esta pasta só isola os testes.
+# Partidas do piloto 11 ficam em user://. Estas pastas só isolam os testes.
 tests/dados_11/
+tests/dados_12/
