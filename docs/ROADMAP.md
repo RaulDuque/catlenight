@@ -317,12 +317,12 @@ O canto da tela do piloto 08 já mostra “Vida 3/3”. O restante da interface 
 
 | Critério | Status |
 | --- | --- |
-| “Novo jogo” começa no patamar, com o portão já no quadro | Verificado. Pés em X = −23,200, Y = 0,000 e Z = 0. Câmera em X = −18,80, `Size` = 8, 1280×720. Vida 3/3. O mapa mostra só `escadaria_exterior` |
-| Segurar a seta sobe, soltar no meio para, e a descida volta ao patamar | Verificado. Parada em X = −20,060, Y = 1,120 e Z = 0. A descida chegou a Y = 0,400 ainda sobre a rampa |
-| A travessia troca de sala uma vez em cada sentido | Verificado. Entrada em X = −4,142, Y = 0, câmera em X = 0. Volta em X = −15,708, Y = 2,640, câmera em X = −18,80. Z = 0 nos dois |
-| O mapa revela o vestíbulo ao entrar e conserva uma gravação antiga | Verificado. Depois da entrada: `escadaria_exterior` e `vestibulo`, com a ligação. “Continuar” abriu no altar, X = 47,950, com as três salas antigas; a visita acrescentou o exterior |
+| “Novo jogo” começa no patamar inferior direito, com o portão já no quadro | Verificado de novo em 20/11/2026, depois da inversão. Pés em X = −20,800, Y = 0,000 e Z = 0. Perfil para −X. Câmera em X = −26,20, `Size` = 8, 1280×720. Vida 3/3. O mapa mostra só `escadaria_exterior` |
+| A seta esquerda sobe, soltar no meio para, e a seta direita desce | Verificado. Parada em X = −24,225, Y = 1,256 e Z = 0. O fim da escada, no patamar superior, ficou em X = −27,470 e Y = 2,640. A descida chegou a X = −21,573 e Y = 0 |
+| A travessia troca de sala uma vez em cada sentido | Verificado. Entrada em X = −7,458, Y = 0, câmera em X = 0. Volta em X = −30,992, Y = 2,640, câmera em X = −26,20. Z = 0 nos dois. A saída do exterior só dispara andando para −X |
+| O mapa revela o vestíbulo ao entrar e conserva uma gravação antiga | Verificado de novo. Depois da entrada: `escadaria_exterior` e `vestibulo`, com a ligação. “Continuar” abriu no altar, X = 47,950, com as três salas antigas; a visita acrescentou o exterior e manteve `vestibulo-galeria` e `vestibulo-capela_da_lua` |
 | O lance importado não cria colisão | Verificado depois da importação. 36 malhas, 0 corpos físicos. A caixa vai de X = 0 a 5,520, Y = 0 a 3,200 e Z = −0,390 a −0,020 |
-| Testes do mapa, do portal, da capela e do vestíbulo | Verificado. As fases `primeira`, `continuar`, `novo_mapa` e `legado` de `verificar_mapa_12.gd`, mais `verificar_portal_14.gd`, `verificar_capela_10.gd` e `verificar_vestibulo_13.gd`, deram `RESULTADO ok` |
+| A rota vestíbulo, galeria e capela continua no mapa | Verificado nesta atualização pelo “Continuar” da cena 15. As ligações `vestibulo-galeria` e `vestibulo-capela_da_lua` permaneceram. Os scripts 12, 14, 10 e 13 não foram repetidos |
 | F6 no editor | Pendente. A cena executada foi `scenes/verification/15_escadaria_exterior.tscn`, aberta pelo teste, sem o atalho do editor |
 
 ## 15-A — Referência visual da abertura
@@ -335,7 +335,20 @@ O canto da tela do piloto 08 já mostra “Vida 3/3”. O restante da interface 
 | O programa abre | Verificado. Executável `D:\Progr\csotn\sotn.exe`, janela “SymphonyRecomp v1.2.0p” |
 | A imagem NTSC norte-americana está disponível e o CUE aponta para as faixas reais | Pendente. Nenhuma imagem foi encontrada. `system.discPath` ficou vazio |
 | Três quadros da abertura, com a altura de Richter medida na área de jogo | Pendente. O jogo não chegou ao prólogo |
-| Três decisões da escadaria, sem alterar a cena 15 | Verificado no relatório. A cena 15 existe. A comparação com Richter espera os quadros do jogo |
+| Três decisões da escadaria, sem alterar a cena 15 | Verificado no relatório da 15-A, naquele momento. A atualização 15-B, pedida depois, alterou o sentido e o enquadramento da cena 15 |
+
+## 15-B — Referência do prólogo
+
+**Status: concluída na cena de verificação.** Conferida no Godot 4.7.2 em 20/11/2026. O prompt está em `MD-usario/prompts/15b-referencia-do-prologo.md`. O relatório da escadaria foi atualizado. O F6 do editor não foi pressionado. As janelas abriram por `tests/capturar_15.tscn`.
+
+| Critério | Status |
+| --- | --- |
+| “Final Stage: Bloodlines” registrada como referência do prólogo | Verificado. A nota está em `docs/GAME_DESIGN.md`. A prancha de consulta é `assets-exemple-2d/Final Stage - _Bloodlines_.png`, mapeada por Revned |
+| Nascimento no patamar inferior direito e subida com a seta esquerda | Verificado. Pés iniciais em X = −20,800 e Y = 0,000. Fim da escada em X = −27,470 e Y = 2,640. Z = 0 |
+| Diagonal, torre, lua e o vão de entrada no mesmo quadro | Verificado nas capturas do Catlenight. A torre é uma caixa e a lua é um disco. O vídeo da abertura não estava disponível |
+| Ida e volta pelos controles, com a descida para a direita | Verificado. Uma troca em cada sentido. A volta deixa os pés em Y = 2,640 e a direita desce até Y = 0 |
+| “Continuar” restaura o altar e o mapa conserva a rota antiga | Verificado. Altar em X = 47,950. A visita ao exterior manteve vestíbulo, galeria e capela |
+| Salão do trono e os dois espaços superiores | Anotados para etapas futuras. A prancha não define o acesso |
 
 ## Estudo futuro — Progressão
 

@@ -15,10 +15,10 @@ size = Vector3(2.6, 1, 0.9)
 size = Vector3(2.6, 1, 2.4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_patamar_alto"]
-size = Vector3(1.08, 1, 0.5)
+size = Vector3(5.4, 0.22, 0.9)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_patamar_alto"]
-size = Vector3(2.7, 1, 2.4)
+size = Vector3(5.68, 1, 2.4)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_rampa"]
 size = Vector3(6.119, 0.4, 2.4)
@@ -65,10 +65,10 @@ height = 0.84
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_silhueta"]
 shading_mode = 0
-albedo_color = Color(0.015, 0.02, 0.03, 1)
+albedo_color = Color(0.09, 0.1, 0.13, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_torre"]
-size = Vector3(1.15, 6.2, 0.8)
+size = Vector3(1.5, 7.2, 1.0)
 
 [sub_resource type="BoxMesh" id="BoxMesh_telhado"]
 size = Vector3(2.4, 1.6, 1.4)
@@ -79,32 +79,32 @@ size = Vector3(0.8, 2.4, 1.4)
 [node name="EscadariaExterior" type="Node3D"]
 
 [node name="Ceu" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2, 2.8, -8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2, 2.8, -8)
 mesh = SubResource("BoxMesh_ceu")
 surface_material_override/0 = SubResource("StandardMaterial3D_ceu")
 
 [node name="Lua" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 5.4, -7.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9, 5.7, -7.2)
 mesh = SubResource("SphereMesh_lua")
 surface_material_override/0 = SubResource("StandardMaterial3D_lua")
 
 [node name="TorreDistante" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4, 3.2, -6.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.35, 3.5, -3.6)
 mesh = SubResource("BoxMesh_torre")
 surface_material_override/0 = SubResource("StandardMaterial3D_silhueta")
 
 [node name="TorreMenor" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1, 2.0, -5.6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.35, 6.15, -3.5)
 mesh = SubResource("BoxMesh_telhado")
 surface_material_override/0 = SubResource("StandardMaterial3D_silhueta")
 
 [node name="TelhadoDistante" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8, 0.7, -5.4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4, 1.3, -4.6)
 mesh = SubResource("BoxMesh_telhado")
 surface_material_override/0 = SubResource("StandardMaterial3D_silhueta")
 
 [node name="PatamarInferior" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, -0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, -0.5, 0)
 
 [node name="Malha" type="MeshInstance3D" parent="PatamarInferior"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
@@ -117,19 +117,19 @@ shape = SubResource("BoxShape3D_patamar_baixo")
 [node name="Lance" type="Node3D" parent="."]
 
 [node name="Degraus" parent="Lance" instance=ExtResource("1_lance")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18, 0)
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.18, 0)
 
 [node name="Rampa" type="StaticBody3D" parent="Lance"]
-transform = Transform3D(0.902086, -0.431433, 0, 0.431433, 0.902086, 0, 0, 0, 1, 2.8463, 1.1396, 0)
+transform = Transform3D(-0.902086, 0.431433, 0, 0.431433, 0.902086, 0, 0, 0, -1, -2.8463, 1.1396, 0)
 
 [node name="Colisao" type="CollisionShape3D" parent="Lance/Rampa"]
 shape = SubResource("BoxShape3D_rampa")
 
 [node name="PatamarSuperior" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.87, 2.14, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.36, 2.14, 0)
 
 [node name="Malha" type="MeshInstance3D" parent="PatamarSuperior"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.81, 0, -1.25)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 0.39, -0.45)
 mesh = SubResource("BoxMesh_patamar_alto")
 surface_material_override/0 = SubResource("StandardMaterial3D_pedra")
 
@@ -137,69 +137,70 @@ surface_material_override/0 = SubResource("StandardMaterial3D_pedra")
 shape = SubResource("BoxShape3D_patamar_alto")
 
 [node name="Muro_0" parent="." instance=ExtResource("2_parede")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.5, 0, -1.9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6, 0, -2.2)
 
 [node name="Muro_1" parent="." instance=ExtResource("2_parede")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.5, 0, -1.9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.6, 0, -2.2)
 
 [node name="Portao" type="Node3D" parent="."]
 
 [node name="Vao" type="MeshInstance3D" parent="Portao"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.55, 3.59, -0.55)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55, 3.59, -0.55)
 mesh = SubResource("BoxMesh_vao")
 surface_material_override/0 = SubResource("StandardMaterial3D_vao")
 
 [node name="Ponta" type="MeshInstance3D" parent="Portao"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.55, 4.7, -0.55)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55, 4.7, -0.55)
 mesh = SubResource("BoxMesh_ponta")
 surface_material_override/0 = SubResource("StandardMaterial3D_vao")
 
 [node name="Topo" type="MeshInstance3D" parent="Portao"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.55, 5.08, -0.55)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55, 5.08, -0.55)
 mesh = SubResource("BoxMesh_topo")
 surface_material_override/0 = SubResource("StandardMaterial3D_vao")
 
 [node name="OmbreiraEsquerda" type="MeshInstance3D" parent="Portao"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.78, 3.92, -0.62)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.32, 3.92, -0.62)
 mesh = SubResource("BoxMesh_ombreira")
 surface_material_override/0 = SubResource("StandardMaterial3D_moldura")
 
 [node name="OmbreiraDireita" type="MeshInstance3D" parent="Portao"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.32, 3.92, -0.62)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.78, 3.92, -0.62)
 mesh = SubResource("BoxMesh_ombreira")
 surface_material_override/0 = SubResource("StandardMaterial3D_moldura")
 
 [node name="AduelaEsquerda" type="MeshInstance3D" parent="Portao"]
-transform = Transform3D(0.8192, 0.5736, 0, -0.5736, 0.8192, 0, 0, 0, 1, 7.15, 4.85, -0.62)
+transform = Transform3D(0.8192, 0.5736, 0, -0.5736, 0.8192, 0, 0, 0, 1, -7.95, 4.85, -0.62)
 mesh = SubResource("BoxMesh_arco")
 surface_material_override/0 = SubResource("StandardMaterial3D_moldura")
 
 [node name="AduelaDireita" type="MeshInstance3D" parent="Portao"]
-transform = Transform3D(0.8192, -0.5736, 0, 0.5736, 0.8192, 0, 0, 0, 1, 7.95, 4.85, -0.62)
+transform = Transform3D(0.8192, -0.5736, 0, 0.5736, 0.8192, 0, 0, 0, 1, -7.15, 4.85, -0.62)
 mesh = SubResource("BoxMesh_arco")
 surface_material_override/0 = SubResource("StandardMaterial3D_moldura")
 
 [node name="LuzDoPortao" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.55, 4.1, -0.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55, 4.1, -0.2)
 light_color = Color(1, 0.64, 0.3, 1)
 light_energy = 6.0
 omni_range = 7.5
 shadow_enabled = false
 
 [node name="Saida" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.55, 3.84, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55, 3.84, 0)
 script = ExtResource("3_passagem")
 sala_de_destino = NodePath("../../Vestibulo")
 chegada = NodePath("../../Vestibulo/ChegadaDaEscadaria")
+sentido_x = -1
 
 [node name="Volume" type="CollisionShape3D" parent="Saida"]
 shape = SubResource("BoxShape3D_passagem")
 
 [node name="Chegada" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.35, 2.64, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.05, 2.64, 0)
 
 [node name="Retorno" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1, 0)
 
 [node name="Enquadramento" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2, 2.85, 14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2, 2.85, 14)

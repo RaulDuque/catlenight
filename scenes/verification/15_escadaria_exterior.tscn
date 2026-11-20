@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3]
+[gd_scene load_steps=9 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/verification/14_portal_da_sacada.tscn" id="1_piloto"]
 [ext_resource type="PackedScene" path="res://scenes/environment/escadaria_exterior.tscn" id="2_escada"]
@@ -8,16 +8,37 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_passagem"]
 size = Vector3(0.8, 2.4, 1.4)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_piso"]
+size = Vector3(3.9, 1, 2.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_piso"]
+albedo_color = Color(0.3, 0.27, 0.25, 1)
+roughness = 0.94
+
+[sub_resource type="BoxMesh" id="BoxMesh_piso"]
+size = Vector3(3.9, 1, 0.9)
+
 [node name="EscadariaExteriorNoCastelo" instance=ExtResource("1_piloto")]
 
 [node name="EscadariaExterior" parent="." instance=ExtResource("2_escada")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, 0)
 
+[node name="PisoDaEntrada" type="StaticBody3D" parent="Vestibulo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.85, -0.5, 0)
+
+[node name="Malha" type="MeshInstance3D" parent="Vestibulo/PisoDaEntrada"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.5)
+mesh = SubResource("BoxMesh_piso")
+surface_material_override/0 = SubResource("StandardMaterial3D_piso")
+
+[node name="Colisao" type="CollisionShape3D" parent="Vestibulo/PisoDaEntrada"]
+shape = SubResource("BoxShape3D_piso")
+
 [node name="ChegadaDaEscadaria" type="Marker3D" parent="Vestibulo"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.4, 0, 0)
 
 [node name="SaidaEsquerda" type="Area3D" parent="Vestibulo"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.65, 1.1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.35, 1.1, 0)
 script = ExtResource("3_passagem")
 sala_de_destino = NodePath("../../EscadariaExterior")
 chegada = NodePath("../../EscadariaExterior/Chegada")
@@ -26,7 +47,10 @@ chegada = NodePath("../../EscadariaExterior/Chegada")
 shape = SubResource("BoxShape3D_passagem")
 
 [node name="Jogador" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.2, 0.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8, 0.2, 0)
+
+[node name="Visual" parent="Jogador"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
 
 [node name="Comeco" type="Node" parent="."]
 script = ExtResource("4_comeco")

@@ -47,6 +47,8 @@ class Driver extends Node:
 	var _passos_parado := 0
 	var _na_porta := 0
 	var _mapa_visto := false
+	var _pes_iniciais := false
+	var _topo_visto := false
 
 	func _init() -> void:
 		process_mode = Node.PROCESS_MODE_ALWAYS
@@ -194,10 +196,19 @@ class Driver extends Node:
 			_ok()
 
 	func _subir() -> void:
-		if not Input.is_action_pressed("direita"):
-			_pressionar("direita")
+		if not _pes_iniciais:
+			if _jogador.is_on_floor() and _jogador.global_position.y < 0.2:
+				_pes_iniciais = true
+				print("MEDICAO inicio x=%.3f y=%.3f z=%.3f" % [
+					_jogador.global_position.x, _jogador.global_position.y, _jogador.global_position.z,
+				])
+			elif _frames > 180:
+				_falhar("não assentou no patamar. x=%.3f y=%.3f" % [_jogador.global_position.x, _jogador.global_position.y])
+			return
+		if not Input.is_action_pressed("esquerda"):
+			_pressionar("esquerda")
 		var x := _jogador.global_position.x
-		if _jogador.is_on_floor() and x > -20.1 and x < -18.4 and _jogador.global_position.y > 0.7:
+		if _jogador.is_on_floor() and x < -24.2 and x > -25.6 and _jogador.global_position.y > 0.8:
 			_ir("parar")
 		elif _frames > 360:
 			_falhar("não chegou ao meio da escada. x=%.3f y=%.3f" % [x, _jogador.global_position.y])
@@ -222,8 +233,13 @@ class Driver extends Node:
 			_falhar("não ficou parado no meio. x=%.3f y=%.3f" % [_jogador.global_position.x, _jogador.global_position.y])
 
 	func _portao() -> void:
-		if not Input.is_action_pressed("direita"):
-			_pressionar("direita")
+		if not _topo_visto and _sala == "EscadariaExterior" and _jogador.is_on_floor() and _jogador.global_position.x < -27.45 and _jogador.global_position.y > 2.55:
+			_topo_visto = true
+			print("MEDICAO fim x=%.3f y=%.3f z=%.3f" % [
+				_jogador.global_position.x, _jogador.global_position.y, _jogador.global_position.z,
+			])
+		if not Input.is_action_pressed("esquerda"):
+			_pressionar("esquerda")
 		if _sala == "Vestibulo" and absf(_camera.global_position.x) < 1.0 and _jogador.is_on_floor() and _jogador.global_position.y < 0.2:
 			if _trocas != 1:
 				_falhar("a entrada trocou de sala %d vezes" % _trocas)
@@ -240,9 +256,9 @@ class Driver extends Node:
 			_falhar("não entrou no vestíbulo. x=%.3f sala=%s" % [_jogador.global_position.x, _sala])
 
 	func _voltar() -> void:
-		if not Input.is_action_pressed("esquerda"):
-			_pressionar("esquerda")
-		if _sala == "EscadariaExterior" and _camera.global_position.x < -10.0 and _jogador.is_on_floor():
+		if not Input.is_action_pressed("direita"):
+			_pressionar("direita")
+		if _sala == "EscadariaExterior" and _camera.global_position.x < -10.0 and _jogador.is_on_floor() and _jogador.global_position.y > 2.0:
 			if _trocas != 1:
 				_falhar("a volta trocou de sala %d vezes" % _trocas)
 				return
@@ -257,10 +273,10 @@ class Driver extends Node:
 			_falhar("não voltou ao exterior. x=%.3f sala=%s" % [_jogador.global_position.x, _sala])
 
 	func _descer() -> void:
-		if not Input.is_action_pressed("esquerda"):
-			_pressionar("esquerda")
+		if not Input.is_action_pressed("direita"):
+			_pressionar("direita")
 		var y := _jogador.global_position.y
-		if _jogador.is_on_floor() and y < 0.4 and _jogador.global_position.x < -21.5:
+		if _jogador.is_on_floor() and y < 0.4 and _jogador.global_position.x > -21.6:
 			print("MEDICAO desceu x=%.3f y=%.3f z=%.3f" % [_jogador.global_position.x, y, _jogador.global_position.z])
 			_ok()
 		elif _frames > 300:

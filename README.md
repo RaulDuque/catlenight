@@ -22,7 +22,7 @@ O piloto do vestíbulo de pedra é `scenes/verification/13_vestibulo_do_castelo.
 
 O piloto do portal da sacada é `scenes/verification/14_portal_da_sacada.tscn`. Ele reaproveita a cena 13 e troca a moldura retangular por `arte-fonte/blender/portal_da_sacada.blend`. O vão livre na soleira tem 1,12 m. A ponta fica 2,54 m acima dos pés. A parede lisa da sacada fica oculta, e a cantaria de trás aparece no lugar. A laje, o detector e a volta da capela não mudam. A cena 13 continua com o retângulo, para comparar.
 
-O piloto da escadaria é `scenes/verification/15_escadaria_exterior.tscn`. Ele reaproveita a cena 14. “Novo jogo” começa no patamar de baixo, com “Vida 3/3”, e o portão iluminado já aparece acima e à direita. A seta direita sobe a rampa e atravessa `EscadariaExterior/Saida` até o vestíbulo. A seta esquerda volta pelo mesmo caminho. “Continuar” segue abrindo no altar da capela. A cena 14 continua sem essa saída, para o exercício do portal.
+O piloto da escadaria é `scenes/verification/15_escadaria_exterior.tscn`. Ele reaproveita a cena 14. “Novo jogo” começa no patamar inferior direito, com “Vida 3/3”. A seta esquerda sobe a rampa até o portão, no alto à esquerda, e atravessa `EscadariaExterior/Saida` até o vestíbulo. A volta deixa o jogador no patamar superior; a seta direita desce. “Continuar” segue abrindo no altar da capela. A cena 14 continua sem essa saída, para o exercício do portal.
 
 ## Versão do Godot
 

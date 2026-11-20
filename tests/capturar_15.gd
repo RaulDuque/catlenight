@@ -63,7 +63,7 @@ func _menu_novo() -> void:
 
 func _esperar_patamar() -> void:
 	var posicao := _jogador.global_position
-	if _jogador.is_on_floor() and posicao.y < 0.15 and posicao.x < -22.0 and absf(_camera.global_position.x + 18.8) < 1.0:
+	if _jogador.is_on_floor() and posicao.y < 0.15 and posicao.x > -21.6 and posicao.x < -19.8 and absf(_camera.global_position.x + 26.2) < 1.0:
 		_passos += 1
 	else:
 		_passos = 0
@@ -74,11 +74,11 @@ func _esperar_patamar() -> void:
 
 
 func _subir() -> void:
-	if not Input.is_action_pressed("direita"):
-		_pressionar("direita")
+	if not Input.is_action_pressed("esquerda"):
+		_pressionar("esquerda")
 	var posicao := _jogador.global_position
-	if _jogador.is_on_floor() and posicao.x > -20.1 and posicao.x < -18.4 and posicao.y > 0.7:
-		_soltar("direita")
+	if _jogador.is_on_floor() and posicao.x < -24.2 and posicao.x > -25.6 and posicao.y > 0.8:
+		_soltar("esquerda")
 		_frames = 0
 		_fase = "parar"
 	elif _frames > 360:

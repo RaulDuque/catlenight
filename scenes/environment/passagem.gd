@@ -6,6 +6,8 @@ extends Area3D
 
 @export var sala_de_destino: NodePath
 @export var chegada: NodePath
+## 0 aceita os dois sentidos. -1 só entra andando para −X. 1 só entra andando para +X.
+@export var sentido_x: int = 0
 
 
 func _ready() -> void:

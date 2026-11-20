@@ -31,6 +31,18 @@ Em uma sala só, o corpo provisório anda em X, pula, cai e para no chão com co
 
 A cena `scenes/verification/main.tscn` é o cenário desse teste futuro. Hoje ela só deixa o chão, o bloco, a luz e a câmera visíveis e parados.
 
+## Prólogo
+
+A primeira área é o prólogo: o jogador nasce fora do castelo e sobe até a entrada. A referência de composição e de percurso é a prancha “Final Stage: Bloodlines”, mapeada por Revned em [Revned’s Video Game Maps](https://revned77.github.io/games/SymphonyOfTheNight.html). A cópia de consulta fica em `assets-exemple-2d/Final Stage - _Bloodlines_.png`. Ela estuda a disposição dos espaços. O que o jogador vê enquanto anda continua dependendo do vídeo da abertura, quando essa imagem estiver disponível. O cenário jogável é feito com as peças 3D do Catlenight.
+
+A faixa de baixo da prancha organiza a sequência exterior, patamar, salão e trono. Nesta etapa só a escadaria e a passagem para o vestíbulo estão montadas. O nascimento fica no patamar inferior direito. A seta esquerda sobe em −X até o patamar superior esquerdo, onde o vão iluminado marca a troca do céu aberto pelo interior. A seta direita desce.
+
+Ficam anotados para etapas futuras, sem caminho definido pela prancha:
+
+- o salão do trono, a sala larga com colunas, cortinas e a mesa ao centro;
+- o espaço superior alongado, com as figuras repetidas e as luzes;
+- o espaço superior em degraus, o lance quebrado entre esse corredor e o salão.
+
 ## Fora desta etapa
 
 Movimento, combate, inimigos, várias salas, interface, animação e áudio não fazem parte da fundação.

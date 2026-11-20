@@ -39,6 +39,11 @@ func solicitar_passagem(passagem: Area3D) -> void:
 func _ao_cruzar(corpo: Node3D, passagem: Area3D) -> void:
 	if corpo != _jogador or _quadros_de_folga > 0 or _passagem_pendente != null:
 		return
+	var sentido := int(passagem.get("sentido_x"))
+	if sentido < 0 and _jogador.velocity.x >= -0.05:
+		return
+	if sentido > 0 and _jogador.velocity.x <= 0.05:
+		return
 	_passagem_pendente = passagem
 
 
