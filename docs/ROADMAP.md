@@ -1,6 +1,6 @@
 # Roadmap
 
-Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05 e 06 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. Inimigos, interface, progressão, animação e áudio continuam sem começar.
+Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06 e 07 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. Vida do jogador, dano por contato, interface, progressão, animação e áudio continuam sem começar.
 
 ## 01 — Fundação e cena de verificação
 
@@ -181,11 +181,26 @@ Esqueleto, ciclo de caminhada, roupa e equipamento ficam para as próximas taref
 | Segunda execução de `tests/verificar_golpe_06.gd` | Verificado. `RESULTADO ok`, saída 0. Um acerto por golpe, lâmina nos erros, troca e queda encerram o ataque |
 | Efeito no golpe entregue ou nas mecânicas anteriores | O commit `0e9ee6e` já declara a variável. A falha era de um script incompleto durante a edição e não entrou no commit |
 
-## Estudo futuro — Inimigos
+## 07 — Primeiro inimigo da galeria
+
+**Status: concluída na cena de verificação.** Medida no Godot 4.7.2 em 20/11/2026. O relatório está em `MD-usario/relatorios/07-primeiro-inimigo.md`. O F6 do editor não foi pressionado. A janela abriu a cena por `tests/capturar_07.tscn`. O encontro rodou em `tests/verificar_inimigo_07.gd`. A cena 06 e o F5 da cena principal não mudaram.
+
+| Critério | Status |
+| --- | --- |
+| Sentinela reutilizável e piloto com as salas atuais | Verificado. `sentinela_da_galeria.tscn` entra em `07_primeiro_inimigo.tscn`, que instancia a cena 05. F5 continua em `main.tscn` |
+| Ida e volta no piso, virando nos dois limites, Z = 0 | Verificado. X de 28,700 a 30,150, Y = 0, Z = 0. Virou nos dois extremos |
+| Salto por cima com seta e Espaço, vida permanece 3 | Verificado. Antes: jogador (27,800, 0), sentinela 30,150. Depois: jogador (29,900, 0), sentinela 28,750. Os pés passaram acima. Vida 3 |
+| Um golpe frontal tira 1 ponto e segurar X não tira outro | Verificado. Vida 3 → 2, um acerto, 7 quadros de contato |
+| Golpe de costas e golpe longe conservam os 2 pontos | Verificado. A lâmina apareceu e a vida ficou em 2 |
+| Dois golpes completam 2 → 1 → 0 e o caminho continua livre | Verificado. Depois da derrota, a saída chegou em X = 2,942 e a volta em X = 20,033, com a vida em 0. O jogador atravessou o ponto com os pés em Y = 0. Um só `Jogador` |
+| Testes do golpe e das salas | Verificado. `verificar_golpe_06.gd` e `verificar_salas_05.gd` deram `RESULTADO ok` |
+| F6 no editor | Pendente. A cena executada foi `scenes/verification/07_primeiro_inimigo.tscn`, aberta pelo teste, sem o atalho do editor |
+
+## Estudo futuro — Dano por contato
 
 **Status: não iniciada.**
 
-Concluir quando um oponente geométrico ocupar o mesmo plano, reagir ao jogador e puder ser vencido ou evitado.
+Concluir quando a sentinela puder tirar vida do jogador ao encostar, e essa vida aparecer sem esconder a câmera lateral.
 
 ## Estudo futuro — Interface
 

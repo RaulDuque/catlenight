@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/verification/05_salas_conectadas.tscn" id="1_salas"]
+[ext_resource type="PackedScene" path="res://scenes/enemies/sentinela_da_galeria.tscn" id="2_sentinela"]
+
+[node name="PrimeiroInimigo" instance=ExtResource("1_salas")]
+
+[node name="SentinelaDaGaleria" parent="Galeria" instance=ExtResource("2_sentinela")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4, 0, 0)
+limite_esquerdo = NodePath("../PatrulhaEsquerda")
+limite_direito = NodePath("../PatrulhaDireita")
+
+[node name="PatrulhaEsquerda" type="Marker3D" parent="Galeria"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7, 0, 0)
+
+[node name="PatrulhaDireita" type="Marker3D" parent="Galeria"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.15, 0, 0)

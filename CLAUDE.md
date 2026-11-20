@@ -29,7 +29,7 @@ Unidades do Godot são metros. O tamanho ortográfico da câmera também está e
 
 A etapa 01 entregou a cena de verificação. A etapa 02 entregou o primeiro controlador: o jogador cai, anda em X, pula e permanece em Z = 0. A etapa 03 entregou o primeiro arco de pedra, modelado no Blender, importado em GLB e atravessável por esse jogador. A etapa 04 trocou o bloco vermelho pelo manequim de 1,70 m. O nó `Visual` aponta o perfil para +X ou para −X conforme a seta, e conserva a última direção quando a seta é solta.
 
-O manequim da cena principal continua sem esqueleto. O piloto da etapa 04-C usa o esqueleto e a corrida do Mixamo. A etapa 04-D deixou esse piloto mais legível: luz mais baixa, ambiente suave e o pilar dianteiro transparente só enquanto cobre o corpo. A etapa 05 ligou duas salas na cena de verificação: o vestíbulo, reconhecido pelo arco, e a galeria, com plataforma elevada e duas colunas ao fundo. Um único jogador atravessa as duas e, se cair na galeria, reaparece na galeria. A etapa 06 colocou um boneco de treino na galeria e o primeiro golpe na tecla X. A lâmina provisória usa a última direção olhada. Um acerto deixa o boneco amarelo por um instante. A animação definitiva da espada, a roupa e o equipamento ficam para as próximas tarefas.
+O manequim da cena principal continua sem esqueleto. O piloto da etapa 04-C usa o esqueleto e a corrida do Mixamo. A etapa 04-D deixou esse piloto mais legível: luz mais baixa, ambiente suave e o pilar dianteiro transparente só enquanto cobre o corpo. A etapa 05 ligou duas salas na cena de verificação: o vestíbulo, reconhecido pelo arco, e a galeria, com plataforma elevada e duas colunas ao fundo. Um único jogador atravessa as duas e, se cair na galeria, reaparece na galeria. A etapa 06 colocou um boneco de treino na galeria e o primeiro golpe na tecla X. A lâmina provisória usa a última direção olhada. Um acerto deixa o boneco amarelo por um instante. A etapa 07 colocou a sentinela de pedra na galeria: ela patrulha em X, pode ser pulada e cai com três golpes. A animação definitiva da espada, a roupa e o equipamento ficam para as próximas tarefas.
 
 A etapa 04-A instalou o Hunyuan3D-2mini fora da pasta do jogo e gerou a geometria do exemplo oficial. A interface local abre por `D:\Tools\Hunyuan3D\abrir_hunyuan.bat`, em `http://127.0.0.1:8080`, e gera quantos moldes forem precisos. Ela produz geometria; a textura continua desligada nesta placa de 8 GB.
 
@@ -39,7 +39,7 @@ A etapa 04-B2 comparou `molde3d\darkcastle.obj` com a captura do casaco. Esse mo
 
 Ainda ficam para depois:
 
-- inimigos e interface;
+- vida do jogador, dano por contato e interface;
 - progressão, animação e áudio.
 
 Não avance para a tarefa seguinte sem apresentar o resultado da tarefa atual.
@@ -50,9 +50,11 @@ Não avance para a tarefa seguinte sem apresentar o resultado da tarefa atual.
 - Prompts complementares aprovados vão para a mesma pasta.
 - O relatório da etapa vai em `MD-usario/relatorios/`.
 - Ao concluir uma tarefa, atualize `docs/ROADMAP.md` com o status real e com os critérios que foram de fato verificados.
-- Não publique, não crie remoto e não faça push até haver um pedido explícito.
+- Tarefas concluídas do Catlenight podem ir para o Git e para o origin sem pedir confirmação a cada entrega. O remoto continua `RaulDuque/catlenight`. Não crie outro remoto e não use force push.
 - Preserve o que já existe na pasta. Não apague conteúdo para "limpar" o projeto.
 
 ## Git
 
-O `.gitignore` e o `.gitattributes` já estão preparados no formato que o Godot 4.7 gera. O repositório local só deve ser criado quando o Git estiver instalado e a inicialização for pedida ou estiver autorizada pela tarefa. Publicação continua separada desse passo.
+O `.gitignore` e o `.gitattributes` já estão preparados no formato que o Godot 4.7 gera. O repositório local só deve ser criado quando o Git estiver instalado e a inicialização for pedida ou estiver autorizada pela tarefa.
+
+Quem conduz o projeto autoriza o Claude Code a fazer commit e push das tarefas concluídas do Catlenight, sem pedir confirmação a cada entrega. O push é o envio normal da branch de trabalho para `origin`. Se o remoto recusar, o commit local fica e a mensagem do Git é informada.
