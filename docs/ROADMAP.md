@@ -1,6 +1,6 @@
 # Roadmap
 
-Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. A Tarefa 05 foi verificada em 20/11/2026. O relatório da Tarefa 01 permanece como histórico. Combate, inimigos, interface, progressão, animação e áudio continuam sem começar.
+Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05 e 06 foram verificadas em 20/11/2026. O relatório da Tarefa 01 permanece como histórico. Inimigos, interface, progressão, animação e áudio continuam sem começar.
 
 ## 01 — Fundação e cena de verificação
 
@@ -152,11 +152,23 @@ Esqueleto, ciclo de caminhada, roupa e equipamento ficam para as próximas taref
 | Testes do código alterado | Verificado. Movimento, direção, arco e o piloto 04-D deram `RESULTADO ok` |
 | F6 no editor | Pendente. A cena executada foi `scenes/verification/05_salas_conectadas.tscn`, aberta pelo teste, sem o atalho do editor |
 
-## Estudo futuro — Combate de ação
+## 06 — Primeiro golpe corpo a corpo
 
-**Status: não iniciada.**
+**Status: concluída na cena de verificação.** Medida no Godot 4.7.2 em 20/11/2026. O relatório está em `MD-usario/relatorios/06-primeiro-golpe.md`. O F6 do editor não foi pressionado. A janela abriu a cena por `tests/capturar_06.tscn`. O combate rodou em `tests/verificar_golpe_06.gd`. A cena 05 e o F5 da cena principal não mudaram.
 
-Concluir quando um ataque corpo a corpo, feito no plano da fase, tiver um resultado visível em um alvo provisório.
+| Critério | Status |
+| --- | --- |
+| Cena 06 com o mesmo jogador e as duas salas | Verificado. `06_primeiro_golpe.tscn` instancia `05_salas_conectadas.tscn`. Há um só `Jogador` |
+| Boneco na galeria, alcançável dos dois lados | Verificado. `Galeria/BonecoDeTreino` em X local 5,6, mundo 29,6. Folga até a chegada 9,8 m, até o retorno 8,6 m e até a saída 11,8 m |
+| Um toque de frente, dentro do alcance, conta um acerto de cada lado | Verificado. Esquerda em X = 28,8: total 1, `acertos_deste_golpe` 1, 10 quadros de contato. Direita em X = 30,5: total 2, deste 1, 10 quadros |
+| De costas ou fora do alcance, o golpe aparece e a contagem não muda | Verificado. A lâmina ficou visível e o total permaneceu 2 |
+| Segurar X gera um acerto; soltar e apertar gera o segundo | Verificado. O total foi de 3 para 4 no aperto longo e de 4 para 5 no segundo toque |
+| Troca de sala e queda encerram o golpe | Verificado. Na troca, a lâmina sumiu, os acertos ficaram em 5, o corpo chegou em X = 2,942 e a câmera em X = 0. Na queda, reapareceu em X = 21,0000, Y = 0,0003, câmera em X = 24 |
+| Andar, virar, pular, atravessar e Z = 0 | Verificado. Pico do pulo 1,590. Z máximo 0. Velocidades 3,50 / 5,50 / 1,30. Alcance inicial 1,15 |
+| Acerto visível na câmera da galeria | Verificado em `06-acerto-na-galeria.png`, 1280×720, `Size` = 8. Pés em X = 28,8000, um acerto neste golpe |
+| O mesmo lugar erra com 1,15 m e acerta com 1,55 m | Verificado em X = 27,95, olhando para +X |
+| Testes do código alterado | Verificado. Movimento, direção, arco, piloto 04-D e salas 05 deram `RESULTADO ok` |
+| F6 no editor | Pendente. A cena executada foi `scenes/verification/06_primeiro_golpe.tscn`, aberta pelo teste, sem o atalho do editor |
 
 ## Estudo futuro — Inimigos
 

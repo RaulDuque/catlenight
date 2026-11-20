@@ -44,6 +44,8 @@ func _aplicar(passagem: Area3D) -> void:
 	var marco := passagem.get_node(caminho_chegada) as Node3D
 	var ponto := marco.global_position
 	ponto.z = 0.0
+	if _jogador.has_method("encerrar_golpe"):
+		_jogador.encerrar_golpe()
 	var avanco: float = _jogador.velocity.x
 	_jogador.global_position = ponto
 	_jogador.velocity = Vector3(avanco, 0.0, 0.0)

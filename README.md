@@ -2,7 +2,9 @@
 
 Metroidvania gótico original em 2.5D, feito para estudo. O nome **Catlenight** é provisório e pode ser trocado.
 
-A cena de verificação tem chão com colisão, um manequim humanoide de 1,70 m, uma plataforma, um arco de pedra, uma luz e uma câmera lateral ortográfica. O manequim cai, anda e pula, e vira o perfil para o lado da caminhada. Combate, inimigos e interface ainda não existem.
+A cena de verificação tem chão com colisão, um manequim humanoide de 1,70 m, uma plataforma, um arco de pedra, uma luz e uma câmera lateral ortográfica. O manequim cai, anda e pula, e vira o perfil para o lado da caminhada.
+
+O piloto do primeiro golpe é `scenes/verification/06_primeiro_golpe.tscn`. Ele reaproveita o vestíbulo e a galeria. Na galeria há um boneco vermelho. A tecla X dá um golpe curto na última direção olhada. Se a lâmina alcança o boneco, o tronco e a cabeça ficam amarelos por um instante.
 
 ## Versão do Godot
 
@@ -50,8 +52,11 @@ As ações estão em **Projeto > Configurações do Projeto > Mapa de Entrada**.
 | `esquerda` | Seta para a esquerda | Anda para X negativo enquanto a tecla está pressionada |
 | `direita` | Seta para a direita | Anda para X positivo enquanto a tecla está pressionada |
 | `pulo` | Espaço | Salta uma vez, só quando os pés estão no chão |
+| `atacar` | X | Dá um golpe curto, no chão, para o lado em que o perfil está virado |
 
 Soltar a seta interrompe a caminhada. Apertar Espaço no ar não faz outro salto. Segurar Espaço até aterrissar também não faz outro salto: é preciso soltar e apertar de novo.
+
+Segurar X durante o golpe inteiro produz um só ataque. Para outro, solte X e aperte de novo. O golpe usa a última direção, mesmo com o personagem parado. No ar, X não começa o golpe.
 
 Se o corpo cair abaixo de Y = -2, ele volta ao ponto onde nasceu, com a velocidade zerada. O nascimento fica com os pés 1 m acima do chão. O arco está no chão antes da plataforma, com um pilar de cada lado de Z = 0.
 
@@ -76,7 +81,7 @@ Isso grava `config/name` em `project.godot` e muda o título da janela. A pasta 
 
 ## O que ainda não existe
 
-Combate, inimigos, salas ligadas, interface e áudio ficam para as próximas tarefas. O manequim ainda não tem esqueleto, ciclo de caminhada, roupa nem equipamento.
+Inimigos, interface e áudio ficam para as próximas tarefas. As salas ligadas e o primeiro golpe estão nas cenas de verificação. A cena principal continua com o manequim, sem esqueleto, roupa nem equipamento. A animação definitiva da espada também fica para depois.
 
 ## Mapa dos textos
 

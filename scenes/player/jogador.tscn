@@ -17,3 +17,16 @@ shape = SubResource("BoxShape3D_corpo")
 [node name="Visual" type="Node3D" parent="."]
 
 [node name="Modelo" parent="Visual" instance=ExtResource("2_modelo")]
+
+[node name="Golpe" type="Node3D" parent="."]
+
+[node name="Lamina" type="MeshInstance3D" parent="Golpe"]
+visible = false
+
+[node name="Area" type="Area3D" parent="Golpe"]
+monitoring = false
+monitorable = false
+collision_layer = 1
+collision_mask = 1
+
+[node name="Forma" type="CollisionShape3D" parent="Golpe/Area"]

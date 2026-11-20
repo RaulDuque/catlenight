@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/verification/05_salas_conectadas.tscn" id="1_salas"]
+[ext_resource type="PackedScene" path="res://scenes/combat/boneco_de_treino.tscn" id="2_boneco"]
+
+[node name="PrimeiroGolpe" instance=ExtResource("1_salas")]
+
+[node name="BonecoDeTreino" parent="Galeria" instance=ExtResource("2_boneco")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6, 0, 0)
