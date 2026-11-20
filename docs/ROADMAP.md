@@ -1,6 +1,6 @@
 # Roadmap
 
-Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06, 07, 08, 09 e 10 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. O restante da interface, outras habilidades, a animação e o áudio continuam sem começar.
+Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06, 07, 08, 09, 10 e 11 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. O restante da interface, outras habilidades, a animação e o áudio continuam sem começar.
 
 ## 01 — Fundação e cena de verificação
 
@@ -247,11 +247,27 @@ O canto da tela do piloto 08 já mostra “Vida 3/3”. O restante da interface 
 | Testes 05 e 09 | Verificado. `verificar_salas_05.gd` e `verificar_reliquia_09.gd` deram `RESULTADO ok` |
 | F6 no editor | Pendente. A cena executada foi `scenes/verification/10_capela_da_lua.tscn`, aberta pelo teste, sem o atalho do editor |
 
+## 11 — Altar de salvamento na Capela da Lua
+
+**Status: concluída na cena de verificação.** Medida no Godot 4.7.2 em 20/11/2026. O relatório está em `MD-usario/relatorios/11-altar-de-salvamento.md`. O F6 do editor não foi pressionado. A janela abriu a cena por `tests/capturar_11.tscn`. O percurso rodou em processos separados de `tests/verificar_altar_11.gd`, com `APPDATA` apontando para `tests/dados_11`. A cena 10 continua sem altar. O F5 continua em `main.tscn`.
+
+| Critério | Status |
+| --- | --- |
+| Novo jogo chega à capela pelos controles, com Vida 2/3 e sentinela em 1, e grava uma vez | Verificado. Coleta com “Vida 3/3”. Depois, vida 2 e sentinela 1. A confirmação “Progresso salvo” permaneceu com a tecla presa. A porta voltou a mostrar “↑ Voltar ao vestíbulo” |
+| Outro processo em Continuar restaura sala, pés, câmera, vida e salto duplo | Verificado. Pés em X = 47,950, Y = 0 e Z = 0. Câmera em X = 48. “Vida 2/3”. Salto duplo verdadeiro. Gema ausente. Lâmina recolhida |
+| Um golpe derrota a sentinela de 1 ponto; sair sem salvar devolve o 1 ponto | Verificado. O golpe deixou a sentinela em 0 e a vida do jogador em 2. O arquivo continuou com sentinela 1. O processo seguinte encontrou esse 1 ponto |
+| Salvar a derrota e continuar deixa o caminho livre | Verificado. O arquivo passou a `sentinela_derrotada` verdadeiro e vida 0. No processo seguinte, os pés chegaram a X = 30,457 com “Vida 2/3” |
+| Novo jogo com arquivo existente não o substitui | Verificado. “Vida 3/3”, gema presente, sentinela em 3. O texto do arquivo ficou igual |
+| Arquivo inválido e arquivo ausente | Verificado. Continuar ficou desligado. O inválido não mudou a partida nem os bytes. Sem arquivo, Continuar continuou desligado |
+| Falha de escrita | Verificado. A mensagem foi “Não foi possível salvar” e o arquivo anterior permaneceu |
+| Testes 10, 07 e 08 | Verificado. `verificar_capela_10.gd`, `verificar_inimigo_07.gd` e `verificar_vida_08.gd` deram `RESULTADO ok` |
+| F6 no editor | Pendente. A cena executada foi `scenes/verification/11_altar_de_salvamento.tscn`, aberta pelo teste, sem o atalho do editor |
+
 ## Estudo futuro — Progressão
 
-**Status: não iniciada, fora o salto duplo da etapa 09 e a capela da etapa 10.**
+**Status: não iniciada, fora o salto duplo da etapa 09, a capela da etapa 10 e o altar da etapa 11.**
 
-A sacada do vestíbulo abre a Capela da Lua depois da relíquia. Outras habilidades continuam para quando um caminho visível e fechado abrir com uma capacidade nova.
+A sacada do vestíbulo abre a Capela da Lua depois da relíquia. O altar dessa capela grava a vida, o salto duplo e a sentinela. Outras habilidades continuam para quando um caminho visível e fechado abrir com uma capacidade nova.
 
 ## Como atualizar este arquivo
 

@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/interface/menu_do_piloto.gd" id="1_menu"]
+
+[node name="MenuDoPiloto" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+script = ExtResource("1_menu")
+
+[node name="Fundo" type="ColorRect" parent="."]
+offset_right = 1280.0
+offset_bottom = 720.0
+color = Color(0.03, 0.03, 0.045, 0.94)
+
+[node name="Titulo" type="Label" parent="."]
+offset_left = 140.0
+offset_top = 150.0
+offset_right = 1140.0
+offset_bottom = 220.0
+theme_override_colors/font_color = Color(0.93, 0.9, 0.82, 1)
+theme_override_font_sizes/font_size = 42
+text = "Capela da Lua"
+horizontal_alignment = 1
+
+[node name="NovoJogo" type="Label" parent="."]
+offset_left = 140.0
+offset_top = 300.0
+offset_right = 1140.0
+offset_bottom = 356.0
+theme_override_font_sizes/font_size = 36
+text = "Novo jogo"
+horizontal_alignment = 1
+
+[node name="Continuar" type="Label" parent="."]
+offset_left = 140.0
+offset_top = 370.0
+offset_right = 1140.0
+offset_bottom = 426.0
+theme_override_font_sizes/font_size = 36
+text = "Continuar"
+horizontal_alignment = 1
+
+[node name="Ajuda" type="Label" parent="."]
+offset_left = 140.0
+offset_top = 520.0
+offset_right = 1140.0
+offset_bottom = 570.0
+theme_override_colors/font_color = Color(0.78, 0.75, 0.68, 1)
+theme_override_font_sizes/font_size = 22
+text = "← → escolhe    Espaço confirma"
+horizontal_alignment = 1

@@ -77,6 +77,14 @@ func _apontar() -> void:
 	$Visual.rotation.y = 0.0 if sentido > 0.0 else PI
 
 
+func aplicar_estado_gravado(pontos: int) -> void:
+	if pontos <= 0:
+		if not derrotada:
+			_encerrar_patrulha()
+		return
+	pontos_de_vida = pontos
+
+
 func receber_acerto() -> void:
 	if derrotada:
 		return

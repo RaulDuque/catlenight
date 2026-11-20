@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/verification/10_capela_da_lua.tscn" id="1_piloto"]
+[ext_resource type="PackedScene" path="res://scenes/environment/altar_de_salvamento.tscn" id="2_altar"]
+[ext_resource type="Script" path="res://scenes/progresso/progresso_do_piloto.gd" id="3_progresso"]
+[ext_resource type="PackedScene" path="res://scenes/interface/menu_do_piloto.tscn" id="4_menu"]
+
+[node name="PilotoDoAltar" instance=ExtResource("1_piloto")]
+
+[node name="AltarDeSalvamento" parent="CapelaDaLua" instance=ExtResource("2_altar")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.15, 0, 0)
+
+[node name="ProgressoDoPiloto" type="Node" parent="."]
+script = ExtResource("3_progresso")
+
+[node name="MenuDoPiloto" parent="." instance=ExtResource("4_menu")]

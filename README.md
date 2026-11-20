@@ -14,6 +14,8 @@ O piloto da relíquia é `scenes/verification/09_reliquia_do_salto_duplo.tscn`. 
 
 O piloto da capela é `scenes/verification/10_capela_da_lua.tscn`. Ele reaproveita a cena 09. A janela pequena some, e no lugar dela abre um vão iluminado do tamanho do protagonista. Com os pés na sacada e diante desse vão, a base da tela mostra “↑ Entrar na capela”. A seta para cima, num toque novo, leva à Capela da Lua. Lá, o mesmo toque com “↑ Voltar ao vestíbulo” devolve os pés à sacada. A cena 09 continua com a janela pequena, para o exercício do salto duplo.
 
+O piloto do altar é `scenes/verification/11_altar_de_salvamento.tscn`. Ele reaproveita a cena 10 e coloca um altar de pedra ao lado do vitral. Ao abrir, o menu oferece “Novo jogo” e “Continuar”. As setas esquerda e direita escolhem; Espaço confirma. “Continuar” só acende quando existe `user://catlenight_piloto_11.json` válido. No altar, a seta para cima grava a vida atual, o salto duplo e a vida da sentinela. A cena 10 continua sem menu e sem altar.
+
 ## Versão do Godot
 
 O projeto foi escrito para **Godot 4.7 estável**, de preferência **4.7.2**, com **GDScript**. Use a build padrão, sem .NET. A build .NET serve para C# e este projeto não precisa dela.
@@ -61,7 +63,7 @@ As ações estão em **Projeto > Configurações do Projeto > Mapa de Entrada**.
 | `direita` | Seta para a direita | Anda para X positivo enquanto a tecla está pressionada |
 | `pulo` | Espaço | Salta uma vez, só quando os pés estão no chão. No piloto 09 e no 10, depois da relíquia, um segundo toque no ar dá o impulso extra |
 | `atacar` | X | Dá um golpe curto, no chão, para o lado em que o perfil está virado |
-| `interagir` | Seta para cima | No piloto 10, entra na capela ou volta à sacada quando os pés estão apoiados diante da passagem |
+| `interagir` | Seta para cima | No piloto 10, entra na capela ou volta à sacada. No piloto 11, também grava no altar quando os pés estão apoiados diante dele |
 
 Soltar a seta interrompe a caminhada. Apertar Espaço no ar não faz outro salto. Segurar Espaço até aterrissar também não faz outro salto: é preciso soltar e apertar de novo.
 
@@ -90,7 +92,7 @@ Isso grava `config/name` em `project.godot` e muda o título da janela. A pasta 
 
 ## O que ainda não existe
 
-O indicador “Vida 3/3” existe a partir do piloto 08. O salto duplo existe no piloto 09, depois da relíquia. A passagem da sacada e a Capela da Lua existem no piloto 10. O resto da interface, outras habilidades e o áudio ficam para as próximas tarefas. As salas ligadas, o primeiro golpe, a sentinela, a vida por contato, a sacada e a capela estão nas cenas de verificação. A cena principal continua com o manequim, sem esqueleto, roupa nem equipamento. A animação definitiva da espada também fica para depois.
+O indicador “Vida 3/3” existe a partir do piloto 08. O salto duplo existe no piloto 09, depois da relíquia. A passagem da sacada e a Capela da Lua existem no piloto 10. O altar e o menu de continuar existem no piloto 11. O resto da interface, outras habilidades e o áudio ficam para as próximas tarefas. As salas ligadas, o primeiro golpe, a sentinela, a vida por contato, a sacada, a capela e o salvamento estão nas cenas de verificação. A cena principal continua com o manequim, sem esqueleto, roupa nem equipamento. A animação definitiva da espada também fica para depois.
 
 ## Mapa dos textos
 
