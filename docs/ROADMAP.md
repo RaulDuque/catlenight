@@ -1,6 +1,6 @@
 # Roadmap
 
-Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06, 07, 08, 09, 10, 11 e 12 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. O restante da interface, outras habilidades, a animação e o áudio continuam sem começar.
+Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06, 07, 08, 09, 10, 11, 12 e 13 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. O restante da interface, outras habilidades, a animação e o áudio continuam sem começar.
 
 ## 01 — Fundação e cena de verificação
 
@@ -282,11 +282,25 @@ O canto da tela do piloto 08 já mostra “Vida 3/3”. O restante da interface 
 | Testes 05, 10 e 11 | Verificado. `verificar_salas_05.gd`, `verificar_capela_10.gd` e as fases de `verificar_altar_11.gd` deram `RESULTADO ok` |
 | F6 no editor | Pendente. A cena executada foi `scenes/verification/12_mapa_das_salas.tscn`, aberta pelo teste, sem o atalho do editor |
 
+## 13 — Arte modular 3D do vestíbulo
+
+**Status: concluída na cena de verificação.** Medida no Godot 4.7.2 e no Blender 5.3.0 em 20/11/2026. O relatório está em `MD-usario/relatorios/13-arte-do-vestibulo.md`. O F6 do editor não foi pressionado. As janelas abriram por `tests/capturar_13_antes.tscn` e `tests/capturar_13_porta.tscn`. O percurso da cena 13 rodou em `tests/verificar_vestibulo_13.gd`, com `APPDATA` em `tests/dados_13`. A cena 12 continua sem o revestimento. O F5 continua em `main.tscn`.
+
+| Critério | Status |
+| --- | --- |
+| O quadro de antes e o de depois usam a mesma pose | Verificado. Pés em X = −0,5241, Y = 0,0009 e Z = 0. Rotação Y do `Visual` = 0. Câmera em X = 0, `Size` = 8, 1280×720 |
+| Dois módulos de parede encaixam pela largura | Verificado no Blender. Folga 0,000 m. Largura 2,000 m |
+| O revestimento não cria colisão | Verificado. As três malhas importadas não têm corpo físico. O teste da cena 13 atravessou o arco até a galeria |
+| A porta continua legível no chão e na sacada | Verificado. Na sacada, pés em X = −4,175 e Y = 2,350, com “↑ Entrar na capela” |
+| O mapa distingue a visita da habilidade | Verificado na cena 13. Antes da entrada: sala `vestibulo`, sem capela. Depois: sala `capela_da_lua` |
+| Testes do arco, da passagem e do mapa | Verificado. `verificar_arco.gd`, `verificar_capela_10.gd` e as fases `primeira`, `continuar`, `novo_mapa` e `legado` de `verificar_mapa_12.gd` deram `RESULTADO ok` |
+| F6 no editor | Pendente. A cena executada foi `scenes/verification/13_vestibulo_do_castelo.tscn`, aberta pelo teste, sem o atalho do editor |
+
 ## Estudo futuro — Progressão
 
-**Status: não iniciada, fora o salto duplo da etapa 09, a capela da etapa 10, o altar da etapa 11 e o mapa da etapa 12.**
+**Status: não iniciada, fora o salto duplo da etapa 09, a capela da etapa 10, o altar da etapa 11, o mapa da etapa 12 e a cantaria da etapa 13.**
 
-A sacada do vestíbulo abre a Capela da Lua depois da relíquia. O altar dessa capela grava a vida, o salto duplo, a sentinela e as salas já visitadas. O mapa só desenha uma sala depois que a troca termina. Outras habilidades continuam para quando um caminho visível e fechado abrir com uma capacidade nova.
+A sacada do vestíbulo abre a Capela da Lua depois da relíquia. O altar dessa capela grava a vida, o salto duplo, a sentinela e as salas já visitadas. O mapa só desenha uma sala depois que a troca termina. O vestíbulo já tem parede, pilastra e faixa de piso modulares. Outras habilidades continuam para quando um caminho visível e fechado abrir com uma capacidade nova.
 
 ## Como atualizar este arquivo
 

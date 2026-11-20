@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/verification/12_mapa_das_salas.tscn" id="1_piloto"]
+[ext_resource type="PackedScene" path="res://scenes/environment/parede_de_cantaria.tscn" id="2_parede"]
+[ext_resource type="PackedScene" path="res://scenes/environment/pilastra_de_cantaria.tscn" id="3_pilastra"]
+[ext_resource type="PackedScene" path="res://scenes/environment/faixa_do_piso.tscn" id="4_faixa"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chao"]
+albedo_color = Color(0.3, 0.27, 0.25, 1)
+roughness = 0.94
+
+[node name="VestibuloDoCastelo" instance=ExtResource("1_piloto")]
+
+[node name="Malha" parent="Vestibulo/Chao"]
+surface_material_override/0 = SubResource("StandardMaterial3D_chao")
+
+[node name="Revestimento" type="Node3D" parent="Vestibulo"]
+
+[node name="Parede_0" parent="Vestibulo/Revestimento" instance=ExtResource("2_parede")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -2.25)
+
+[node name="Parede_1" parent="Vestibulo/Revestimento" instance=ExtResource("2_parede")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2.25)
+
+[node name="Parede_2" parent="Vestibulo/Revestimento" instance=ExtResource("2_parede")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2.25)
+
+[node name="Parede_3" parent="Vestibulo/Revestimento" instance=ExtResource("2_parede")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.25)
+
+[node name="Parede_4" parent="Vestibulo/Revestimento" instance=ExtResource("2_parede")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2.25)
+
+[node name="Pilastra_0" parent="Vestibulo/Revestimento" instance=ExtResource("3_pilastra")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, -2.25)
+
+[node name="Pilastra_1" parent="Vestibulo/Revestimento" instance=ExtResource("3_pilastra")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -2.25)
+
+[node name="Pilastra_2" parent="Vestibulo/Revestimento" instance=ExtResource("3_pilastra")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2.25)
+
+[node name="Pilastra_3" parent="Vestibulo/Revestimento" instance=ExtResource("3_pilastra")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.25)
+
+[node name="Pilastra_4" parent="Vestibulo/Revestimento" instance=ExtResource("3_pilastra")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2.25)
+
+[node name="Pilastra_5" parent="Vestibulo/Revestimento" instance=ExtResource("3_pilastra")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -2.25)
+
+[node name="Faixa_0" parent="Vestibulo/Revestimento" instance=ExtResource("4_faixa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 0, 3.05)
+
+[node name="Faixa_1" parent="Vestibulo/Revestimento" instance=ExtResource("4_faixa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 3.05)
+
+[node name="Faixa_2" parent="Vestibulo/Revestimento" instance=ExtResource("4_faixa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 3.05)
+
+[node name="Faixa_3" parent="Vestibulo/Revestimento" instance=ExtResource("4_faixa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.05)
+
+[node name="Faixa_4" parent="Vestibulo/Revestimento" instance=ExtResource("4_faixa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 3.05)
+
+[node name="Faixa_5" parent="Vestibulo/Revestimento" instance=ExtResource("4_faixa")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 3.05)
+
+[node name="LuzDaPorta" type="OmniLight3D" parent="Vestibulo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55, 3.55, -0.35)
+light_color = Color(1, 0.7, 0.36, 1)
+light_energy = 2.4
+omni_range = 6.5
+shadow_enabled = false

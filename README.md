@@ -18,6 +18,8 @@ O piloto do altar é `scenes/verification/11_altar_de_salvamento.tscn`. Ele reap
 
 O piloto do mapa é `scenes/verification/12_mapa_das_salas.tscn`. Ele reaproveita a cena 11. A tecla M abre um desenho por cima da cena 3D: o vestíbulo no centro, a galeria à direita e a capela acima do lado da sacada. No começo só o vestíbulo aparece. A galeria entra quando a troca de sala termina. A capela entra na primeira vez que o jogador pisa nela. Outro toque de M fecha e a partida continua do mesmo ponto. A cena 11 continua sem esse desenho, para o exercício de salvamento.
 
+O piloto do vestíbulo de pedra é `scenes/verification/13_vestibulo_do_castelo.tscn`. Ele reaproveita a cena 12 e veste só o vestíbulo. A parede, a pilastra e a faixa do piso saem de `arte-fonte/blender/vestibulo_modular.blend`. Cada módulo de parede tem 2 m de largura. A colisão continua nos corpos que já existiam. A cena 12 permanece sem esse revestimento, para comparar.
+
 ## Versão do Godot
 
 O projeto foi escrito para **Godot 4.7 estável**, de preferência **4.7.2**, com **GDScript**. Use a build padrão, sem .NET. A build .NET serve para C# e este projeto não precisa dela.
@@ -95,7 +97,7 @@ Isso grava `config/name` em `project.godot` e muda o título da janela. A pasta 
 
 ## O que ainda não existe
 
-O indicador “Vida 3/3” existe a partir do piloto 08. O salto duplo existe no piloto 09, depois da relíquia. A passagem da sacada e a Capela da Lua existem no piloto 10. O altar e o menu de continuar existem no piloto 11. O mapa das salas exploradas existe no piloto 12. O resto da interface, outras habilidades e o áudio ficam para as próximas tarefas. As salas ligadas, o primeiro golpe, a sentinela, a vida por contato, a sacada, a capela, o salvamento e o mapa estão nas cenas de verificação. A cena principal continua com o manequim, sem esqueleto, roupa nem equipamento. A animação definitiva da espada também fica para depois.
+O indicador “Vida 3/3” existe a partir do piloto 08. O salto duplo existe no piloto 09, depois da relíquia. A passagem da sacada e a Capela da Lua existem no piloto 10. O altar e o menu de continuar existem no piloto 11. O mapa das salas exploradas existe no piloto 12. A cantaria do vestíbulo existe no piloto 13. O resto da interface, outras habilidades e o áudio ficam para as próximas tarefas. As salas ligadas, o primeiro golpe, a sentinela, a vida por contato, a sacada, a capela, o salvamento, o mapa e o revestimento do vestíbulo estão nas cenas de verificação. A cena principal continua com o manequim, sem esqueleto, roupa nem equipamento. A animação definitiva da espada também fica para depois.
 
 ## Mapa dos textos
 

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/environment/parede_de_cantaria.tscn" id="1_parede"]
+
+[node name="EstudoDaParede" type="Node3D"]
+
+[node name="ParedeA" parent="." instance=ExtResource("1_parede")]
+
+[node name="ParedeB" parent="." instance=ExtResource("1_parede")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="Luz" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.789352, 0.533358, -0.304061, 0, 0.495261, 0.868744, 0.613941, -0.685745, 0.390935, 1, 6, 8)
+light_energy = 0.7
+shadow_enabled = true
+
+[node name="CameraLateral" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 2.4, 14)
+projection = 1
+current = true
+size = 8.0
