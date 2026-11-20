@@ -1,6 +1,6 @@
 # Roadmap
 
-Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06, 07, 08 e 09 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. O restante da interface, outras habilidades, a animação e o áudio continuam sem começar.
+Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06, 07, 08, 09 e 10 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. O restante da interface, outras habilidades, a animação e o áudio continuam sem começar.
 
 ## 01 — Fundação e cena de verificação
 
@@ -232,11 +232,26 @@ O canto da tela do piloto 08 já mostra “Vida 3/3”. O restante da interface 
 | Testes anteriores | Verificado. `verificar_movimento.gd`, `verificar_inimigo_07.gd` e `verificar_vida_08.gd` deram `RESULTADO ok` |
 | F6 no editor | Pendente. A cena executada foi `scenes/verification/09_reliquia_do_salto_duplo.tscn`, aberta pelo teste, sem o atalho do editor |
 
+## 10 — A passagem da sacada e a Capela da Lua
+
+**Status: concluída na cena de verificação.** Medida no Godot 4.7.2 em 20/11/2026. O relatório está em `MD-usario/relatorios/10-capela-da-lua.md`. O F6 do editor não foi pressionado. A janela abriu a cena por `tests/capturar_10.tscn`. O percurso rodou em `tests/verificar_capela_10.gd`. A cena 09 continua com a janela pequena. O F5 da cena principal continua em `main.tscn`.
+
+| Critério | Status |
+| --- | --- |
+| Antes da relíquia, o salto simples e a seta para cima deixam o jogador no vestíbulo | Verificado. Pés em X = −4,433 e Y = 0. Câmera em X = 0 |
+| Depois da relíquia, cruzar o vão no ar e pousar com a tecla presa deixam o jogador na sacada | Verificado. O corpo cruzou a área no ar. Pouso em X = −4,233 e Y = 2,350, câmera em X = 0, vida 2 |
+| Soltar e apertar de novo faz uma única entrada | Verificado. Pés em X = 45,800 e Y = 0, câmera em X = 48, vida 2. Uma troca |
+| Na capela, o piso sustenta, a câmera enquadra e o vitral aparece; o aviso some ao afastar | Verificado. O vitral ficou visível. Ao passar de X = 47,6 o aviso sumiu |
+| A volta deixa os pés na sacada por vários quadros | Verificado. Pés em X = −4,608 e Y = 2,350 por 8 quadros. Câmera em X = 0. Vida 2 e salto duplo continuaram no mesmo jogador |
+| Depois de descer, a galeria ainda abre e fecha | Verificado. Voltou ao vestíbulo em X = 2,942, câmera em X = 0 |
+| Testes 05 e 09 | Verificado. `verificar_salas_05.gd` e `verificar_reliquia_09.gd` deram `RESULTADO ok` |
+| F6 no editor | Pendente. A cena executada foi `scenes/verification/10_capela_da_lua.tscn`, aberta pelo teste, sem o atalho do editor |
+
 ## Estudo futuro — Progressão
 
-**Status: não iniciada, fora o salto duplo da etapa 09.**
+**Status: não iniciada, fora o salto duplo da etapa 09 e a capela da etapa 10.**
 
-A sacada do vestíbulo já pede a relíquia da galeria. Outras habilidades continuam para quando um caminho visível e fechado abrir com uma capacidade nova.
+A sacada do vestíbulo abre a Capela da Lua depois da relíquia. Outras habilidades continuam para quando um caminho visível e fechado abrir com uma capacidade nova.
 
 ## Como atualizar este arquivo
 

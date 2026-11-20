@@ -1,0 +1,114 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://scenes/environment/passagem_interativa.gd" id="1_passagem"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_piso"]
+albedo_color = Color(0.13, 0.15, 0.2, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_piso"]
+size = Vector3(8, 1, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_piso"]
+size = Vector3(8, 1, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pedra"]
+albedo_color = Color(0.18, 0.19, 0.24, 1)
+roughness = 0.86
+
+[sub_resource type="BoxMesh" id="BoxMesh_parede"]
+size = Vector3(7.4, 3.8, 0.28)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lua"]
+albedo_color = Color(0.86, 0.92, 1, 1)
+emission_enabled = true
+emission = Color(0.72, 0.84, 1, 1)
+emission_energy_multiplier = 2.6
+
+[sub_resource type="SphereMesh" id="SphereMesh_lua"]
+radius = 0.68
+height = 1.36
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sombra"]
+shading_mode = 0
+albedo_color = Color(0.05, 0.06, 0.09, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_sombra"]
+radius = 0.52
+height = 1.04
+
+[sub_resource type="BoxMesh" id="BoxMesh_pilar"]
+size = Vector3(0.28, 2.5, 0.28)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lintel"]
+size = Vector3(2.15, 0.26, 0.28)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_saida"]
+size = Vector3(1.4, 2.2, 1.2)
+
+[node name="CapelaDaLua" type="Node3D"]
+
+[node name="Chao" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Malha" type="MeshInstance3D" parent="Chao"]
+mesh = SubResource("BoxMesh_piso")
+surface_material_override/0 = SubResource("StandardMaterial3D_piso")
+
+[node name="Colisao" type="CollisionShape3D" parent="Chao"]
+shape = SubResource("BoxShape3D_piso")
+
+[node name="ParedeFundo" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, -2.35)
+mesh = SubResource("BoxMesh_parede")
+surface_material_override/0 = SubResource("StandardMaterial3D_pedra")
+
+[node name="Vitral" type="Node3D" parent="."]
+
+[node name="Lua" type="MeshInstance3D" parent="Vitral"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 2.2, -2.12)
+mesh = SubResource("SphereMesh_lua")
+surface_material_override/0 = SubResource("StandardMaterial3D_lua")
+
+[node name="Sombra" type="MeshInstance3D" parent="Vitral"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.16, 2.28, -1.96)
+mesh = SubResource("SphereMesh_sombra")
+surface_material_override/0 = SubResource("StandardMaterial3D_sombra")
+
+[node name="Portal" type="Node3D" parent="."]
+
+[node name="OmbreiraEsquerda" type="MeshInstance3D" parent="Portal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.15, 1.25, 0)
+mesh = SubResource("BoxMesh_pilar")
+surface_material_override/0 = SubResource("StandardMaterial3D_pedra")
+
+[node name="OmbreiraDireita" type="MeshInstance3D" parent="Portal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.25, 1.25, 0)
+mesh = SubResource("BoxMesh_pilar")
+surface_material_override/0 = SubResource("StandardMaterial3D_pedra")
+
+[node name="Lintel" type="MeshInstance3D" parent="Portal"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 2.45, 0)
+mesh = SubResource("BoxMesh_lintel")
+surface_material_override/0 = SubResource("StandardMaterial3D_pedra")
+
+[node name="Saida" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 1.1, 0)
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_passagem")
+sala_de_destino = NodePath("../../Vestibulo")
+chegada = NodePath("../../Vestibulo/ChegadaDaSacada")
+texto_do_aviso = "↑ Voltar ao vestíbulo"
+
+[node name="Forma" type="CollisionShape3D" parent="Saida"]
+shape = SubResource("BoxShape3D_saida")
+
+[node name="Chegada" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.2, 0, 0)
+
+[node name="Retorno" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="Enquadramento" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 14)

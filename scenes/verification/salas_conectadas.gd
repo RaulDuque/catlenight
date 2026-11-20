@@ -1,7 +1,8 @@
 extends Node3D
 
-## Um jogador atravessa Vestibulo e Galeria.
-## SaidaDireita e SaidaEsquerda entram no grupo passagem.
+## Um jogador atravessa as salas.
+## SaidaDireita e SaidaEsquerda entram no grupo passagem e trocam ao encostar.
+## A passagem da capela pede solicitar_passagem, com a tecla e os pés no chão.
 ## Ao cruzar, os pés vão para o marcador chegada, em Z = 0.
 ## CameraLateral copia o Enquadramento da sala de destino.
 ## O Retorno dessa sala passa a ser o ponto de queda do Jogador.
@@ -26,6 +27,12 @@ func _physics_process(_delta: float) -> void:
 		_aplicar(passagem)
 	elif _quadros_de_folga > 0:
 		_quadros_de_folga -= 1
+
+
+func solicitar_passagem(passagem: Area3D) -> void:
+	if _quadros_de_folga > 0 or _passagem_pendente != null:
+		return
+	_passagem_pendente = passagem
 
 
 func _ao_cruzar(corpo: Node3D, passagem: Area3D) -> void:

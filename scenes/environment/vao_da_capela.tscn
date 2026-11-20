@@ -1,0 +1,57 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scenes/environment/passagem_interativa.gd" id="1_passagem"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vao"]
+albedo_color = Color(1, 0.9, 0.62, 1)
+emission_enabled = true
+emission = Color(1, 0.78, 0.42, 1)
+emission_energy_multiplier = 2.4
+
+[sub_resource type="BoxMesh" id="BoxMesh_vao"]
+size = Vector3(1.05, 1.9, 0.08)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_moldura"]
+albedo_color = Color(0.34, 0.3, 0.28, 1)
+roughness = 0.88
+
+[sub_resource type="BoxMesh" id="BoxMesh_ombreira"]
+size = Vector3(0.16, 2.05, 0.18)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lintel"]
+size = Vector3(1.4, 0.16, 0.18)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_passagem"]
+size = Vector3(1.5, 1.9, 1.3)
+
+[node name="VaoDaCapela" type="Node3D"]
+
+[node name="Vao" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55, 3.3, -0.8)
+mesh = SubResource("BoxMesh_vao")
+surface_material_override/0 = SubResource("StandardMaterial3D_vao")
+
+[node name="OmbreiraEsquerda" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.15, 3.32, -0.84)
+mesh = SubResource("BoxMesh_ombreira")
+surface_material_override/0 = SubResource("StandardMaterial3D_moldura")
+
+[node name="OmbreiraDireita" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.95, 3.32, -0.84)
+mesh = SubResource("BoxMesh_ombreira")
+surface_material_override/0 = SubResource("StandardMaterial3D_moldura")
+
+[node name="Lintel" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55, 4.28, -0.84)
+mesh = SubResource("BoxMesh_lintel")
+surface_material_override/0 = SubResource("StandardMaterial3D_moldura")
+
+[node name="Passagem" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55, 3.15, 0)
+collision_layer = 0
+collision_mask = 1
+script = ExtResource("1_passagem")
+texto_do_aviso = "↑ Entrar na capela"
+
+[node name="Forma" type="CollisionShape3D" parent="Passagem"]
+shape = SubResource("BoxShape3D_passagem")

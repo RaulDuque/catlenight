@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/verification/09_reliquia_do_salto_duplo.tscn" id="1_piloto"]
+[ext_resource type="PackedScene" path="res://scenes/environment/vao_da_capela.tscn" id="2_vao"]
+[ext_resource type="PackedScene" path="res://scenes/environment/capela_da_lua.tscn" id="3_capela"]
+[ext_resource type="PackedScene" path="res://scenes/interface/aviso_da_passagem.tscn" id="4_aviso"]
+
+[node name="CapelaDaLuaNoCastelo" instance=ExtResource("1_piloto")]
+
+[node name="Janela" parent="Vestibulo/Sacada"]
+visible = false
+
+[node name="VaoDaCapela" parent="Vestibulo" instance=ExtResource("2_vao")]
+
+[node name="Passagem" parent="Vestibulo/VaoDaCapela"]
+sala_de_destino = NodePath("../../../CapelaDaLua")
+chegada = NodePath("../../../CapelaDaLua/Chegada")
+
+[node name="ChegadaDaSacada" type="Marker3D" parent="Vestibulo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55, 2.42, 0)
+
+[node name="CapelaDaLua" parent="." instance=ExtResource("3_capela")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 0)
+
+[node name="AvisoDaPassagem" parent="." instance=ExtResource("4_aviso")]
