@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scenes/environment/passagem.gd" id="1_passagem"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chao"]
+albedo_color = Color(0.22, 0.26, 0.3, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_chao"]
+size = Vector3(14, 1, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_chao"]
+size = Vector3(14, 1, 6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_plataforma"]
+albedo_color = Color(0.45, 0.32, 0.26, 1)
+roughness = 0.84
+
+[sub_resource type="BoxMesh" id="BoxMesh_plataforma"]
+size = Vector3(4.2, 1.2, 1.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_plataforma"]
+size = Vector3(4.2, 1.2, 1.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_coluna"]
+albedo_color = Color(0.1, 0.12, 0.15, 1)
+roughness = 0.88
+
+[sub_resource type="BoxMesh" id="BoxMesh_coluna"]
+size = Vector3(0.55, 3.6, 0.55)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_coluna"]
+size = Vector3(0.55, 3.6, 0.55)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_passagem"]
+size = Vector3(0.8, 2.4, 1.2)
+
+[node name="Galeria" type="Node3D"]
+
+[node name="Chao" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+
+[node name="Malha" type="MeshInstance3D" parent="Chao"]
+mesh = SubResource("BoxMesh_chao")
+surface_material_override/0 = SubResource("StandardMaterial3D_chao")
+
+[node name="Colisao" type="CollisionShape3D" parent="Chao"]
+shape = SubResource("BoxShape3D_chao")
+
+[node name="Plataforma" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.6, 0)
+
+[node name="Malha" type="MeshInstance3D" parent="Plataforma"]
+mesh = SubResource("BoxMesh_plataforma")
+surface_material_override/0 = SubResource("StandardMaterial3D_plataforma")
+
+[node name="Colisao" type="CollisionShape3D" parent="Plataforma"]
+shape = SubResource("BoxShape3D_plataforma")
+
+[node name="ColunaFundoEsquerda" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.8, -2.15)
+
+[node name="Malha" type="MeshInstance3D" parent="ColunaFundoEsquerda"]
+mesh = SubResource("BoxMesh_coluna")
+surface_material_override/0 = SubResource("StandardMaterial3D_coluna")
+
+[node name="Colisao" type="CollisionShape3D" parent="ColunaFundoEsquerda"]
+shape = SubResource("BoxShape3D_coluna")
+
+[node name="ColunaFundoDireita" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.5, 1.8, -2.15)
+
+[node name="Malha" type="MeshInstance3D" parent="ColunaFundoDireita"]
+mesh = SubResource("BoxMesh_coluna")
+surface_material_override/0 = SubResource("StandardMaterial3D_coluna")
+
+[node name="Colisao" type="CollisionShape3D" parent="ColunaFundoDireita"]
+shape = SubResource("BoxShape3D_coluna")
+
+[node name="SaidaEsquerda" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 1.1, 0)
+script = ExtResource("1_passagem")
+sala_de_destino = NodePath("../../Vestibulo")
+chegada = NodePath("../../Vestibulo/ChegadaDireita")
+
+[node name="Volume" type="CollisionShape3D" parent="SaidaEsquerda"]
+shape = SubResource("BoxShape3D_passagem")
+
+[node name="ChegadaEsquerda" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.2, 0, 0)
+
+[node name="Retorno" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, 0)
+
+[node name="Enquadramento" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 14)

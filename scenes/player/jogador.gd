@@ -36,6 +36,12 @@ func _ready() -> void:
 	_preparar_corrida()
 
 
+func definir_ponto_de_retorno(ponto: Vector3) -> void:
+	# A passagem chama isto ao entrar em outra sala.
+	# A queda seguinte usa esse ponto, no lugar de onde a cena abriu.
+	_ponto_de_retorno = ponto
+
+
 func _physics_process(delta: float) -> void:
 	var no_chao: bool = is_on_floor()
 	if not no_chao:

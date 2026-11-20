@@ -1,6 +1,6 @@
 # Roadmap
 
-Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. O relatório da Tarefa 01 permanece como histórico. Os itens de estudo futuro, nomeados na fundação, continuam sem começar.
+Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. A Tarefa 05 foi verificada em 20/11/2026. O relatório da Tarefa 01 permanece como histórico. Combate, inimigos, interface, progressão, animação e áudio continuam sem começar.
 
 ## 01 — Fundação e cena de verificação
 
@@ -135,11 +135,22 @@ Esqueleto, ciclo de caminhada, roupa e equipamento ficam para as próximas taref
 | Velocidades 3,5 / 5,5 / 1,3 | Verificado no mesmo teste |
 | Testes da cena principal | Verificado. Movimento, direção e arco deram `RESULTADO ok` |
 
-## Estudo futuro — Salas conectadas
+## 05 — Primeiras duas salas conectadas
 
-**Status: não iniciada.**
+**Status: concluída na cena de verificação.** Medida no Godot 4.7.2 em 20/11/2026. O relatório está em `MD-usario/relatorios/05-salas-conectadas.md`. O F6 do editor não foi pressionado. A janela abriu a cena por `tests/capturar_05.tscn`. A travessia rodou em `tests/verificar_salas_05.gd`. A cena principal e o F5 não mudaram.
 
-Concluir quando duas salas puderem ser atravessadas por uma passagem e o retorno continuar no mesmo plano Z.
+| Critério | Status |
+| --- | --- |
+| Vestíbulo e galeria reutilizáveis, arco só no vestíbulo | Verificado. `vestibulo.tscn` instancia o arco. `galeria.tscn` tem `Plataforma`, `ColunaFundoEsquerda` e `ColunaFundoDireita` |
+| As duas salas se reconhecem com o personagem parado | Verificado em `05-vestibulo.png` e `05-galeria.png`, 1280×720, `CameraLateral` com `Size` = 8 |
+| Um jogador, pés no piso da chegada, Z = 0 | Verificado em três idas e três voltas. Na galeria, X = 19,8583, Y = 0, Z = 0. No vestíbulo, X = 2,9417 |
+| Uma troca por passagem, mesmo segurando a seta | Verificado na terceira ida. O total ficou em 6 trocas. Depois de soltar, o corpo parou na galeria |
+| Câmera na sala de destino | Verificado. `camera_x` = 24 na galeria e 0 no vestíbulo |
+| Queda na galeria devolve à galeria | Verificado. Reapareceu em X = 21,0000 e pousou em Y = 0,0003. A câmera ficou em X = 24 |
+| Caminhada, pulo, animação e corrida nos dois sentidos | Verificado. 3,50 / 5,50 / 1,30. O clipe `corrida` tocou para a direita e para a esquerda. Z máximo 0 |
+| Pilar do vestíbulo continua legível | Verificado. Alfa 0,280 ao passar e 1,000 ao sair |
+| Testes do código alterado | Verificado. Movimento, direção, arco e o piloto 04-D deram `RESULTADO ok` |
+| F6 no editor | Pendente. A cena executada foi `scenes/verification/05_salas_conectadas.tscn`, aberta pelo teste, sem o atalho do editor |
 
 ## Estudo futuro — Combate de ação
 

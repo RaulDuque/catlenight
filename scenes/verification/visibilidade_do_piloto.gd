@@ -1,11 +1,15 @@
 extends Node3D
 
-## Só existe na cena do piloto. A cena principal não usa este script.
 ## O pilar dianteiro fica transparente enquanto cobre o corpo.
 ## Fora dessa faixa, a pedra volta ao material opaco.
+## No piloto, os caminhos padrão acham Jogador e ArcoDePedra na raiz.
+## Na cena das salas, o nó Visibilidade aponta esses caminhos para o vestíbulo.
 
 @export_range(0.2, 1.2, 0.05, "suffix:m") var alcance_do_pilar_m: float = 0.62
 @export_range(0.05, 0.8, 0.05) var alpha_do_pilar: float = 0.28
+@export var caminho_do_jogador: NodePath = NodePath("Jogador")
+@export var caminho_do_pilar: NodePath = NodePath("ArcoDePedra/Colisao/PilarFrente")
+@export var caminho_do_visual: NodePath = NodePath("ArcoDePedra/Visual/ArcoDePedra")
 
 var _jogador: CharacterBody3D
 var _pilar: Node3D
@@ -13,9 +17,9 @@ var _materiais: Array[StandardMaterial3D] = []
 
 
 func _ready() -> void:
-	_jogador = get_node("Jogador") as CharacterBody3D
-	_pilar = get_node("ArcoDePedra/Colisao/PilarFrente") as Node3D
-	var visual := get_node("ArcoDePedra/Visual/ArcoDePedra")
+	_jogador = get_node(caminho_do_jogador) as CharacterBody3D
+	_pilar = get_node(caminho_do_pilar) as Node3D
+	var visual := get_node(caminho_do_visual)
 	for nome in ["BaseFrente", "PilarFrente1", "PilarFrente2", "PilarFrente3", "CapitelFrente"]:
 		_copiar_material(visual.get_node(nome) as MeshInstance3D)
 

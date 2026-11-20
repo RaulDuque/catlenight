@@ -29,7 +29,7 @@ Unidades do Godot são metros. O tamanho ortográfico da câmera também está e
 
 A etapa 01 entregou a cena de verificação. A etapa 02 entregou o primeiro controlador: o jogador cai, anda em X, pula e permanece em Z = 0. A etapa 03 entregou o primeiro arco de pedra, modelado no Blender, importado em GLB e atravessável por esse jogador. A etapa 04 trocou o bloco vermelho pelo manequim de 1,70 m. O nó `Visual` aponta o perfil para +X ou para −X conforme a seta, e conserva a última direção quando a seta é solta.
 
-O manequim da cena principal continua sem esqueleto. O piloto da etapa 04-C usa o esqueleto e a corrida do Mixamo. A etapa 04-D deixou esse piloto mais legível: luz mais baixa, ambiente suave e o pilar dianteiro transparente só enquanto cobre o corpo. Roupa e equipamento ficam para as próximas tarefas.
+O manequim da cena principal continua sem esqueleto. O piloto da etapa 04-C usa o esqueleto e a corrida do Mixamo. A etapa 04-D deixou esse piloto mais legível: luz mais baixa, ambiente suave e o pilar dianteiro transparente só enquanto cobre o corpo. A etapa 05 ligou duas salas na cena de verificação: o vestíbulo, reconhecido pelo arco, e a galeria, com plataforma elevada e duas colunas ao fundo. Um único jogador atravessa as duas e, se cair na galeria, reaparece na galeria. Roupa e equipamento ficam para as próximas tarefas.
 
 A etapa 04-A instalou o Hunyuan3D-2mini fora da pasta do jogo e gerou a geometria do exemplo oficial. A interface local abre por `D:\Tools\Hunyuan3D\abrir_hunyuan.bat`, em `http://127.0.0.1:8080`, e gera quantos moldes forem precisos. Ela produz geometria; a textura continua desligada nesta placa de 8 GB.
 
@@ -39,7 +39,6 @@ A etapa 04-B2 comparou `molde3d\darkcastle.obj` com a captura do casaco. Esse mo
 
 Ainda ficam para depois:
 
-- salas conectadas;
 - combate, inimigos e interface;
 - progressão, animação e áudio.
 
