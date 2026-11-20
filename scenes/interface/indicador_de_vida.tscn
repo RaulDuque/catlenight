@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scenes/interface/indicador_de_vida.gd" id="1_indicador"]
+
+[node name="IndicadorDeVida" type="CanvasLayer"]
+script = ExtResource("1_indicador")
+
+[node name="Vida" type="Label" parent="."]
+offset_left = 28.0
+offset_top = 18.0
+offset_right = 320.0
+offset_bottom = 72.0
+theme_override_colors/font_color = Color(0.95, 0.93, 0.86, 1)
+theme_override_colors/font_outline_color = Color(0.05, 0.04, 0.03, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 32
+text = "Vida 3/3"

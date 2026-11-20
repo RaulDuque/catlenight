@@ -1,6 +1,6 @@
 # Roadmap
 
-Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06 e 07 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. Vida do jogador, dano por contato, interface, progressão, animação e áudio continuam sem começar.
+Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06, 07 e 08 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. O restante da interface, a progressão, a animação e o áudio continuam sem começar.
 
 ## 01 — Fundação e cena de verificação
 
@@ -196,17 +196,27 @@ Esqueleto, ciclo de caminhada, roupa e equipamento ficam para as próximas taref
 | Testes do golpe e das salas | Verificado. `verificar_golpe_06.gd` e `verificar_salas_05.gd` deram `RESULTADO ok` |
 | F6 no editor | Pendente. A cena executada foi `scenes/verification/07_primeiro_inimigo.tscn`, aberta pelo teste, sem o atalho do editor |
 
-## Estudo futuro — Dano por contato
+## 08 — Vida do jogador e dano por contato
 
-**Status: não iniciada.**
+**Status: concluída na cena de verificação.** Medida no Godot 4.7.2 em 20/11/2026. O relatório está em `MD-usario/relatorios/08-vida-e-dano-por-contato.md`. O F6 do editor não foi pressionado. A janela abriu a cena por `tests/capturar_08.tscn`. O encontro rodou em `tests/verificar_vida_08.gd`. A cena 07, a cena 06 e o F5 da cena principal continuam sem essa regra.
 
-Concluir quando a sentinela puder tirar vida do jogador ao encostar, e essa vida aparecer sem esconder a câmera lateral.
+| Critério | Status |
+| --- | --- |
+| Piloto reutiliza a cena 07 e liga a vida só nele | Verificado. `08_vida_do_jogador.tscn` instancia a cena 07 e marca `vida_ativa` no `Jogador`. F5 continua em `main.tscn` |
+| Contato parado e contato andando tiram 1 ponto | Verificado. Parado: 3 → 2 em t = 5,033 s, seta solta. Andando: 2 → 1 em t = 14,567 s, seta direita pressionada. O texto passou a “Vida 2/3” |
+| Proteção de 1,0 s e um segundo dano só se o contato continuar | Verificado. Oito quadros depois do primeiro toque a vida seguia 2 e a proteção em 0,867 s. Afastar manteve 2 depois do intervalo. Manter contato mediu 1,000 s até o dano seguinte |
+| Pular conserva as duas vidas; a ponta da lâmina só tira vida da sentinela | Verificado. Depois do salto, jogador em (29,900, 0) e sentinela em 28,750, ambos com a vida de antes. O golpe seguinte deixou o jogador em 3 e a sentinela em 2 |
+| Sair e voltar conserva a vida e o texto | Verificado. Volta com vida 2, texto “Vida 2/3” e sentinela ainda em 2 |
+| Zero produz um único retorno | Verificado. X = 21,038, Y = 0, câmera em X = 24, vida 3, um retorno, lâmina inativa |
+| Sentinela derrotada não tira vida | Verificado. Depois dos golpes restantes, o jogador atravessou o trecho em X = 30,257 com vida 3 |
+| Testes 06 e 07 | Verificado. `verificar_golpe_06.gd` e `verificar_inimigo_07.gd` deram `RESULTADO ok`. O retorno das salas não foi editado, então o teste 05 não foi repetido |
+| F6 no editor | Pendente. A cena executada foi `scenes/verification/08_vida_do_jogador.tscn`, aberta pelo teste, sem o atalho do editor |
 
 ## Estudo futuro — Interface
 
-**Status: não iniciada.**
+**Status: não iniciada, fora o indicador da etapa 08.**
 
-Concluir quando a informação mínima de jogo aparecer sem esconder a leitura da câmera lateral.
+O canto da tela do piloto 08 já mostra “Vida 3/3”. O restante da interface continua para quando houver mais informação de jogo sem esconder a câmera lateral.
 
 ## Estudo futuro — Progressão
 

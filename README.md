@@ -8,6 +8,8 @@ O piloto do primeiro golpe é `scenes/verification/06_primeiro_golpe.tscn`. Ele 
 
 O piloto do primeiro inimigo é `scenes/verification/07_primeiro_inimigo.tscn`. Na galeria, uma sentinela de pedra anda entre dois marcos. O olho iluminado mostra o lado da marcha. Dá para pular por cima com a seta e Espaço, ou derrubá-la com três toques de X. A cena 06 continua disponível para o boneco.
 
+O piloto da vida é `scenes/verification/08_vida_do_jogador.tscn`. Ele reaproveita a cena 07. O jogador começa com 3 pontos. Se a sentinela viva encosta nele, o canto da tela passa a “Vida 2/3” e o modelo pisca, sem deixar de mostrar o lado para o qual está virado. A proteção dura 1,0 s. Em zero, o mesmo jogador volta ao marcador `Retorno` da sala, com a vida cheia. Atravessar a porta conserva a vida atual. A cena 07 e o F5 da cena principal não usam essa regra.
+
 ## Versão do Godot
 
 O projeto foi escrito para **Godot 4.7 estável**, de preferência **4.7.2**, com **GDScript**. Use a build padrão, sem .NET. A build .NET serve para C# e este projeto não precisa dela.
@@ -83,7 +85,7 @@ Isso grava `config/name` em `project.godot` e muda o título da janela. A pasta 
 
 ## O que ainda não existe
 
-Vida do jogador, dano por contato, interface e áudio ficam para as próximas tarefas. As salas ligadas, o primeiro golpe e a sentinela estão nas cenas de verificação. A cena principal continua com o manequim, sem esqueleto, roupa nem equipamento. A animação definitiva da espada também fica para depois.
+O indicador “Vida 3/3” existe só no piloto 08. O resto da interface, a progressão e o áudio ficam para as próximas tarefas. As salas ligadas, o primeiro golpe, a sentinela e a vida por contato estão nas cenas de verificação. A cena principal continua com o manequim, sem esqueleto, roupa nem equipamento. A animação definitiva da espada também fica para depois.
 
 ## Mapa dos textos
 

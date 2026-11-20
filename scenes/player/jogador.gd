@@ -26,6 +26,16 @@ extends CharacterBody3D
 			_ajustar_lamina()
 @export_range(0.05, 0.35, 0.01, "suffix:s") var duracao_ativa_s: float = 0.16
 
+@export_group("Vida")
+@export var vida_ativa: bool = false
+@export_range(1, 8, 1) var pontos_maximos: int = 3
+@export_range(0.2, 3.0, 0.05, "suffix:s") var duracao_da_protecao_s: float = 1.0
+
+var pontos_de_vida := 3
+var tempo_de_protecao_s := 0.0
+var retornos_por_derrota := 0
+var intervalo_do_ultimo_dano_s := 0.0
+
 var _ponto_de_retorno: Vector3 = Vector3.ZERO
 var _animacao: AnimationPlayer
 var _esqueleto: Skeleton3D
@@ -39,6 +49,12 @@ var _material_da_lamina: StandardMaterial3D
 var _area_fora_do_corpo := false
 var acertos_deste_golpe := 0
 var quadros_sobre_o_alvo := 0
+var _malhas_do_corpo: Array[MeshInstance3D] = []
+var _material_da_protecao: StandardMaterial3D
+var _pisca_acesa := false
+var _relogio_pisca := 0.0
+var _relogio_desde_o_dano := 0.0
+var _ja_sofreu_dano := false
 
 const _CLIP := "corrida"
 const _ESPERA_DO_GOLPE_S := 0.06
@@ -70,7 +86,11 @@ func _ready() -> void:
 	_area.monitoring = false
 	_area.collision_layer = 1
 	_area.collision_mask = 1
+	pontos_de_vida = pontos_maximos
+	_preparar_protecao()
 	call_deferred("_soltar_area")
+	if vida_ativa:
+		call_deferred("_avisar_indicador")
 
 
 func _soltar_area() -> void:
@@ -119,6 +139,7 @@ func _physics_process(delta: float) -> void:
 	_retornar_se_cair_da_sala()
 	_atualizar_corrida(is_on_floor(), eixo_horizontal)
 	_atualizar_golpe(delta, is_on_floor())
+	_atualizar_vida(delta)
 
 
 func _orientar_visual(eixo_horizontal: float) -> void:
@@ -290,3 +311,114 @@ func _centro_da_lamina() -> Vector3:
 
 func _posicionar_area() -> void:
 	_area.global_transform = _golpe.global_transform * Transform3D(Basis(), _centro_da_lamina())
+
+
+func _preparar_protecao() -> void:
+	_material_da_protecao = StandardMaterial3D.new()
+	_material_da_protecao.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	_material_da_protecao.albedo_color = Color(0.95, 0.28, 0.18, 0.45)
+	_material_da_protecao.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
+	_malhas_do_corpo.clear()
+	for no in _visual.find_children("*", "MeshInstance3D", true, false):
+		_malhas_do_corpo.append(no as MeshInstance3D)
+
+
+func _process(delta: float) -> void:
+	if not vida_ativa:
+		return
+	var protegido := tempo_de_protecao_s > 0.0
+	if not protegido:
+		_ligar_pisca(false)
+		return
+	_relogio_pisca += delta
+	var aceso := fmod(_relogio_pisca, 0.2) < 0.1
+	_ligar_pisca(aceso)
+
+
+func _ligar_pisca(aceso: bool) -> void:
+	if aceso == _pisca_acesa:
+		return
+	_pisca_acesa = aceso
+	var material: Material = _material_da_protecao if aceso else null
+	for malha in _malhas_do_corpo:
+		malha.material_overlay = material
+
+
+func _atualizar_vida(delta: float) -> void:
+	if not vida_ativa:
+		return
+	_relogio_desde_o_dano += delta
+	var toque := _ha_contato_com_sentinela_viva()
+	if tempo_de_protecao_s > 0.0:
+		tempo_de_protecao_s = maxf(tempo_de_protecao_s - delta, 0.0)
+		if tempo_de_protecao_s > 0.0:
+			return
+		if toque:
+			_aplicar_dano()
+		return
+	if toque:
+		_aplicar_dano()
+
+
+func _aplicar_dano() -> void:
+	if _ja_sofreu_dano:
+		intervalo_do_ultimo_dano_s = _relogio_desde_o_dano
+	_ja_sofreu_dano = true
+	_relogio_desde_o_dano = 0.0
+	pontos_de_vida -= 1
+	tempo_de_protecao_s = duracao_da_protecao_s
+	if pontos_de_vida <= 0:
+		_sofrer_derrota()
+		return
+	_avisar_indicador()
+
+
+func _sofrer_derrota() -> void:
+	retornos_por_derrota += 1
+	encerrar_golpe()
+	tempo_de_protecao_s = 0.0
+	_ligar_pisca(false)
+	global_position = _ponto_de_retorno
+	global_position.z = 0.0
+	velocity = Vector3.ZERO
+	reset_physics_interpolation()
+	pontos_de_vida = pontos_maximos
+	_ja_sofreu_dano = false
+	var indicador := get_tree().get_first_node_in_group("indicador_de_vida")
+	if indicador != null and indicador.has_method("mostrar_derrota"):
+		indicador.mostrar_derrota()
+	else:
+		_avisar_indicador()
+
+
+func _avisar_indicador() -> void:
+	var indicador := get_tree().get_first_node_in_group("indicador_de_vida")
+	if indicador != null and indicador.has_method("mostrar"):
+		indicador.mostrar(pontos_de_vida, pontos_maximos)
+
+
+func _ha_contato_com_sentinela_viva() -> bool:
+	for indice in get_slide_collision_count():
+		var corpo := get_slide_collision(indice).get_collider()
+		if _e_sentinela_viva(corpo):
+			return true
+	var forma := $Colisao as CollisionShape3D
+	if forma.shape == null:
+		return false
+	var parametros := PhysicsShapeQueryParameters3D.new()
+	parametros.shape = forma.shape
+	parametros.transform = forma.global_transform
+	parametros.collision_mask = collision_mask
+	parametros.exclude = [get_rid()]
+	var resultados := get_world_3d().direct_space_state.intersect_shape(parametros, 8)
+	for item in resultados:
+		var corpo: Object = item["collider"]
+		if _e_sentinela_viva(corpo):
+			return true
+	return false
+
+
+func _e_sentinela_viva(corpo: Object) -> bool:
+	if corpo == null or not corpo.is_in_group("sentinela"):
+		return false
+	return not bool(corpo.get("derrotada"))

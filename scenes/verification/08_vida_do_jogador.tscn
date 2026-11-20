@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/verification/07_primeiro_inimigo.tscn" id="1_piloto"]
+[ext_resource type="PackedScene" path="res://scenes/interface/indicador_de_vida.tscn" id="2_indicador"]
+
+[node name="VidaDoJogador" instance=ExtResource("1_piloto")]
+
+[node name="Jogador" parent="."]
+vida_ativa = true
+
+[node name="IndicadorDeVida" parent="." instance=ExtResource("2_indicador")]
