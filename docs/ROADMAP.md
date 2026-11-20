@@ -1,6 +1,6 @@
 # Roadmap
 
-Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05 e 06 foram verificadas em 20/11/2026. O relatório da Tarefa 01 permanece como histórico. Inimigos, interface, progressão, animação e áudio continuam sem começar.
+Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05 e 06 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. Inimigos, interface, progressão, animação e áudio continuam sem começar.
 
 ## 01 — Fundação e cena de verificação
 
@@ -169,6 +169,17 @@ Esqueleto, ciclo de caminhada, roupa e equipamento ficam para as próximas taref
 | O mesmo lugar erra com 1,15 m e acerta com 1,55 m | Verificado em X = 27,95, olhando para +X |
 | Testes do código alterado | Verificado. Movimento, direção, arco, piloto 04-D e salas 05 deram `RESULTADO ok` |
 | F6 no editor | Pendente. A cena executada foi `scenes/verification/06_primeiro_golpe.tscn`, aberta pelo teste, sem o atalho do editor |
+
+## 06-B — Verificar o teste que encerrou com erro
+
+**Status: falha original não reproduzida.** Conferida no Godot 4.7.2 em 20/11/2026, sobre o commit `0e9ee6e`. O diagnóstico está em `MD-usario/relatorios/06b-verificar-teste-anterior.md`. Nenhum arquivo do jogo foi alterado.
+
+| Critério | Status |
+| --- | --- |
+| Log da execução que motivou a mensagem | Encontrado. Teste `tests/verificar_golpe_06.gd`. Primeira explicação: `acertos_deste_golpe` não declarado em `jogador.gd`. Código de saída 4294967295, processo interrompido |
+| Repetir o mesmo comando antes de editar | Verificado. `RESULTADO ok`, saída 0 |
+| Segunda execução de `tests/verificar_golpe_06.gd` | Verificado. `RESULTADO ok`, saída 0. Um acerto por golpe, lâmina nos erros, troca e queda encerram o ataque |
+| Efeito no golpe entregue ou nas mecânicas anteriores | O commit `0e9ee6e` já declara a variável. A falha era de um script incompleto durante a edição e não entrou no commit |
 
 ## Estudo futuro — Inimigos
 
