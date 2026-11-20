@@ -8,17 +8,21 @@ const _IDS := {
 	"Vestibulo": "vestibulo",
 	"Galeria": "galeria",
 	"CapelaDaLua": "capela_da_lua",
+	"EscadariaExterior": "escadaria_exterior",
 }
 const _NOMES := {
 	"vestibulo": "Vestíbulo",
 	"galeria": "Galeria",
 	"capela_da_lua": "Capela da Lua",
+	"escadaria_exterior": "Escadaria",
 }
 const _CAIXAS := {
 	"vestibulo": Rect2(500, 330, 200, 88),
 	"galeria": Rect2(820, 330, 200, 88),
 	"capela_da_lua": Rect2(250, 140, 230, 88),
+	"escadaria_exterior": Rect2(230, 330, 210, 88),
 }
+const _SALAS: Array[String] = ["escadaria_exterior", "vestibulo", "galeria", "capela_da_lua"]
 
 var visitadas: Array[String] = []
 var sala_atual_id := ""
@@ -48,8 +52,13 @@ func _physics_process(_delta: float) -> void:
 
 
 func iniciar_jogo_novo() -> void:
-	visitadas = ["vestibulo"]
-	sala_atual_id = "vestibulo"
+	var id := "vestibulo"
+	var raiz := get_parent().get_parent()
+	var sala := raiz.get("sala_atual") as Node3D
+	if sala != null and _IDS.has(String(sala.name)):
+		id = String(_IDS[String(sala.name)])
+	visitadas = [id]
+	sala_atual_id = id
 	_ativo = true
 	_atualizar()
 
@@ -82,6 +91,8 @@ func para_gravacao() -> Dictionary:
 
 func ligacoes() -> Array[String]:
 	var saida: Array[String] = []
+	if visitadas.has("escadaria_exterior") and visitadas.has("vestibulo"):
+		saida.append("escadaria_exterior-vestibulo")
 	if visitadas.has("vestibulo") and visitadas.has("galeria"):
 		saida.append("vestibulo-galeria")
 	if visitadas.has("vestibulo") and visitadas.has("capela_da_lua"):
@@ -130,7 +141,7 @@ func _observar_sala() -> void:
 
 
 func _atualizar() -> void:
-	for item in ["vestibulo", "galeria", "capela_da_lua"]:
+	for item in _SALAS:
 		var id := String(item)
 		var rotulo := get_node(_no_do_nome(id)) as Label
 		var caixa: Rect2 = _CAIXAS[id]
@@ -155,6 +166,8 @@ func _no_do_nome(id: String) -> String:
 			return "NomeVestibulo"
 		"galeria":
 			return "NomeGaleria"
+		"escadaria_exterior":
+			return "NomeEscadaria"
 		_:
 			return "NomeCapela"
 
@@ -162,12 +175,14 @@ func _no_do_nome(id: String) -> String:
 func _draw() -> void:
 	draw_rect(Rect2(Vector2.ZERO, size), Color(0.015, 0.016, 0.03, 0.9))
 	var centros: Dictionary = {}
-	for item in ["vestibulo", "galeria", "capela_da_lua"]:
+	for item in _SALAS:
 		var id := String(item)
 		if visitadas.has(id):
 			var caixa: Rect2 = _CAIXAS[id]
 			centros[id] = caixa.get_center()
 	var traco := Color(0.78, 0.72, 0.58)
+	if centros.has("escadaria_exterior") and centros.has("vestibulo"):
+		draw_line(centros["escadaria_exterior"] as Vector2, centros["vestibulo"] as Vector2, traco, 4.0)
 	if centros.has("vestibulo") and centros.has("galeria"):
 		draw_line(centros["vestibulo"] as Vector2, centros["galeria"] as Vector2, traco, 4.0)
 	if centros.has("vestibulo") and centros.has("capela_da_lua"):

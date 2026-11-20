@@ -1,6 +1,6 @@
 # Roadmap
 
-Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06, 07, 08, 09, 10, 11, 12, 13 e 14 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. O restante da interface, outras habilidades, a animação e o áudio continuam sem começar.
+Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06, 07, 08, 09, 10, 11, 12, 13, 14 e 15 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. O restante da interface, outras habilidades, a animação e o áudio continuam sem começar.
 
 ## 01 — Fundação e cena de verificação
 
@@ -311,11 +311,25 @@ O canto da tela do piloto 08 já mostra “Vida 3/3”. O restante da interface 
 | Testes do vestíbulo 13 e da passagem 10 | Verificado. Os dois deram `RESULTADO ok` |
 | F6 no editor | Pendente. A cena executada foi `scenes/verification/14_portal_da_sacada.tscn`, aberta pelo teste, sem o atalho do editor |
 
+## 15 — Escadaria exterior de acesso ao castelo
+
+**Status: concluída na cena de verificação.** Medida no Godot 4.7.2 e no Blender 5.3.0 em 20/11/2026. O relatório está em `MD-usario/relatorios/15-escadaria-exterior.md`. O F6 do editor não foi pressionado. As janelas abriram por `tests/capturar_15.tscn`. O percurso rodou em `tests/verificar_escadaria_15.gd`, com `APPDATA` em `tests/dados_15`. A cena 14 continua sem a saída da esquerda. O F5 continua em `main.tscn`.
+
+| Critério | Status |
+| --- | --- |
+| “Novo jogo” começa no patamar, com o portão já no quadro | Verificado. Pés em X = −23,200, Y = 0,000 e Z = 0. Câmera em X = −18,80, `Size` = 8, 1280×720. Vida 3/3. O mapa mostra só `escadaria_exterior` |
+| Segurar a seta sobe, soltar no meio para, e a descida volta ao patamar | Verificado. Parada em X = −20,060, Y = 1,120 e Z = 0. A descida chegou a Y = 0,400 ainda sobre a rampa |
+| A travessia troca de sala uma vez em cada sentido | Verificado. Entrada em X = −4,142, Y = 0, câmera em X = 0. Volta em X = −15,708, Y = 2,640, câmera em X = −18,80. Z = 0 nos dois |
+| O mapa revela o vestíbulo ao entrar e conserva uma gravação antiga | Verificado. Depois da entrada: `escadaria_exterior` e `vestibulo`, com a ligação. “Continuar” abriu no altar, X = 47,950, com as três salas antigas; a visita acrescentou o exterior |
+| O lance importado não cria colisão | Verificado depois da importação. 36 malhas, 0 corpos físicos. A caixa vai de X = 0 a 5,520, Y = 0 a 3,200 e Z = −0,390 a −0,020 |
+| Testes do mapa, do portal, da capela e do vestíbulo | Verificado. As fases `primeira`, `continuar`, `novo_mapa` e `legado` de `verificar_mapa_12.gd`, mais `verificar_portal_14.gd`, `verificar_capela_10.gd` e `verificar_vestibulo_13.gd`, deram `RESULTADO ok` |
+| F6 no editor | Pendente. A cena executada foi `scenes/verification/15_escadaria_exterior.tscn`, aberta pelo teste, sem o atalho do editor |
+
 ## Estudo futuro — Progressão
 
-**Status: não iniciada, fora o salto duplo da etapa 09, a capela da etapa 10, o altar da etapa 11, o mapa da etapa 12, a cantaria da etapa 13 e o portal da etapa 14.**
+**Status: não iniciada, fora o salto duplo da etapa 09, a capela da etapa 10, o altar da etapa 11, o mapa da etapa 12, a cantaria da etapa 13, o portal da etapa 14 e a escadaria da etapa 15.**
 
-A sacada do vestíbulo abre a Capela da Lua depois da relíquia. O altar dessa capela grava a vida, o salto duplo, a sentinela e as salas já visitadas. O mapa só desenha uma sala depois que a troca termina. O vestíbulo tem cantaria modular e a sacada tem um portal ogival. Outras habilidades continuam para quando um caminho visível e fechado abrir com uma capacidade nova.
+A sacada do vestíbulo abre a Capela da Lua depois da relíquia. O altar dessa capela grava a vida, o salto duplo, a sentinela e as salas já visitadas. O mapa só desenha uma sala depois que a troca termina. O jogo novo da cena 15 começa fora, na escadaria, e o portão leva ao vestíbulo. Outras habilidades continuam para quando um caminho visível e fechado abrir com uma capacidade nova.
 
 ## Como atualizar este arquivo
 

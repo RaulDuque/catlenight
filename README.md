@@ -22,6 +22,8 @@ O piloto do vestíbulo de pedra é `scenes/verification/13_vestibulo_do_castelo.
 
 O piloto do portal da sacada é `scenes/verification/14_portal_da_sacada.tscn`. Ele reaproveita a cena 13 e troca a moldura retangular por `arte-fonte/blender/portal_da_sacada.blend`. O vão livre na soleira tem 1,12 m. A ponta fica 2,54 m acima dos pés. A parede lisa da sacada fica oculta, e a cantaria de trás aparece no lugar. A laje, o detector e a volta da capela não mudam. A cena 13 continua com o retângulo, para comparar.
 
+O piloto da escadaria é `scenes/verification/15_escadaria_exterior.tscn`. Ele reaproveita a cena 14. “Novo jogo” começa no patamar de baixo, com “Vida 3/3”, e o portão iluminado já aparece acima e à direita. A seta direita sobe a rampa e atravessa `EscadariaExterior/Saida` até o vestíbulo. A seta esquerda volta pelo mesmo caminho. “Continuar” segue abrindo no altar da capela. A cena 14 continua sem essa saída, para o exercício do portal.
+
 ## Versão do Godot
 
 O projeto foi escrito para **Godot 4.7 estável**, de preferência **4.7.2**, com **GDScript**. Use a build padrão, sem .NET. A build .NET serve para C# e este projeto não precisa dela.
@@ -70,7 +72,7 @@ As ações estão em **Projeto > Configurações do Projeto > Mapa de Entrada**.
 | `pulo` | Espaço | Salta uma vez, só quando os pés estão no chão. No piloto 09 e no 10, depois da relíquia, um segundo toque no ar dá o impulso extra |
 | `atacar` | X | Dá um golpe curto, no chão, para o lado em que o perfil está virado |
 | `interagir` | Seta para cima | No piloto 10, entra na capela ou volta à sacada. No piloto 11 e no 12, também grava no altar quando os pés estão apoiados diante dele |
-| `abrir_mapa` | M | No piloto 12, abre o mapa das salas visitadas. Outro toque fecha e a partida segue |
+| `abrir_mapa` | M | No piloto 12, abre o mapa das salas visitadas. No piloto 15, um jogo novo mostra só a escadaria; o vestíbulo entra ao atravessar o portão. Outro toque fecha e a partida segue |
 
 Soltar a seta interrompe a caminhada. Apertar Espaço no ar não faz outro salto. Segurar Espaço até aterrissar também não faz outro salto: é preciso soltar e apertar de novo.
 
@@ -99,7 +101,7 @@ Isso grava `config/name` em `project.godot` e muda o título da janela. A pasta 
 
 ## O que ainda não existe
 
-O indicador “Vida 3/3” existe a partir do piloto 08. O salto duplo existe no piloto 09, depois da relíquia. A passagem da sacada e a Capela da Lua existem no piloto 10. O altar e o menu de continuar existem no piloto 11. O mapa das salas exploradas existe no piloto 12. A cantaria do vestíbulo existe no piloto 13. O portal ogival da sacada existe no piloto 14. O resto da interface, outras habilidades e o áudio ficam para as próximas tarefas. As salas ligadas, o primeiro golpe, a sentinela, a vida por contato, a sacada, a capela, o salvamento, o mapa, o revestimento do vestíbulo e o portal da sacada estão nas cenas de verificação. A cena principal continua com o manequim, sem esqueleto, roupa nem equipamento. A animação definitiva da espada também fica para depois.
+O indicador “Vida 3/3” existe a partir do piloto 08. O salto duplo existe no piloto 09, depois da relíquia. A passagem da sacada e a Capela da Lua existem no piloto 10. O altar e o menu de continuar existem no piloto 11. O mapa das salas exploradas existe no piloto 12. A cantaria do vestíbulo existe no piloto 13. O portal ogival da sacada existe no piloto 14. A escadaria exterior e o começo fora do castelo existem no piloto 15. O resto da interface, outras habilidades e o áudio ficam para as próximas tarefas. As salas ligadas, o primeiro golpe, a sentinela, a vida por contato, a sacada, a capela, o salvamento, o mapa, o revestimento do vestíbulo, o portal da sacada e a escadaria estão nas cenas de verificação. A cena principal continua com o manequim, sem esqueleto, roupa nem equipamento. A animação definitiva da espada também fica para depois.
 
 ## Mapa dos textos
 

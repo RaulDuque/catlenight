@@ -26,7 +26,7 @@ const _CHAVES: Array[String] = [
 	"sentinela_derrotada",
 ]
 const _OPCIONAIS: Array[String] = ["salas_visitadas", "sala_atual"]
-const _SALAS_DO_MAPA: Array[String] = ["vestibulo", "galeria", "capela_da_lua"]
+const _SALAS_DO_MAPA: Array[String] = ["escadaria_exterior", "vestibulo", "galeria", "capela_da_lua"]
 
 var gravacoes := 0
 
