@@ -120,6 +120,21 @@ Esqueleto, ciclo de caminhada, roupa e equipamento ficam para as próximas taref
 | Pé de apoio e velocidade do clipe | Verificado. Com `velocidade_da_animacao` = 1,3, um apoio inteiro deslocou o tornozelo 0,0025 m e o seguinte −0,119 m. O quadril local foi de −0,097 m para −0,088 m |
 | Quadros da corrida no Godot | Verificado em `04c-godot-apoio-01.png` a `04c-godot-apoio-04.png`. As pernas trocam o apoio entre o arco e a plataforma |
 
+## 04-D — Visibilidade da corrida
+
+**Status: concluída no piloto.** Medida no Godot 4.7.2 em 20/11/2026. O relatório está em `MD-usario/relatorios/04d-visibilidade-da-corrida.md`. O F6 do editor não foi pressionado. A janela abriu a cena do piloto por `tests/capturar_04d.tscn`. A cena principal e o F5 não mudaram.
+
+| Critério | Status |
+| --- | --- |
+| Duas poses iguais antes de editar, em 1280×720 e `Size` = 8 | Verificado. Sob o arco em X = −1,714 e no chão livre em X = −0,600. Direção +X, clipe `corrida` em 0,270 s |
+| Distinguir luz de objeto que cobre o corpo | Verificado na prancha `04d-antes-depois.png`. No chão livre o corpo estourava no branco. Sob o arco o pilar dianteiro escondia tronco e cabeça |
+| Material e normais antes de aumentar a luz | Verificado. Albedo branco, rugosidade 1, sombreamento por pixel. A média das normais ficou perto de zero. A luz do piloto baixou de 1,15 para 0,7 |
+| Ambiente só no piloto, com volume no cabelo e no corpo | Verificado. `Ambiente`, energia 0,12, cor (0,62, 0,58, 0,54). O depois mostra tronco, perna de trás e cabelo em cinza |
+| Pilar dianteiro nas duas direções, pedra opaca fora da passagem | Verificado. Alpha 0,280 com o corpo atrás do pilar e 1,000 ao lado. Direita e esquerda aparecem em `04d-arco-depois.png` e `04d-arco-depois-esquerda.png` |
+| Vão em Z = 0 e colisão do pilar | Verificado em `tests/verificar_piloto_04d.gd`. O raio do vão passou livre. O raio no pilar acertou a pedra. Plataforma em X = 2,1086 e Y = 0,7009. Z máximo 0 |
+| Velocidades 3,5 / 5,5 / 1,3 | Verificado no mesmo teste |
+| Testes da cena principal | Verificado. Movimento, direção e arco deram `RESULTADO ok` |
+
 ## Estudo futuro — Salas conectadas
 
 **Status: não iniciada.**

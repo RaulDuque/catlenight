@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3]
+[gd_scene load_steps=12 format=3]
 
 [ext_resource type="PackedScene" path="res://scenes/player/jogador.tscn" id="1_jogador"]
 [ext_resource type="PackedScene" path="res://scenes/environment/arco_de_pedra.tscn" id="2_arco"]
 [ext_resource type="PackedScene" path="res://assets/models/characters/protagonista_hunyuan_corrida.glb" id="3_corrida"]
+[ext_resource type="Script" path="res://scenes/verification/visibilidade_do_piloto.gd" id="4_visibilidade"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_chao"]
 albedo_color = Color(0.18, 0.16, 0.17, 1)
@@ -24,7 +25,17 @@ size = Vector3(4, 0.7, 2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_plataforma"]
 size = Vector3(4, 0.7, 2)
 
+[sub_resource type="Environment" id="Environment_piloto"]
+background_mode = 0
+ambient_light_source = 2
+ambient_light_color = Color(0.62, 0.58, 0.54, 1)
+ambient_light_energy = 0.12
+
 [node name="CorridaMixamo" type="Node3D"]
+script = ExtResource("4_visibilidade")
+
+[node name="Ambiente" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_piloto")
 
 [node name="Chao" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
@@ -56,7 +67,7 @@ modelo_da_corrida = ExtResource("3_corrida")
 [node name="Luz" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.789352, 0.533358, -0.304061, 0, 0.495261, 0.868744, 0.613941, -0.685745, 0.390935, 0, 6, 3)
 shadow_enabled = true
-light_energy = 1.15
+light_energy = 0.7
 
 [node name="CameraLateral" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 14)
