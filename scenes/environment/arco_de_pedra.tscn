@@ -1,0 +1,60 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="PackedScene" path="res://assets/models/environment/arco_de_pedra.glb" id="1_modelo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_base"]
+size = Vector3(0.54, 0.2, 0.52)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pilar"]
+size = Vector3(0.38, 2, 0.34)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_capitel"]
+size = Vector3(0.46, 0.16, 0.46)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cunha"]
+size = Vector3(0.46, 0.9, 0.36)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fecho"]
+size = Vector3(0.5, 0.8, 0.55)
+
+[node name="ArcoDePedra" type="Node3D"]
+
+[node name="Visual" parent="." instance=ExtResource("1_modelo")]
+
+[node name="Colisao" type="StaticBody3D" parent="."]
+
+[node name="BaseFrente" type="CollisionShape3D" parent="Colisao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, 1.39)
+shape = SubResource("BoxShape3D_base")
+
+[node name="PilarFrente" type="CollisionShape3D" parent="Colisao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.259, 1.39)
+shape = SubResource("BoxShape3D_pilar")
+
+[node name="CapitelFrente" type="CollisionShape3D" parent="Colisao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39, 1.39)
+shape = SubResource("BoxShape3D_capitel")
+
+[node name="BaseFundo" type="CollisionShape3D" parent="Colisao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.11, -1.39)
+shape = SubResource("BoxShape3D_base")
+
+[node name="PilarFundo" type="CollisionShape3D" parent="Colisao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.259, -1.39)
+shape = SubResource("BoxShape3D_pilar")
+
+[node name="CapitelFundo" type="CollisionShape3D" parent="Colisao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.39, -1.39)
+shape = SubResource("BoxShape3D_capitel")
+
+[node name="CunhaFrente" type="CollisionShape3D" parent="Colisao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9, 1)
+shape = SubResource("BoxShape3D_cunha")
+
+[node name="CunhaFundo" type="CollisionShape3D" parent="Colisao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.9, -1)
+shape = SubResource("BoxShape3D_cunha")
+
+[node name="PedraCentral" type="CollisionShape3D" parent="Colisao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.67, 0)
+shape = SubResource("BoxShape3D_fecho")

@@ -1,0 +1,59 @@
+# Regras de trabalho
+
+Catlenight é um projeto pessoal de estudo. Quem conduz o projeto precisa entender cada parte o bastante para alterá-la sozinho. Explique o que for novo em linguagem direta: caminho da cena no editor e a propriedade que dá para mudar para testar a ideia.
+
+O nome Catlenight é provisório. Pode ser trocado em Project Settings, em Application > Config > Name.
+
+## Ferramentas
+
+- Godot 4 estável, linha 4.7, de preferência 4.7.2. Build padrão, com GDScript.
+- Recursos nativos do Godot têm prioridade.
+- Pacote, extensão ou skill só entra se for gratuito e se a função dele estiver escrita em `docs/DECISIONS.md`.
+- A skill em `.claude/skills/` é referência de trabalho. O jogo não a carrega.
+
+## Eixos
+
+O mundo é 3D. A câmera é lateral e ortográfica.
+
+| Eixo | Uso no jogo |
+| --- | --- |
+| X | Deslocamento horizontal |
+| Y | Altura |
+| Z | Profundidade |
+
+A câmera fica no lado positivo de Z e olha para -Z, de modo que a imagem mostra o plano XY. O plano de jogo desta cena de verificação é **Z = 0**. Quando existir controlador, o personagem permanece no Z definido para a fase. Nesta cena, esse Z é 0.
+
+Unidades do Godot são metros. O tamanho ortográfico da câmera também está em metros.
+
+## Limite atual
+
+A etapa 01 entregou a cena de verificação. A etapa 02 entregou o primeiro controlador: o jogador cai, anda em X, pula e permanece em Z = 0. A etapa 03 entregou o primeiro arco de pedra, modelado no Blender, importado em GLB e atravessável por esse jogador. A etapa 04 trocou o bloco vermelho pelo manequim de 1,70 m. O nó `Visual` aponta o perfil para +X ou para −X conforme a seta, e conserva a última direção quando a seta é solta.
+
+O manequim da cena principal continua sem esqueleto. O piloto da etapa 04-C usa o esqueleto e a corrida do Mixamo. Roupa e equipamento ficam para as próximas tarefas.
+
+A etapa 04-A instalou o Hunyuan3D-2mini fora da pasta do jogo e gerou a geometria do exemplo oficial. A interface local abre por `D:\Tools\Hunyuan3D\abrir_hunyuan.bat`, em `http://127.0.0.1:8080`, e gera quantos moldes forem precisos. Ela produz geometria; a textura continua desligada nesta placa de 8 GB.
+
+A etapa 04-B preparou `arte-fonte/mixamo/protagonista_mixamo_upload.obj` a partir de `molde3d\white_mesh (1).glb`. O OBJ foi reimportado e medido no Blender: 1,70 m, 52000 triângulos, mãos e pernas separadas. O FBX baixado desse envio foi conferido na etapa 04-C. O manequim segue sendo o personagem da cena principal.
+
+A etapa 04-B2 comparou `molde3d\darkcastle.obj` com a captura do casaco. Esse molde também tem uma cópia em `arte-fonte/mixamo/darkcastle_mixamo_upload.obj`. O primeiro envio ao Mixamo continua sendo o OBJ da etapa 04-B, por causa da separação dos braços e das pernas.
+
+Ainda ficam para depois:
+
+- salas conectadas;
+- combate, inimigos e interface;
+- progressão, animação e áudio.
+
+Não avance para a tarefa seguinte sem apresentar o resultado da tarefa atual.
+
+## Organização
+
+- Salve cada prompt em `MD-usario/prompts/` antes de implementar a tarefa correspondente.
+- Prompts complementares aprovados vão para a mesma pasta.
+- O relatório da etapa vai em `MD-usario/relatorios/`.
+- Ao concluir uma tarefa, atualize `docs/ROADMAP.md` com o status real e com os critérios que foram de fato verificados.
+- Não publique, não crie remoto e não faça push até haver um pedido explícito.
+- Preserve o que já existe na pasta. Não apague conteúdo para "limpar" o projeto.
+
+## Git
+
+O `.gitignore` e o `.gitattributes` já estão preparados no formato que o Godot 4.7 gera. O repositório local só deve ser criado quando o Git estiver instalado e a inicialização for pedida ou estiver autorizada pela tarefa. Publicação continua separada desse passo.

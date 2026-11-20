@@ -1,0 +1,92 @@
+# Catlenight
+
+Metroidvania gótico original em 2.5D, feito para estudo. O nome **Catlenight** é provisório e pode ser trocado.
+
+A cena de verificação tem chão com colisão, um manequim humanoide de 1,70 m, uma plataforma, um arco de pedra, uma luz e uma câmera lateral ortográfica. O manequim cai, anda e pula, e vira o perfil para o lado da caminhada. Combate, inimigos e interface ainda não existem.
+
+## Versão do Godot
+
+O projeto foi escrito para **Godot 4.7 estável**, de preferência **4.7.2**, com **GDScript**. Use a build padrão, sem .NET. A build .NET serve para C# e este projeto não precisa dela.
+
+Na preparação desta etapa, em 19/11/2026:
+
+- O comando `godot` não existia no terminal, e nenhum `Godot*.exe` foi encontrado na máquina.
+- Por isso a versão **não foi confirmada executando o editor**.
+- O site oficial, consultado na mesma data, apontava **4.7.2 stable** (18/08/2026) como a estável atual: [godotengine.org/download/windows](https://godotengine.org/download/windows/).
+- Um log antigo de outro projeto, de 13/10/2026, cita `Godot Engine v4.7.2.stable.official.ed1daf0bf`.
+
+Na validação 01b, no mesmo dia, o ZIP oficial foi extraído fora do projeto, em `C:\Users\Raul\Tools\Godot\4.7.2-stable`. O comando `--version` do executável de console respondeu `4.7.2.stable.official.ed1daf0bf`. O detalhe está em `MD-usario/relatorios/01b-validacao-da-cena.md`.
+
+Não use a linha 4.8 enquanto ela estiver em beta.
+
+## Instalar o Godot, se ele não abrir
+
+1. Baixe **Godot Engine 4.7.2**, Windows x86_64, a versão padrão (não a .NET).
+2. Extraia o ZIP. O Godot não pede instalador: o executável já abre o editor.
+3. Guarde a pasta extraída onde você costuma deixar ferramentas, por exemplo `D:\Progr\Godot`.
+4. Na primeira abertura, o Windows pode pedir confirmação do SmartScreen. O executável oficial é assinado pela Prehensile Tales B.V.
+
+## Abrir o projeto
+
+1. Abra o executável do Godot.
+2. Na lista de projetos, escolha **Import**.
+3. Aponte para `D:\Progr\catlenight\project.godot` e confirme.
+4. Abra o projeto. A primeira abertura cria a pasta `.godot\` com cache. Ela não entra no Git.
+
+A cena principal já está configurada em **Project > Project Settings > Application > Run > Main Scene**:
+
+`res://scenes/verification/main.tscn`
+
+## Executar
+
+Com o projeto aberto, pressione **F5**. O Godot roda a cena principal. A primeira coisa que acontece é o manequim cair e parar no chão, à esquerda do arco, de perfil para a direita. Segure a seta direita para passar por baixo do arco e seguir até a plataforma. A seta esquerda vira o perfil para a esquerda. Soltar a seta conserva essa direção.
+
+## Controles
+
+As ações estão em **Projeto > Configurações do Projeto > Mapa de Entrada**.
+
+| Ação | Tecla | Efeito |
+| --- | --- | --- |
+| `esquerda` | Seta para a esquerda | Anda para X negativo enquanto a tecla está pressionada |
+| `direita` | Seta para a direita | Anda para X positivo enquanto a tecla está pressionada |
+| `pulo` | Espaço | Salta uma vez, só quando os pés estão no chão |
+
+Soltar a seta interrompe a caminhada. Apertar Espaço no ar não faz outro salto. Segurar Espaço até aterrissar também não faz outro salto: é preciso soltar e apertar de novo.
+
+Se o corpo cair abaixo de Y = -2, ele volta ao ponto onde nasceu, com a velocidade zerada. O nascimento fica com os pés 1 m acima do chão. O arco está no chão antes da plataforma, com um pilar de cada lado de Z = 0.
+
+Para subir na plataforma, corra na direção dela e aperte Espaço antes de encostar na lateral. Dá para descer pelo lado direito e voltar ao chão.
+
+## Valores no Inspector
+
+Abra `scenes/verification/main.tscn`, clique em `Jogador` e use o grupo **Movimento**:
+
+- `velocidade_caminhada_m_por_s`: 3,5 m/s
+- `velocidade_inicial_do_pulo_m_por_s`: 5,5 m/s
+
+A cena do jogador, reutilizável, é `scenes/player/jogador.tscn`. A origem dela são os pés. O nó `Visual` carrega o filho `Modelo`, que é o GLB `assets/models/characters/protagonista_base.glb`, com escala 1. Quem gira na troca de direção é o `Visual`. A caixa `Colisao` permanece parada.
+
+O arco reutilizável é `scenes/environment/arco_de_pedra.tscn`. Na cena principal, o nó `ArcoDePedra` está em X = -2,05, com rotação Y = 14 graus. Essas duas propriedades ficam no Inspector, em Transform. O GLB é o filho `Visual`. As caixas de colisão são os filhos de `Colisao`; o tamanho de cada uma está em Shape > Size.
+
+## Trocar o nome provisório
+
+No editor: **Project > Project Settings > Application > Config > Name**.
+
+Isso grava `config/name` em `project.godot` e muda o título da janela. A pasta do projeto pode continuar `catlenight` até você decidir renomeá-la.
+
+## O que ainda não existe
+
+Combate, inimigos, salas ligadas, interface e áudio ficam para as próximas tarefas. O manequim ainda não tem esqueleto, ciclo de caminhada, roupa nem equipamento.
+
+## Mapa dos textos
+
+| Arquivo | Função |
+| --- | --- |
+| `CLAUDE.md` | Regras de trabalho, eixos e limite da etapa |
+| `docs/GAME_DESIGN.md` | Visão, pilares e primeiro objetivo jogável |
+| `docs/ROADMAP.md` | Etapas, critérios e status real |
+| `docs/DECISIONS.md` | Decisões, motivo e impacto |
+| `MD-usario/prompts/` | Cópia de cada prompt antes da implementação |
+| `MD-usario/relatorios/` | Entrega e validação de cada etapa |
+
+A skill em `.claude/skills/godot-gdscript-patterns/` é uma referência local para o editor de código. O jogo em execução usa só nós e GDScript nativos do Godot.
