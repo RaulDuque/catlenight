@@ -1,0 +1,23 @@
+{
+  "solidos": [
+    {"nome": "ParedeDireita", "x": -18.8, "y": 0.0, "largura": 0.6, "altura": 2.4, "cor": "parede"},
+    {"nome": "PatamarInferior", "x": -21.2, "y": -0.8, "largura": 2.4, "altura": 0.8, "cor": "patamar"},
+    {"nome": "PatamarSuperior", "x": -26.72, "y": 2.24, "largura": 2.4, "altura": 0.4, "cor": "patamar"},
+    {"nome": "PisoSalao", "x": -47.9, "y": 2.24, "largura": 21.18, "altura": 0.4, "cor": "chao"},
+    {"nome": "Estrado", "x": -47.9, "y": 2.74, "largura": 2.6, "altura": 0.4, "cor": "estrado"},
+    {"nome": "ParedeDoTrono", "x": -48.5, "y": 2.64, "largura": 0.6, "altura": 4.16, "cor": "parede"},
+    {"nome": "TetoSalaoEsquerdo", "x": -47.9, "y": 6.8, "largura": 3.9, "altura": 0.4, "cor": "teto"},
+    {"nome": "PatamarDaEscada", "x": -32.3, "y": 5.2, "largura": 0.9, "altura": 0.4, "cor": "patamar"},
+    {"nome": "PisoGaleriaEsquerdo", "x": -43.4, "y": 6.05, "largura": 9.4, "altura": 0.15, "cor": "chao"},
+    {"nome": "PisoGaleriaDireito", "x": -31.5, "y": 6.05, "largura": 7.3, "altura": 0.15, "cor": "chao"},
+    {"nome": "ParedeGaleriaEsquerda", "x": -44.0, "y": 6.2, "largura": 0.6, "altura": 5.67, "cor": "parede"},
+    {"nome": "ParedeGaleriaDireita", "x": -24.2, "y": 6.2, "largura": 0.6, "altura": 5.67, "cor": "parede"},
+    {"nome": "TetoGaleria", "x": -43.4, "y": 11.87, "largura": 19.2, "altura": 0.4, "cor": "teto"},
+    {"nome": "TetoDaEscada", "x": -34.2, "y": 9.2, "largura": 4.2, "altura": 0.35, "cor": "teto"}
+  ],
+  "rampas": [
+    {"nome": "LanceExterior", "x0": -21.2, "y0": 0.0, "x1": -24.32, "y1": 2.64, "espessura": 0.36, "cor": "rampa"},
+    {"nome": "RampaDoEstrado", "x0": -44.0, "y0": 2.64, "x1": -45.3, "y1": 3.14, "espessura": 0.3, "cor": "rampa"},
+    {"nome": "LanceInterno", "x0": -34.0, "y0": 6.2, "x1": -32.3, "y1": 5.6, "espessura": 0.34, "cor": "rampa"}
+  ]
+}

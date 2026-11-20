@@ -9,6 +9,8 @@ extends Node3D
 
 const DADOS := "res://dados/sala_do_prologo.json"
 
+@export_file("*.json") var dados_caminho: String = DADOS
+
 var _erros: PackedStringArray = PackedStringArray()
 
 
@@ -24,12 +26,18 @@ func gerar() -> String:
 	if dados.is_empty():
 		return "\n".join(_erros)
 	var linhas: PackedStringArray = dados["linhas"]
-	var largura := float(dados["celula_largura_m"])
-	var altura := float(dados["celula_altura_m"])
-	var fundo := float(dados["profundidade_m"])
-	var espessura := float(dados["espessura_da_rampa_m"])
-	var origem := Vector3(float(dados["origem_x"]), float(dados["origem_y"]), float(dados["origem_z"]))
 	var fileiras := linhas.size()
+	var largura := 1.0
+	var altura := 1.0
+	var fundo := 2.4
+	var espessura := 0.32
+	var origem := Vector3.ZERO
+	if fileiras > 0:
+		largura = float(dados["celula_largura_m"])
+		altura = float(dados["celula_altura_m"])
+		fundo = float(dados["profundidade_m"])
+		espessura = float(dados["espessura_da_rampa_m"])
+		origem = Vector3(float(dados["origem_x"]), float(dados["origem_y"]), float(dados["origem_z"]))
 	for indice in fileiras:
 		var texto := linhas[indice]
 		var linha := indice + 1
@@ -55,6 +63,7 @@ func gerar() -> String:
 				fim += 1
 			_colocar(gerado, simbolo, desde_baixo, coluna, fim, largura, altura, fundo, espessura, origem)
 			coluna = fim + 1
+	_explicitos(gerado, dados)
 	return "\n".join(_erros)
 
 
@@ -190,25 +199,31 @@ func _conhecido(simbolo: String) -> bool:
 
 
 func _ler() -> Dictionary:
-	if not FileAccess.file_exists(DADOS):
+	var caminho := dados_caminho if dados_caminho != "" else DADOS
+	if not FileAccess.file_exists(caminho):
 		_erro(1, 1, "arquivo ausente")
 		return {}
-	var texto := FileAccess.get_file_as_string(DADOS)
+	var texto := FileAccess.get_file_as_string(caminho)
 	var dados: Variant = JSON.parse_string(texto)
 	if typeof(dados) != TYPE_DICTIONARY:
 		_erro(1, 1, "o JSON não é um objeto")
 		return {}
-	for chave in ["celula_largura_m", "celula_altura_m", "profundidade_m", "espessura_da_rampa_m", "origem_x", "origem_y", "origem_z"]:
-		if not dados.has(chave):
-			_erro(1, 1, "falta %s" % chave)
-			return {}
-	if not dados.has("linhas") or typeof(dados["linhas"]) != TYPE_ARRAY:
+	var tem_grade: bool = dados.has("linhas") and typeof(dados["linhas"]) == TYPE_ARRAY
+	var tem_extra: bool = (dados.has("solidos") and typeof(dados["solidos"]) == TYPE_ARRAY) or (dados.has("rampas") and typeof(dados["rampas"]) == TYPE_ARRAY)
+	if tem_grade:
+		for chave in ["celula_largura_m", "celula_altura_m", "profundidade_m", "espessura_da_rampa_m", "origem_x", "origem_y", "origem_z"]:
+			if not dados.has(chave):
+				_erro(1, 1, "falta %s" % chave)
+				return {}
+		var linhas := PackedStringArray()
+		for item in dados["linhas"]:
+			linhas.append(String(item))
+		dados["linhas"] = linhas
+	elif not tem_extra:
 		_erro(1, 1, "linhas não é uma lista")
 		return {}
-	var linhas := PackedStringArray()
-	for item in dados["linhas"]:
-		linhas.append(String(item))
-	dados["linhas"] = linhas
+	else:
+		dados["linhas"] = PackedStringArray()
 	return dados
 
 
@@ -229,6 +244,64 @@ func _limpar(gerado: Node) -> void:
 		gerado.remove_child(filho)
 		filho.free()
 		indice += 1
+
+
+func _explicitos(gerado: Node3D, dados: Dictionary) -> void:
+	if dados.has("solidos") and typeof(dados["solidos"]) == TYPE_ARRAY:
+		for item in dados["solidos"]:
+			if typeof(item) != TYPE_DICTIONARY:
+				_erro(1, 1, "sólido inválido")
+				continue
+			var largura := float(item["largura"])
+			var altura := float(item["altura"])
+			var fundo := float(item["profundidade"]) if item.has("profundidade") else 2.4
+			var corpo := StaticBody3D.new()
+			corpo.name = String(item["nome"])
+			corpo.position = Vector3(float(item["x"]) + largura * 0.5, float(item["y"]) + altura * 0.5, float(item["z"]) if item.has("z") else 0.0)
+			_forma(corpo, Vector3(largura, altura, fundo), _cor_nome(String(item.get("cor", "chao"))))
+			gerado.add_child(corpo)
+	if dados.has("rampas") and typeof(dados["rampas"]) == TYPE_ARRAY:
+		for item in dados["rampas"]:
+			if typeof(item) != TYPE_DICTIONARY:
+				_erro(1, 1, "rampa inválida")
+				continue
+			_rampa_explicita(gerado, item)
+
+
+func _rampa_explicita(gerado: Node3D, item: Dictionary) -> void:
+	var a := Vector3(float(item["x0"]), float(item["y0"]), 0.0)
+	var b := Vector3(float(item["x1"]), float(item["y1"]), 0.0)
+	var alto := a if a.y >= b.y else b
+	var baixo := b if a.y >= b.y else a
+	var espessura := float(item["espessura"]) if item.has("espessura") else 0.32
+	var fundo := float(item["profundidade"]) if item.has("profundidade") else 2.4
+	var corpo := StaticBody3D.new()
+	corpo.name = String(item["nome"])
+	var eixo_x := (alto - baixo).normalized()
+	var eixo_y := Vector3(eixo_x.y, -eixo_x.x, 0.0)
+	if eixo_y.y < 0.0:
+		eixo_y = -eixo_y
+	var eixo_z := eixo_x.cross(eixo_y)
+	var meio := (alto + baixo) * 0.5
+	corpo.transform = Transform3D(Basis(eixo_x, eixo_y, eixo_z), meio - eixo_y * (espessura * 0.5))
+	_forma(corpo, Vector3(alto.distance_to(baixo), espessura, fundo), _cor_nome(String(item.get("cor", "rampa"))))
+	gerado.add_child(corpo)
+
+
+func _cor_nome(nome: String) -> Color:
+	match nome:
+		"rampa":
+			return Color(0.78, 0.46, 0.16)
+		"parede":
+			return Color(0.32, 0.36, 0.4)
+		"teto":
+			return Color(0.55, 0.5, 0.42)
+		"estrado":
+			return Color(0.48, 0.3, 0.55)
+		"patamar":
+			return Color(0.36, 0.55, 0.34)
+		_:
+			return Color(0.22, 0.48, 0.62)
 
 
 func _erro(linha: int, coluna: int, texto: String) -> void:

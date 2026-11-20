@@ -1,0 +1,127 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/player/jogador.tscn" id="1_jogador"]
+[ext_resource type="PackedScene" path="res://scenes/interface/menu_do_piloto.tscn" id="2_menu"]
+[ext_resource type="Script" path="res://scenes/environment/gerador_de_sala.gd" id="3_gerador"]
+[ext_resource type="Script" path="res://scenes/environment/acesso_de_estudo.gd" id="4_acesso"]
+[ext_resource type="Script" path="res://scenes/verification/enquadramento_da_estrutura.gd" id="5_camera"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_acesso"]
+size = Vector3(1.6, 2.2, 1.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_assento"]
+albedo_color = Color(0.45, 0.12, 0.14, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_assento"]
+size = Vector3(0.7, 0.32, 0.5)
+
+[sub_resource type="BoxMesh" id="BoxMesh_encosto"]
+size = Vector3(0.28, 1.5, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_marca"]
+shading_mode = 0
+albedo_color = Color(0.95, 0.78, 0.28, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_marca"]
+size = Vector3(0.8, 0.08, 0.8)
+
+[node name="EstruturaCompleta" type="Node3D"]
+
+[node name="Luz" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.79, 0.53, -0.3, 0, 0.5, 0.87, 0.61, -0.69, 0.39, 0, 8, 6)
+light_energy = 1.1
+shadow_enabled = false
+
+[node name="CameraLateral" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 2.4, 14)
+projection = 1
+current = true
+size = 8.0
+near = 0.05
+far = 80.0
+
+[node name="CameraPlanta" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 8, 40)
+projection = 1
+current = false
+size = 22.0
+near = 0.05
+far = 120.0
+
+[node name="Jogador" parent="." instance=ExtResource("1_jogador")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 0.2, 0)
+floor_max_angle = 0.8727
+
+[node name="Visual" parent="Jogador"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, 0)
+
+[node name="MenuDoPiloto" parent="." instance=ExtResource("2_menu")]
+
+[node name="Sala" type="Node3D" parent="."]
+script = ExtResource("3_gerador")
+dados_caminho = "res://dados/estrutura_do_prologo.json"
+
+[node name="Gerado" type="Node3D" parent="Sala"]
+
+[node name="Assento" type="MeshInstance3D" parent="Sala"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.5, 3.3, -0.55)
+mesh = SubResource("BoxMesh_assento")
+surface_material_override/0 = SubResource("StandardMaterial3D_assento")
+
+[node name="Encosto" type="MeshInstance3D" parent="Sala"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.4, 3.9, -0.7)
+mesh = SubResource("BoxMesh_encosto")
+surface_material_override/0 = SubResource("StandardMaterial3D_assento")
+
+[node name="MarcaDoAcesso" type="MeshInstance3D" parent="Sala"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.6, 2.68, 0)
+mesh = SubResource("BoxMesh_marca")
+surface_material_override/0 = SubResource("StandardMaterial3D_marca")
+
+[node name="AcessoDoSalao" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.6, 3.6, 0)
+script = ExtResource("4_acesso")
+destino = NodePath("../ChegadaDaEscada")
+texto = "↑ Subir"
+
+[node name="Volume" type="CollisionShape3D" parent="AcessoDoSalao"]
+shape = SubResource("BoxShape3D_acesso")
+
+[node name="Texto" type="Label3D" parent="AcessoDoSalao"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+text = "↑ Subir"
+font_size = 64
+pixel_size = 0.008
+modulate = Color(0.98, 0.9, 0.45, 1)
+
+[node name="AcessoDaEscada" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.6, 6.0, 0)
+script = ExtResource("4_acesso")
+destino = NodePath("../VoltaAoSalao")
+texto = "↑ Descer"
+
+[node name="Volume" type="CollisionShape3D" parent="AcessoDaEscada"]
+shape = SubResource("BoxShape3D_acesso")
+
+[node name="Texto" type="Label3D" parent="AcessoDaEscada"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+text = "↑ Descer"
+font_size = 64
+pixel_size = 0.008
+modulate = Color(0.98, 0.9, 0.45, 1)
+
+[node name="ChegadaDaEscada" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.6, 5.6, 0)
+
+[node name="VoltaAoSalao" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.0, 2.64, 0)
+
+[node name="Limiar" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -26.72, 2.64, 0)
+
+[node name="Estrado" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.4, 3.14, 0)
+
+[node name="Enquadramento" type="Node" parent="."]
+script = ExtResource("5_camera")
