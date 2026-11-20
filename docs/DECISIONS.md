@@ -95,6 +95,12 @@ A Tarefa 04-A pediu o repositório oficial Hunyuan3D-2 para um piloto de persona
 
 A ferramenta ficou em `D:\Tools\Hunyuan3D`, com Python 3.13.17 em `D:\Tools\Python313`. O modelo desta etapa é o `tencent/Hunyuan3D-2mini`, subpasta `hunyuan3d-dit-v2-mini`, só geometria. A textura não foi compilada. O conjunto que carregou os pesos foi torch 2.11.0+cu128, transformers 4.46.3 e diffusers 0.32.2. O manequim da Tarefa 04 continua sendo o visual do `Jogador`.
 
+## D017 — Arte híbrida no prólogo
+
+O exterior do piloto 15-C tem duas apresentações da mesma colisão. “Blocos” mostra a rampa, os patamares e o limiar com cores chapadas. “Com arte” mostra os degraus em GLB, o vão 3D e imagens originais em `QuadMesh`: o céu opaco em Z = −8 e a torre recortada em Z = −4. A parede ao lado do portão usa material iluminado, para a `OmniLight3D` do vão aparecer nela. Não há normal map: o relevo não mudava a leitura da escada em 1280×720.
+
+A câmera continua ortográfica, `Size` = 8, perto 0,05 e longe 40. Não há paralaxe. A tecla é `alternar_apresentacao`, física B. O salão e o trono ficam em blocos nos dois modos. A matriz `dados/sala_do_prologo.json` gera só esse trecho; a escadaria aprovada conserva a própria rampa.
+
 ## D009 — Godot 4.7.2 oficial, fora do projeto
 
 Em 19/11/2026, o arquivo oficial `versions.yml` do site do Godot listou a 4.7.2 como estável, publicada em 18 de agosto de 2026. A versão indicada no relatório 01 estava correta, então `project.godot` não mudou de linha.

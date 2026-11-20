@@ -350,11 +350,24 @@ O canto da tela do piloto 08 já mostra “Vida 3/3”. O restante da interface 
 | “Continuar” restaura o altar e o mapa conserva a rota antiga | Verificado. Altar em X = 47,950. A visita ao exterior manteve vestíbulo, galeria e capela |
 | Salão do trono e os dois espaços superiores | Anotados para etapas futuras. A prancha não define o acesso |
 
+## 15-C — Sala de blocos do prólogo
+
+**Status: concluída na cena de verificação.** Medida no Godot 4.7.2 em 20/11/2026. O relatório está em `MD-usario/relatorios/15c-blockout-do-prologo.md`. O F6 do editor não foi pressionado. A janela abriu por `tests/capturar_15c.tscn`. O percurso rodou em `tests/verificar_blockout_15c.gd`, com `APPDATA` em `tests/dados_15c`. O F5 continua em `main.tscn`. A cena 15-B continua jogável.
+
+| Critério | Status |
+| --- | --- |
+| Nascimento, subida, parada e alto iguais aos da 15-B | Verificado. Pés em X = −20,800 e Y = 0,000; parada em X = −24,225 e Y = 1,256; alto em X = −27,470 e Y = 2,640. Z = 0 |
+| Limiar, salão e estrado, ida e volta | Verificado. Do nascimento ao limiar, 3,683 s. Do limiar ao estrado, 4,517 s. Chegada em X = −45,126 e Y = 3,080. Nenhuma troca de sala. A direita voltou a Y = 0 |
+| B alterna blocos e arte sem mover os pés | Verificado no meio da rampa, nos dois sentidos. Câmera em X = −26,20. A colisão da rampa permaneceu. O percurso repetiu com arte |
+| A matriz gera desenho e colisão juntos, sem duplicar | Verificado. Símbolo ruim apontou linha 2, coluna 4. Um `#` novo passou de 4 para 5 corpos; a segunda geração ficou em 5; restaurar voltou a 4 |
+| A rota 15-B entre vestíbulo, galeria e capela | Verificado. `verificar_escadaria_15.gd` nas fases `percurso` e `continuar` deu `RESULTADO ok` |
+| F6 no editor | Pendente. A cena executada foi `scenes/verification/15c_blockout_do_prologo.tscn`, aberta pelo teste |
+
 ## Estudo futuro — Progressão
 
-**Status: não iniciada, fora o salto duplo da etapa 09, a capela da etapa 10, o altar da etapa 11, o mapa da etapa 12, a cantaria da etapa 13, o portal da etapa 14 e a escadaria da etapa 15.**
+**Status: não iniciada, fora o salto duplo da etapa 09, a capela da etapa 10, o altar da etapa 11, o mapa da etapa 12, a cantaria da etapa 13, o portal da etapa 14, a escadaria da etapa 15 e o salão de blocos da etapa 15-C.**
 
-A sacada do vestíbulo abre a Capela da Lua depois da relíquia. O altar dessa capela grava a vida, o salto duplo, a sentinela e as salas já visitadas. O mapa só desenha uma sala depois que a troca termina. O jogo novo da cena 15 começa fora, na escadaria, e o portão leva ao vestíbulo. Outras habilidades continuam para quando um caminho visível e fechado abrir com uma capacidade nova.
+A sacada do vestíbulo abre a Capela da Lua depois da relíquia. O altar dessa capela grava a vida, o salto duplo, a sentinela e as salas já visitadas. O mapa só desenha uma sala depois que a troca termina. O jogo novo da cena 15 começa fora, na escadaria, e o portão leva ao vestíbulo. O piloto 15-C segue do mesmo limiar até um salão e um estrado provisórios. Outras habilidades continuam para quando um caminho visível e fechado abrir com uma capacidade nova.
 
 ## Como atualizar este arquivo
 

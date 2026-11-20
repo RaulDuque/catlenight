@@ -1,0 +1,176 @@
+[gd_scene load_steps=28 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/verification/15_escadaria_exterior.tscn" id="1_base"]
+[ext_resource type="Script" path="res://scenes/environment/gerador_de_sala.gd" id="2_gerador"]
+[ext_resource type="Script" path="res://scenes/verification/apresentacao_do_prologo.gd" id="3_apresentacao"]
+[ext_resource type="Script" path="res://scenes/verification/enquadramento_do_prologo.gd" id="4_enquadramento"]
+[ext_resource type="Texture2D" path="res://assets/textures/environment/prologo/ceu_do_prologo.png" id="5_ceu"]
+[ext_resource type="Texture2D" path="res://assets/textures/environment/prologo/torre_do_prologo.png" id="6_torre"]
+[ext_resource type="Texture2D" path="res://assets/textures/environment/prologo/pedra_iluminada.png" id="7_pedra"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_baixo"]
+albedo_color = Color(0.45, 0.55, 0.32, 1)
+roughness = 0.94
+
+[sub_resource type="BoxMesh" id="BoxMesh_baixo"]
+size = Vector3(2.6, 1, 2.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_alto"]
+albedo_color = Color(0.32, 0.62, 0.4, 1)
+roughness = 0.94
+
+[sub_resource type="BoxMesh" id="BoxMesh_alto"]
+size = Vector3(5.68, 1, 2.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rampa"]
+albedo_color = Color(0.82, 0.48, 0.18, 1)
+roughness = 0.94
+
+[sub_resource type="BoxMesh" id="BoxMesh_rampa"]
+size = Vector3(6.119, 0.4, 2.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_limiar"]
+shading_mode = 0
+albedo_color = Color(0.95, 0.78, 0.28, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_limiar"]
+size = Vector3(1.15, 2.1, 0.12)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_altura"]
+shading_mode = 0
+albedo_color = Color(0.92, 0.86, 0.45, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_altura"]
+size = Vector3(0.06, 1.7, 0.06)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ceu"]
+shading_mode = 0
+albedo_texture = ExtResource("5_ceu")
+
+[sub_resource type="QuadMesh" id="QuadMesh_ceu"]
+size = Vector2(18, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_torre"]
+shading_mode = 0
+transparency = 1
+alpha_scissor_threshold = 0.5
+albedo_texture = ExtResource("6_torre")
+
+[sub_resource type="QuadMesh" id="QuadMesh_torre"]
+size = Vector2(1.9, 6.6)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pedra"]
+albedo_texture = ExtResource("7_pedra")
+roughness = 0.92
+
+[sub_resource type="QuadMesh" id="QuadMesh_pedra"]
+size = Vector2(1.7, 2.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_assento"]
+albedo_color = Color(0.45, 0.12, 0.14, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_assento"]
+size = Vector3(0.9, 0.4, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_encosto"]
+albedo_color = Color(0.32, 0.08, 0.1, 1)
+roughness = 0.9
+
+[sub_resource type="BoxMesh" id="BoxMesh_encosto"]
+size = Vector3(0.32, 1.8, 0.2)
+
+[node name="BlockoutDoPrologo" instance=ExtResource("1_base")]
+
+[node name="Saida" parent="EscadariaExterior"]
+monitoring = false
+
+[node name="SaidaEsquerda" parent="Vestibulo"]
+monitoring = false
+
+[node name="Degraus" parent="EscadariaExterior/Lance"]
+visible = false
+
+[node name="Bloco" type="MeshInstance3D" parent="EscadariaExterior/Lance/Rampa"]
+mesh = SubResource("BoxMesh_rampa")
+surface_material_override/0 = SubResource("StandardMaterial3D_rampa")
+
+[node name="Malha" parent="EscadariaExterior/PatamarInferior"]
+visible = false
+
+[node name="Bloco" type="MeshInstance3D" parent="EscadariaExterior/PatamarInferior"]
+mesh = SubResource("BoxMesh_baixo")
+surface_material_override/0 = SubResource("StandardMaterial3D_baixo")
+
+[node name="Malha" parent="EscadariaExterior/PatamarSuperior"]
+visible = false
+
+[node name="Bloco" type="MeshInstance3D" parent="EscadariaExterior/PatamarSuperior"]
+mesh = SubResource("BoxMesh_alto")
+surface_material_override/0 = SubResource("StandardMaterial3D_alto")
+
+[node name="Portao" parent="EscadariaExterior"]
+visible = false
+
+[node name="Muro_0" parent="EscadariaExterior"]
+visible = false
+
+[node name="Muro_1" parent="EscadariaExterior"]
+visible = false
+
+[node name="LimiarBloco" type="MeshInstance3D" parent="EscadariaExterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55, 3.75, -0.35)
+mesh = SubResource("BoxMesh_limiar")
+surface_material_override/0 = SubResource("StandardMaterial3D_limiar")
+
+[node name="MarcaDeAltura" type="MeshInstance3D" parent="EscadariaExterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.15, 0.85, -0.85)
+mesh = SubResource("BoxMesh_altura")
+surface_material_override/0 = SubResource("StandardMaterial3D_altura")
+
+[node name="CeuPintado" type="MeshInstance3D" parent="EscadariaExterior"]
+visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.4, 2.0, -8)
+mesh = SubResource("QuadMesh_ceu")
+surface_material_override/0 = SubResource("StandardMaterial3D_ceu")
+
+[node name="TorreRecorte" type="MeshInstance3D" parent="EscadariaExterior"]
+visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.55, 3.35, -4)
+mesh = SubResource("QuadMesh_torre")
+surface_material_override/0 = SubResource("StandardMaterial3D_torre")
+
+[node name="MuroIluminado" type="MeshInstance3D" parent="EscadariaExterior"]
+visible = false
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.2, 3.65, -1.55)
+mesh = SubResource("QuadMesh_pedra")
+surface_material_override/0 = SubResource("StandardMaterial3D_pedra")
+
+[node name="Limiar" type="Marker3D" parent="EscadariaExterior"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.55, 2.64, 0)
+
+[node name="SalaDoPrologo" type="Node3D" parent="EscadariaExterior"]
+script = ExtResource("2_gerador")
+
+[node name="Gerado" type="Node3D" parent="EscadariaExterior/SalaDoPrologo"]
+
+[node name="ArteManual" type="Node3D" parent="EscadariaExterior/SalaDoPrologo"]
+
+[node name="Assento" type="MeshInstance3D" parent="EscadariaExterior/SalaDoPrologo/ArteManual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.35, 3.3, -0.55)
+mesh = SubResource("BoxMesh_assento")
+surface_material_override/0 = SubResource("StandardMaterial3D_assento")
+
+[node name="Encosto" type="MeshInstance3D" parent="EscadariaExterior/SalaDoPrologo/ArteManual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.35, 4.2, -0.7)
+mesh = SubResource("BoxMesh_encosto")
+surface_material_override/0 = SubResource("StandardMaterial3D_encosto")
+
+[node name="Estrado" type="Marker3D" parent="EscadariaExterior/SalaDoPrologo/ArteManual"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.62, 3.08, 0)
+
+[node name="Apresentacao" type="Node" parent="."]
+script = ExtResource("3_apresentacao")
+
+[node name="EnquadramentoDoPrologo" type="Node" parent="."]
+script = ExtResource("4_enquadramento")

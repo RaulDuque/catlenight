@@ -1,0 +1,19 @@
+{
+  "celula_largura_m": 1.0,
+  "celula_altura_m": 0.44,
+  "profundidade_m": 2.4,
+  "espessura_da_rampa_m": 0.32,
+  "origem_x": -25.12,
+  "origem_y": 2.2,
+  "origem_z": 0.0,
+  "legenda": {
+    ".": "vazio",
+    "#": "solido",
+    "/": "rampa, esquerda mais alta",
+    "\\": "rampa, direita mais alta"
+  },
+  "linhas": [
+    "###...........",
+    "###/##########"
+  ]
+}

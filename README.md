@@ -24,6 +24,8 @@ O piloto do portal da sacada é `scenes/verification/14_portal_da_sacada.tscn`. 
 
 O piloto da escadaria é `scenes/verification/15_escadaria_exterior.tscn`. Ele reaproveita a cena 14. “Novo jogo” começa no patamar inferior direito, com “Vida 3/3”. A seta esquerda sobe a rampa até o portão, no alto à esquerda, e atravessa `EscadariaExterior/Saida` até o vestíbulo. A volta deixa o jogador no patamar superior; a seta direita desce. “Continuar” segue abrindo no altar da capela. A cena 14 continua sem essa saída, para o exercício do portal.
 
+O piloto de blocos do prólogo é `scenes/verification/15c_blockout_do_prologo.tscn`. “Novo jogo” usa a mesma escadaria. A seta esquerda segue pelo limiar até o salão e o estrado. A seta direita volta ao patamar de baixo. A tecla B alterna “Blocos” e “Com arte”. O salão está em `dados/sala_do_prologo.json`. A cena 15 continua levando ao vestíbulo.
+
 ## Versão do Godot
 
 O projeto foi escrito para **Godot 4.7 estável**, de preferência **4.7.2**, com **GDScript**. Use a build padrão, sem .NET. A build .NET serve para C# e este projeto não precisa dela.
@@ -73,6 +75,7 @@ As ações estão em **Projeto > Configurações do Projeto > Mapa de Entrada**.
 | `atacar` | X | Dá um golpe curto, no chão, para o lado em que o perfil está virado |
 | `interagir` | Seta para cima | No piloto 10, entra na capela ou volta à sacada. No piloto 11 e no 12, também grava no altar quando os pés estão apoiados diante dele |
 | `abrir_mapa` | M | No piloto 12, abre o mapa das salas visitadas. No piloto 15, um jogo novo mostra só a escadaria; o vestíbulo entra ao atravessar o portão. Outro toque fecha e a partida segue |
+| `alternar_apresentacao` | B | No piloto 15-C, troca o exterior entre blocos coloridos e a arte da torre, do céu e do limiar. Os pés, a câmera e a colisão ficam no lugar |
 
 Soltar a seta interrompe a caminhada. Apertar Espaço no ar não faz outro salto. Segurar Espaço até aterrissar também não faz outro salto: é preciso soltar e apertar de novo.
 
