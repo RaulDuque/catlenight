@@ -325,6 +325,18 @@ O canto da tela do piloto 08 já mostra “Vida 3/3”. O restante da interface 
 | Testes do mapa, do portal, da capela e do vestíbulo | Verificado. As fases `primeira`, `continuar`, `novo_mapa` e `legado` de `verificar_mapa_12.gd`, mais `verificar_portal_14.gd`, `verificar_capela_10.gd` e `verificar_vestibulo_13.gd`, deram `RESULTADO ok` |
 | F6 no editor | Pendente. A cena executada foi `scenes/verification/15_escadaria_exterior.tscn`, aberta pelo teste, sem o atalho do editor |
 
+## 15-A — Referência visual da abertura
+
+**Status: instalação pronta, prólogo pendente da imagem do disco.** Conferido em 20/11/2026. O relatório está em `MD-usario/relatorios/15a-referencia-visual-symphonyrecomp.md`. O pacote fica em `D:\Progr\csotn` e não entra neste repositório.
+
+| Critério | Status |
+| --- | --- |
+| Pacote oficial Windows x64 da release atual, com checksum conferido | Verificado. Tag `v1.2.0p`, pacote `SymphonyRecomp-v1.2.0p-windows-x64.zip`, SHA-256 igual ao publicado |
+| O programa abre | Verificado. Executável `D:\Progr\csotn\sotn.exe`, janela “SymphonyRecomp v1.2.0p” |
+| A imagem NTSC norte-americana está disponível e o CUE aponta para as faixas reais | Pendente. Nenhuma imagem foi encontrada. `system.discPath` ficou vazio |
+| Três quadros da abertura, com a altura de Richter medida na área de jogo | Pendente. O jogo não chegou ao prólogo |
+| Três decisões da escadaria, sem alterar a cena 15 | Verificado no relatório. A cena 15 existe. A comparação com Richter espera os quadros do jogo |
+
 ## Estudo futuro — Progressão
 
 **Status: não iniciada, fora o salto duplo da etapa 09, a capela da etapa 10, o altar da etapa 11, o mapa da etapa 12, a cantaria da etapa 13, o portal da etapa 14 e a escadaria da etapa 15.**
