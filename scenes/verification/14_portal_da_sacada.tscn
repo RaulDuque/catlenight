@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/verification/13_vestibulo_do_castelo.tscn" id="1_piloto"]
+[ext_resource type="PackedScene" path="res://scenes/environment/portal_da_sacada.tscn" id="2_portal"]
+
+[node name="PortalDaSacadaNoCastelo" instance=ExtResource("1_piloto")]
+
+[node name="Parede" parent="Vestibulo/Sacada"]
+visible = false
+
+[node name="Vao" parent="Vestibulo/VaoDaCapela"]
+visible = false
+
+[node name="OmbreiraEsquerda" parent="Vestibulo/VaoDaCapela"]
+visible = false
+
+[node name="OmbreiraDireita" parent="Vestibulo/VaoDaCapela"]
+visible = false
+
+[node name="Lintel" parent="Vestibulo/VaoDaCapela"]
+visible = false
+
+[node name="PortalDaSacada" parent="Vestibulo" instance=ExtResource("2_portal")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.55, 2.35, -0.84)

@@ -1,6 +1,6 @@
 # Roadmap
 
-Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06, 07, 08, 09, 10, 11, 12 e 13 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. O restante da interface, outras habilidades, a animação e o áudio continuam sem começar.
+Plano de estudo do Catlenight. As tarefas 01, 02, 03 e 04 foram verificadas em 19/11/2026 com o Godot 4.7.2. As tarefas 05, 06, 07, 08, 09, 10, 11, 12, 13 e 14 foram verificadas em 20/11/2026. A Tarefa 06-B, no mesmo dia, conferiu que o erro citado depois da Tarefa 06 não se reproduz no commit `0e9ee6e`. O relatório da Tarefa 01 permanece como histórico. O restante da interface, outras habilidades, a animação e o áudio continuam sem começar.
 
 ## 01 — Fundação e cena de verificação
 
@@ -296,11 +296,26 @@ O canto da tela do piloto 08 já mostra “Vida 3/3”. O restante da interface 
 | Testes do arco, da passagem e do mapa | Verificado. `verificar_arco.gd`, `verificar_capela_10.gd` e as fases `primeira`, `continuar`, `novo_mapa` e `legado` de `verificar_mapa_12.gd` deram `RESULTADO ok` |
 | F6 no editor | Pendente. A cena executada foi `scenes/verification/13_vestibulo_do_castelo.tscn`, aberta pelo teste, sem o atalho do editor |
 
+## 14 — Portal gótico da sacada
+
+**Status: concluída na cena de verificação.** Medida no Godot 4.7.2 e no Blender 5.3.0 em 20/11/2026. O relatório está em `MD-usario/relatorios/14-portal-gotico-da-sacada.md`. O F6 do editor não foi pressionado. A prancha abriu a janela por `tests/capturar_14.tscn`. O percurso da cena 14 rodou em `tests/verificar_portal_14.gd`, com `APPDATA` em `tests/dados_14`. A cena 13 continua com a moldura retangular. O F5 continua em `main.tscn`.
+
+| Critério | Status |
+| --- | --- |
+| A passagem foi medida antes do modelo | Verificado. Parede lisa 2,400 m. Vão livre 1,040 m. Altura do vão acima da laje 1,900 m. Face da parede a 0,840 m dos pés |
+| A ogiva se distingue do fundo no chão e na soleira | Verificado na prancha. A ponta luminosa fica acima da cabeça, sobre a cantaria |
+| A cabeça e o tronco cabem no vão | Verificado. Na soleira, pés em X = −4,175 e Y = 2,350, com “↑ Entrar na capela”. O corpo fica dentro do brilho |
+| A parede lisa não destoa da cantaria | Verificado na cena 14. `Vestibulo/Sacada/Parede` ficou oculta e a cantaria de trás ocupa o lugar |
+| A laje, a interação e a volta permanecem | Verificado. Topo da laje 2,350 m. Detector em (−4,55, 3,15, 0). Chegada em (−4,55, 2,42, 0). Pés antes e depois da capela em Y = 2,350 |
+| O portal não cria colisão | Verificado depois da importação. 16 malhas, 0 corpos físicos |
+| Testes do vestíbulo 13 e da passagem 10 | Verificado. Os dois deram `RESULTADO ok` |
+| F6 no editor | Pendente. A cena executada foi `scenes/verification/14_portal_da_sacada.tscn`, aberta pelo teste, sem o atalho do editor |
+
 ## Estudo futuro — Progressão
 
-**Status: não iniciada, fora o salto duplo da etapa 09, a capela da etapa 10, o altar da etapa 11, o mapa da etapa 12 e a cantaria da etapa 13.**
+**Status: não iniciada, fora o salto duplo da etapa 09, a capela da etapa 10, o altar da etapa 11, o mapa da etapa 12, a cantaria da etapa 13 e o portal da etapa 14.**
 
-A sacada do vestíbulo abre a Capela da Lua depois da relíquia. O altar dessa capela grava a vida, o salto duplo, a sentinela e as salas já visitadas. O mapa só desenha uma sala depois que a troca termina. O vestíbulo já tem parede, pilastra e faixa de piso modulares. Outras habilidades continuam para quando um caminho visível e fechado abrir com uma capacidade nova.
+A sacada do vestíbulo abre a Capela da Lua depois da relíquia. O altar dessa capela grava a vida, o salto duplo, a sentinela e as salas já visitadas. O mapa só desenha uma sala depois que a troca termina. O vestíbulo tem cantaria modular e a sacada tem um portal ogival. Outras habilidades continuam para quando um caminho visível e fechado abrir com uma capacidade nova.
 
 ## Como atualizar este arquivo
 
