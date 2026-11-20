@@ -99,7 +99,7 @@ A ferramenta ficou em `D:\Tools\Hunyuan3D`, com Python 3.13.17 em `D:\Tools\Pyth
 
 O exterior do piloto 15-C tem duas apresentações da mesma colisão. “Blocos” mostra a rampa, os patamares e o limiar com cores chapadas. “Com arte” mostra os degraus em GLB, o vão 3D e imagens originais em `QuadMesh`: o céu opaco em Z = −8 e a torre recortada em Z = −4. A parede ao lado do portão usa material iluminado, para a `OmniLight3D` do vão aparecer nela. Não há normal map: o relevo não mudava a leitura da escada em 1280×720.
 
-A câmera continua ortográfica, `Size` = 8, perto 0,05 e longe 40. Não há paralaxe. A tecla é `alternar_apresentacao`, física B. O salão e o trono ficam em blocos nos dois modos. A matriz `dados/sala_do_prologo.json` gera só esse trecho; a escadaria aprovada conserva a própria rampa.
+A câmera continua ortográfica, `Size` = 8, perto 0,05 e longe 40. Não há paralaxe. A tecla é `alternar_apresentacao`, física B. O salão e o trono ficam em blocos nos dois modos. A matriz `dados/sala_do_prologo.json` gera só esse trecho; a escadaria aprovada conserva a própria rampa. O salão é a fileira de baixo, 14 m no mesmo Y do patamar. A sala do trono é a fileira de cima, 8 m, um degrau de 0,44 m acima. Uma subida de 1,32 m em face vertical parava o corpo antes do topo; o degrau curto, já caminhável na escadaria, é o que liga as duas salas.
 
 ## D009 — Godot 4.7.2 oficial, fora do projeto
 

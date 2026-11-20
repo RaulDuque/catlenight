@@ -37,7 +37,7 @@ A primeira área é o prólogo: o jogador nasce fora do castelo e sobe até a en
 
 A faixa de baixo da prancha organiza a sequência exterior, patamar, salão e trono. O nascimento fica no patamar inferior direito. A seta esquerda sobe em −X até o patamar superior esquerdo. A seta direita desce.
 
-O piloto `scenes/verification/15_escadaria_exterior.tscn` liga esse limiar ao vestíbulo já construído. O piloto `scenes/verification/15c_blockout_do_prologo.tscn` estuda a faixa inteira sem essa troca: depois do limiar o chão continua para a esquerda, atravessa o salão e sobe um estrado com base, assento e encosto. Os dois percursos convivem. A tecla B troca a apresentação do exterior entre blocos e arte, sem mover os pés.
+O piloto `scenes/verification/15_escadaria_exterior.tscn` liga esse limiar ao vestíbulo já construído. O piloto `scenes/verification/15c_blockout_do_prologo.tscn` estuda a faixa inteira sem essa troca: depois do limiar há um salão de 14 m e, à esquerda, uma sala do trono com piso 0,44 m mais alto, base, assento e encosto. Os dois percursos convivem. A tecla B troca a apresentação do exterior entre blocos e arte, sem mover os pés.
 
 Ficam anotados para etapas futuras, sem caminho definido pela prancha:
 

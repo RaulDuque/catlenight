@@ -357,9 +357,9 @@ O canto da tela do piloto 08 já mostra “Vida 3/3”. O restante da interface 
 | Critério | Status |
 | --- | --- |
 | Nascimento, subida, parada e alto iguais aos da 15-B | Verificado. Pés em X = −20,800 e Y = 0,000; parada em X = −24,225 e Y = 1,256; alto em X = −27,470 e Y = 2,640. Z = 0 |
-| Limiar, salão e estrado, ida e volta | Verificado. Do nascimento ao limiar, 3,683 s. Do limiar ao estrado, 4,517 s. Chegada em X = −45,126 e Y = 3,080. Nenhuma troca de sala. A direita voltou a Y = 0 |
+| Limiar, salão e sala do trono, ida e volta | Verificado. Do nascimento ao limiar, 3,683 s. Do limiar ao piso da sala do trono, 6,833 s. Chegada em X = −53,264 e Y = 3,080. Nenhuma troca de sala. A direita voltou a Y = 0 |
 | B alterna blocos e arte sem mover os pés | Verificado no meio da rampa, nos dois sentidos. Câmera em X = −26,20. A colisão da rampa permaneceu. O percurso repetiu com arte |
-| A matriz gera desenho e colisão juntos, sem duplicar | Verificado. Símbolo ruim apontou linha 2, coluna 4. Um `#` novo passou de 4 para 5 corpos; a segunda geração ficou em 5; restaurar voltou a 4 |
+| A matriz gera desenho e colisão juntos, sem duplicar | Verificado. Símbolo ruim apontou linha 2, coluna 9. Um `#` novo passou de 4 para 5 corpos; a segunda geração ficou em 5; restaurar voltou a 4 |
 | A rota 15-B entre vestíbulo, galeria e capela | Verificado. `verificar_escadaria_15.gd` nas fases `percurso` e `continuar` deu `RESULTADO ok` |
 | F6 no editor | Pendente. A cena executada foi `scenes/verification/15c_blockout_do_prologo.tscn`, aberta pelo teste |
 

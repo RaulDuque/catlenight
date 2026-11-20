@@ -24,7 +24,7 @@ O piloto do portal da sacada é `scenes/verification/14_portal_da_sacada.tscn`. 
 
 O piloto da escadaria é `scenes/verification/15_escadaria_exterior.tscn`. Ele reaproveita a cena 14. “Novo jogo” começa no patamar inferior direito, com “Vida 3/3”. A seta esquerda sobe a rampa até o portão, no alto à esquerda, e atravessa `EscadariaExterior/Saida` até o vestíbulo. A volta deixa o jogador no patamar superior; a seta direita desce. “Continuar” segue abrindo no altar da capela. A cena 14 continua sem essa saída, para o exercício do portal.
 
-O piloto de blocos do prólogo é `scenes/verification/15c_blockout_do_prologo.tscn`. “Novo jogo” usa a mesma escadaria. A seta esquerda segue pelo limiar até o salão e o estrado. A seta direita volta ao patamar de baixo. A tecla B alterna “Blocos” e “Com arte”. O salão está em `dados/sala_do_prologo.json`. A cena 15 continua levando ao vestíbulo.
+O piloto de blocos do prólogo é `scenes/verification/15c_blockout_do_prologo.tscn`. “Novo jogo” usa a mesma escadaria. A seta esquerda segue pelo limiar, pelo salão e até a sala do trono. A seta direita volta ao patamar de baixo. A tecla B alterna “Blocos” e “Com arte”. O salão está em `dados/sala_do_prologo.json`. A cena 15 continua levando ao vestíbulo.
 
 ## Versão do Godot
 

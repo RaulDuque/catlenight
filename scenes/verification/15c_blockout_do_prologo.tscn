@@ -157,17 +157,17 @@ script = ExtResource("2_gerador")
 [node name="ArteManual" type="Node3D" parent="EscadariaExterior/SalaDoPrologo"]
 
 [node name="Assento" type="MeshInstance3D" parent="EscadariaExterior/SalaDoPrologo/ArteManual"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.35, 3.3, -0.55)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.2, 3.3, -0.55)
 mesh = SubResource("BoxMesh_assento")
 surface_material_override/0 = SubResource("StandardMaterial3D_assento")
 
 [node name="Encosto" type="MeshInstance3D" parent="EscadariaExterior/SalaDoPrologo/ArteManual"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.35, 4.2, -0.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -33.7, 4.2, -0.7)
 mesh = SubResource("BoxMesh_encosto")
 surface_material_override/0 = SubResource("StandardMaterial3D_encosto")
 
 [node name="Estrado" type="Marker3D" parent="EscadariaExterior/SalaDoPrologo/ArteManual"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.62, 3.08, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.8, 3.08, 0)
 
 [node name="Apresentacao" type="Node" parent="."]
 script = ExtResource("3_apresentacao")

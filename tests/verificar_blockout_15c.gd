@@ -122,12 +122,12 @@ class Driver extends Node:
 				_jogador.global_position.x, _jogador.global_position.y, _jogador.global_position.z,
 				_camera.near, _camera.far,
 			])
-			var celula: Dictionary = _gerador.call("descrever_celula", 2, 4)
+			var celula: Dictionary = _gerador.call("descrever_celula", 2, 9)
 			print("CELULA simbolo=%s linha=%d coluna=%d x0=%.3f x1=%.3f y_topo=%.3f apoio_x=%.3f apoio_y=%.3f lado=%s" % [
 				celula["simbolo"], celula["linha"], celula["coluna"], celula["x0"], celula["x1"],
 				celula["y_topo"], celula["apoio"].x, celula["apoio"].y, celula["lado_alto"],
 			])
-			var rampa := _cena.get_node("EscadariaExterior/SalaDoPrologo/Gerado/Rampa_0_3/Colisao") as CollisionShape3D
+			var rampa := _cena.get_node("EscadariaExterior/SalaDoPrologo/Gerado/Rampa_0_8/Colisao") as CollisionShape3D
 			var caixa := rampa.shape as BoxShape3D
 			print("RAMPA tamanho x=%.3f y=%.3f z=%.3f corpos=%d" % [caixa.size.x, caixa.size.y, caixa.size.z, _gerador.call("corpos")])
 			_andando = true
@@ -239,7 +239,7 @@ class Driver extends Node:
 				_falhar("um gatilho antigo trocou de sala %d vezes" % _trocas)
 				return
 			_ir("voltar")
-		elif _frames > 700:
+		elif _frames > 1100:
 			_falhar("não chegou ao estrado. x=%.3f y=%.3f" % [_jogador.global_position.x, _jogador.global_position.y])
 
 	func _voltar() -> void:
@@ -273,7 +273,7 @@ class Driver extends Node:
 		if _jogador.is_on_floor() and absf(_jogador.global_position.x - alvo.x) < 0.55 and _jogador.global_position.y > alvo.y - 0.15:
 			print("MEDICAO arte_trono x=%.3f y=%.3f z=%.3f" % [_jogador.global_position.x, _jogador.global_position.y, _jogador.global_position.z])
 			_ir("arte_volta")
-		elif _frames > 700:
+		elif _frames > 1100:
 			_falhar("a arte não chegou ao estrado. x=%.3f y=%.3f" % [_jogador.global_position.x, _jogador.global_position.y])
 
 	func _arte_volta() -> void:
@@ -291,27 +291,29 @@ class Driver extends Node:
 		_soltar("direita")
 		_texto_original = FileAccess.get_file_as_string(_DADOS)
 		var antes := int(_gerador.call("corpos"))
-		var ruim := _texto_original.replace("###/##########", "###?##########")
+		var ruim := _texto_original.replace("########/##############", "########?##############")
 		_gravar_dados(ruim)
 		var erro := str(_gerador.call("gerar"))
 		_gravar_dados(_texto_original)
 		_gerador.call("gerar")
-		if not erro.contains("linha 2, coluna 4"):
+		if not erro.contains("linha 2, coluna 9"):
 			_falhar("o símbolo ruim não apontou a célula. %s" % erro)
 			return
 		var base := int(_gerador.call("corpos"))
 		if base != antes:
 			_falhar("restaurar a matriz não devolveu %d corpos, ficou %d" % [antes, base])
 			return
-		var passo := _texto_original.replace("###...........", "###......#....")
+		var chave := "########..............."
+		var indice := _texto_original.rfind(chave)
+		var passo := _texto_original.substr(0, indice) + "########.......#......." + _texto_original.substr(indice + chave.length())
 		_gravar_dados(passo)
 		_gerador.call("gerar")
 		var com_degrau := int(_gerador.call("corpos"))
-		var degrau := _cena.get_node_or_null("EscadariaExterior/SalaDoPrologo/Gerado/Piso_1_9") as StaticBody3D
+		var degrau := _cena.get_node_or_null("EscadariaExterior/SalaDoPrologo/Gerado/Piso_1_15") as StaticBody3D
 		if degrau == null:
 			_gravar_dados(_texto_original)
 			_gerador.call("gerar")
-			_falhar("a célula nova não criou Piso_1_9")
+			_falhar("a célula nova não criou Piso_1_15")
 			return
 		var caixa := (degrau.get_node("Colisao") as CollisionShape3D).shape as BoxShape3D
 		var degrau_x := degrau.position.x
@@ -319,7 +321,7 @@ class Driver extends Node:
 		var degrau_tamanho := caixa.size.x
 		_gerador.call("gerar")
 		var repetido := int(_gerador.call("corpos"))
-		var ainda := _cena.get_node_or_null("EscadariaExterior/SalaDoPrologo/Gerado/Piso_1_9") != null
+		var ainda := _cena.get_node_or_null("EscadariaExterior/SalaDoPrologo/Gerado/Piso_1_15") != null
 		_gravar_dados(_texto_original)
 		_gerador.call("gerar")
 		var restaurado := int(_gerador.call("corpos"))

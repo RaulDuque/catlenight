@@ -128,6 +128,7 @@ func _colocar(gerado: Node3D, simbolo: String, desde_baixo: int, inicio: int, fi
 	var baixo := Vector3(x1 if simbolo == "/" else x0, topo, origem.z)
 	var corpo_rampa := StaticBody3D.new()
 	corpo_rampa.name = "Rampa_%d_%d" % [desde_baixo, inicio]
+	baixo.x += 0.18 if simbolo == "/" else -0.18
 	var eixo_x := (alto - baixo).normalized()
 	var eixo_y := Vector3(eixo_x.y, -eixo_x.x, 0.0)
 	if eixo_y.y < 0.0:
