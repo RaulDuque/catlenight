@@ -383,3 +383,7 @@ A sacada do vestíbulo abre a Capela da Lua depois da relíquia. O altar dessa c
 ## Como atualizar este arquivo
 
 Ao fechar uma etapa, troque o status e marque cada critério como verificado, pendente ou dispensado. Não marque execução em tela se o Godot não tiver sido aberto.
+
+## 15-E — Prólogo em escala
+
+Estrutura construída e verificada na física do Godot 4.7.2. O percurso inclui parada nos três lances, parede do trono com salto, descanso interno, galeria nos dois lados e volta ao piso inicial. Um encurtamento experimental de 0,50 m foi detectado pelo teste. A revisão visual das proporções pelo autor está pendente. [Relatório com os tempos, as adaptações e a folga da sola](../MD-usario/relatorios/15e-escala-e-escadas-do-prologo.md).

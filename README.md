@@ -120,3 +120,5 @@ O indicador “Vida 3/3” existe a partir do piloto 08. O salto duplo existe no
 | `MD-usario/relatorios/` | Entrega e validação de cada etapa |
 
 A skill em `.claude/skills/godot-gdscript-patterns/` é uma referência local para o editor de código. O jogo em execução usa só nós e GDScript nativos do Godot.
+
+**Prólogo em escala (15-E).** Abra `scenes/verification/15e_prologo_em_escala.tscn` com F6. Espaço confirma **Novo jogo**. Vá para a esquerda até o trono. Volte ao piso amarelo, use ↑ e percorra os dois lances internos com ←. No topo, salte para cruzar a boca da escada. O mesmo patamar interno dá acesso à volta com ↑. [Medidas e alinhamento](docs/PLANTA_DO_PROLOGO.md) · [Planta cotada](MD-usario/relatorios/evidencias/15e-planta-em-escala.png).

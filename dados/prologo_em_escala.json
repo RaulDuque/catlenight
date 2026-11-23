@@ -1,0 +1,187 @@
+{
+  "solidos": [
+    {
+      "nome": "ParedeExterior",
+      "x": 3.692308,
+      "y": -0.615385,
+      "largura": 0.615385,
+      "altura": 16.0,
+      "cor": "parede"
+    },
+    {
+      "nome": "PatamarInferior",
+      "x": -1.230769,
+      "y": -0.615385,
+      "largura": 4.923077,
+      "altura": 0.615385,
+      "cor": "patamar"
+    },
+    {
+      "nome": "PatamarSuperior",
+      "x": -14.153846,
+      "y": 9.230769,
+      "largura": 3.076923,
+      "altura": 0.615385,
+      "cor": "patamar"
+    },
+    {
+      "nome": "PisoSalao",
+      "x": -45.538462,
+      "y": 7.384615,
+      "largura": 29.538462,
+      "altura": 0.615385,
+      "cor": "chao"
+    },
+    {
+      "nome": "Estrado",
+      "x": -45.538462,
+      "y": 8.461538,
+      "largura": 6.0,
+      "altura": 0.769231,
+      "cor": "estrado"
+    },
+    {
+      "nome": "ParedeDoTrono",
+      "x": -46.153846,
+      "y": 7.384615,
+      "largura": 0.615385,
+      "altura": 8.0,
+      "cor": "parede"
+    },
+    {
+      "nome": "TetoSalaoEsquerdo",
+      "x": -45.538462,
+      "y": 14.769231,
+      "largura": 23.384615,
+      "altura": 0.615385,
+      "cor": "teto"
+    },
+    {
+      "nome": "TetoSalaoDireito",
+      "x": -17.230769,
+      "y": 14.769231,
+      "largura": 3.692308,
+      "altura": 0.615385,
+      "cor": "teto"
+    },
+    {
+      "nome": "PatamarDaEscada",
+      "x": -22.153846,
+      "y": 14.769231,
+      "largura": 4.923077,
+      "altura": 0.615385,
+      "cor": "patamar"
+    },
+    {
+      "nome": "ParedeEscada",
+      "x": -17.230769,
+      "y": 15.384615,
+      "largura": 0.615385,
+      "altura": 6.769231,
+      "cor": "parede"
+    },
+    {
+      "nome": "Descanso",
+      "x": -28.307692,
+      "y": 18.615385,
+      "largura": 2.461538,
+      "altura": 0.461538,
+      "cor": "patamar"
+    },
+    {
+      "nome": "ChegadaGaleria",
+      "x": -32.0,
+      "y": 21.692308,
+      "largura": 0.615385,
+      "altura": 0.461538,
+      "cor": "patamar"
+    },
+    {
+      "nome": "PisoGaleriaEsquerdo",
+      "x": -44.307692,
+      "y": 21.692308,
+      "largura": 12.307692,
+      "altura": 0.461538,
+      "cor": "chao"
+    },
+    {
+      "nome": "PisoGaleriaDireito",
+      "x": -28.538462,
+      "y": 21.923077,
+      "largura": 11.307692,
+      "altura": 0.230769,
+      "cor": "chao"
+    },
+    {
+      "nome": "ParedeGaleriaEsquerda",
+      "x": -44.923077,
+      "y": 21.692308,
+      "largura": 0.615385,
+      "altura": 6.615385,
+      "cor": "parede"
+    },
+    {
+      "nome": "ParedeGaleriaDireita",
+      "x": -17.230769,
+      "y": 22.153846,
+      "largura": 0.615385,
+      "altura": 6.153846,
+      "cor": "parede"
+    },
+    {
+      "nome": "TetoGaleria",
+      "x": -44.307692,
+      "y": 28.307692,
+      "largura": 27.076923,
+      "altura": 0.615385,
+      "cor": "teto"
+    }
+  ],
+  "rampas": [
+    {
+      "nome": "LanceExterior",
+      "x0": -11.076923,
+      "y0": 9.846154,
+      "x1": -1.230769,
+      "y1": 0.0,
+      "cor": "rampa",
+      "espessura": 0.23
+    },
+    {
+      "nome": "Soleira",
+      "x0": -16.0,
+      "y0": 8.0,
+      "x1": -14.153846,
+      "y1": 9.846154,
+      "cor": "rampa",
+      "espessura": 0.23
+    },
+    {
+      "nome": "RampaDoEstrado",
+      "x0": -39.538462,
+      "y0": 9.230769,
+      "x1": -37.692308,
+      "y1": 8.0,
+      "cor": "rampa",
+      "espessura": 0.23
+    },
+    {
+      "nome": "LanceInferior",
+      "x0": -25.846154,
+      "y0": 19.076923,
+      "x1": -22.153846,
+      "y1": 15.384615,
+      "cor": "rampa",
+      "espessura": 0.23
+    },
+    {
+      "nome": "LanceSuperior",
+      "x0": -31.384615,
+      "y0": 22.153846,
+      "x1": -28.307692,
+      "y1": 19.076923,
+      "cor": "rampa",
+      "espessura": 0.23
+    }
+  ]
+}

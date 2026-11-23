@@ -57,3 +57,27 @@ Escolhido para o corpo de 1,70 m andar:
 | Acima do salão | Nada | Escada interna e galeria com os dois lados |
 
 A grade de 1,00 × 0,44 m da 15-C continua no JSON antigo. A 15-D não usa células: cada sólido e cada rampa entram com os extremos em metros, em `dados/estrutura_do_prologo.json`. O gerador lê esse arquivo quando o nó `Sala` aponta `dados_caminho`. Sem esse campo, a fonte continua `dados/sala_do_prologo.json`.
+
+## 15-E — Medição pelo protagonista e pelos pisos
+
+Prancha nativa de Revned, 1664 × 1024. Coordenadas (u,v) em pixels a partir do canto superior esquerdo. As medidas abaixo seguem o início da superfície caminhável em cada patamar, com incerteza de cerca de 2 px nas bordas desenhadas. No exterior, (1264,672) e (1520,928) delimitam o lance. Os pontos da 15-D, (1412,804) e (1516,892), abrangiam apenas parte da diagonal e estavam acima da superfície idealizada. O patamar interior inferior termina em (976,480). Andando para a esquerda, chega-se a (880,384), cruza-se o descanso até (816,384) e sobe-se até (736,304). Na galeria a face de baixo do teto está perto de v = 64. A coordenada 35 usada na 15-D fica dentro da cantaria. Entre u = 400 e 1104, o vão livre mede 704 px.
+
+A gravação local de estudo `20261120-2056-20.4805959.mp4` mostra Richter de pé no salão, aos 12 s (1176 × 576). Na mesma vertical, o piso diante do trono está em v ≈ 542 e o alto dos degraus em v ≈ 449. A prancha mostra 720 e 688 nesses marcos. O fator vertical do vídeo é cerca de 93/32 = 2,91. Da cabeça à sola, cerca de 130 px de vídeo equivalem a 44–45 px de prancha. Assumindo 1,70 m para essa pose, adotamos **26 px/m** em ambos os eixos. A medição vertical evita a distorção horizontal da gravação. A equivalência de estatura é uma decisão de projeto. Os metros são estimados, as razões entre trechos são diretamente verificáveis.
+
+| Medida | 15-D | Referência medida | 15-E |
+| --- | ---: | ---: | ---: |
+| Largura entre limites no nível inferior | 30,30 m com paredes | 1280 px do limite esquerdo ao direito, 368..1648 | 49,23 m livres, 50,46 m com as duas paredes |
+| Avanço × desnível exterior | 3,12 × 2,64 m | 256 × 256 px | 9,85 × 9,85 m |
+| Lance interno inferior, avanço × desnível (comprimento inclinado) | Um único lance de 1,70 × 0,60 m (1,80 m) | 96 × 96 px | 3,69 × 3,69 m (5,22 m) |
+| Descanso | Ausente | 64 px | 2,46 m |
+| Lance interno superior | Ausente | 80 × 80 px | 3,08 × 3,08 m (4,35 m) |
+| Elevação percorrida na escada interna | 0,60 m | 176 px | 6,77 m |
+| Galeria entre paredes / pé-direito | 19,20 / 5,67 m | 704 / 160 px | 27,08 / 6,15 m |
+| Cota do piso da galeria sobre o nascimento | 6,20 m | Painéis separados | 22,15 m, montagem provisória |
+| Pé-direito sobre o estrado | 3,66 m | Piso v = 688, teto idealizado em 544 | 5,54 m |
+
+### Alinhamento dos setores e adaptações
+
+No setor inferior, X = (u − 1552)/26 e Y = (928 − v)/26. A escada interna usa v + 48 e a galeria v + 128 na mesma fórmula. Os deslocamentos aproximam os painéis pela base da escada interna e pela chegada à galeria. Subir no exterior leva ao patamar esquerdo. A soleira entre ele e o salão recebe uma inclinação de 48 × 48 px. O estrado do trono ganha uma aproximação lisa. As paredes extremas fecham os limites de jogo. A espessura estrutural é adaptada.
+
+O piso inferior da escada cobre o salão entre u = 976 e 1104 e funciona também como teto. À esquerda e à direita dele, duas caixas terminam rente às faces do piso. O acesso em ↑ atravessa entre setores e tem o fundo do vão preenchido para o jogador parar e iniciar a subida. A chegada é (−19,692; 15,385), no patamar inferior. O retorno é (−17,846; 8,000), fora da faixa de acionamento. A subida dos dois lances usa exclusivamente a seta esquerda. O piso da galeria serve de teto da escada nas áreas sobrepostas. Na boca superior, a chegada esquerda avança até u = 736 e a borda direita começa em 810. Esse recuo de 10 px em relação ao u = 800 da referência dá passagem à cabeça da caixa. O vão resultante de 74 px pode ser saltado nos dois sentidos.
