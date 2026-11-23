@@ -1,0 +1,30 @@
+[gd_scene format=3]
+
+[ext_resource type="PackedScene" path="res://scenes/enemies/sentinela_da_galeria.tscn" id="1"]
+[ext_resource type="Script" path="res://scenes/prologo/guardiao_do_trono.gd" id="2"]
+
+[sub_resource type="StandardMaterial3D" id="ouro"]
+albedo_color = Color(0.76, 0.43, 0.10, 1)
+metallic = 0.3
+
+[sub_resource type="CylinderMesh" id="coroa"]
+material = SubResource("ouro")
+top_radius = 0.24
+bottom_radius = 0.19
+height = 0.14
+radial_segments = 7
+
+[node name="Guardiao" instance=ExtResource("1")]
+script = ExtResource("2")
+pontos_iniciais = 5
+[node name="Coroa" type="MeshInstance3D" parent="Visual"]
+position = Vector3(0,1.08,0)
+mesh = SubResource("coroa")
+[node name="Aviso" type="Label3D" parent="Visual"]
+visible = false
+billboard = 1
+position = Vector3(0,1.7,0)
+font_size = 64
+pixel_size = 0.008
+modulate = Color(1,0.7,0.23,1)
+text = "!"

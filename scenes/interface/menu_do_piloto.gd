@@ -70,3 +70,8 @@ func _cor(rotulo: Label, ativo: bool, habilitado: bool) -> void:
 	elif ativo:
 		cor = Color(0.98, 0.94, 0.82)
 	rotulo.add_theme_color_override("font_color", cor)
+
+
+func iniciar_novo_jogo() -> void:
+	selecao = "novo"
+	_confirmar()

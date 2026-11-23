@@ -1,0 +1,6 @@
+[gd_scene format=3]
+[ext_resource type="PackedScene" path="res://scenes/verification/14_portal_da_sacada.tscn" id="castelo"]
+[ext_resource type="Script" path="res://scenes/prologo/entrada_do_castelo.gd" id="entrada"]
+[node name="Castelo" instance=ExtResource("castelo")]
+[node name="EntradaDoPrologo" type="Node" parent="."]
+script = ExtResource("entrada")

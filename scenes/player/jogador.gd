@@ -390,6 +390,11 @@ func _atualizar_vida(delta: float) -> void:
 		_aplicar_dano()
 
 
+func receber_dano_de_inimigo() -> void:
+	if vida_ativa and tempo_de_protecao_s <= 0.0:
+		_aplicar_dano()
+
+
 func _aplicar_dano() -> void:
 	if _ja_sofreu_dano:
 		intervalo_do_ultimo_dano_s = _relogio_desde_o_dano

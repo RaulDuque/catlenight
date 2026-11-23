@@ -387,3 +387,5 @@ Ao fechar uma etapa, troque o status e marque cada critério como verificado, pe
 ## 15-E — Prólogo em escala
 
 Estrutura construída e verificada na física do Godot 4.7.2. O percurso inclui parada nos três lances, parede do trono com salto, descanso interno, galeria nos dois lados e volta ao piso inicial. Um encurtamento experimental de 0,50 m foi detectado pelo teste. A revisão visual das proporções pelo autor está pendente. [Relatório com os tempos, as adaptações e a folga da sola](../MD-usario/relatorios/15e-escala-e-escadas-do-prologo.md).
+
+- [x] Prólogo jogável de estudo. Escadaria, galeria opcional, guardião, nova tentativa e entrada no vestíbulo validados pelo percurso em `tests/verificar_prologo_16.gd`.

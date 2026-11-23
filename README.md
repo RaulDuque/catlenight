@@ -1,5 +1,7 @@
 # Catlenight
 
+**Jogar o prólogo.** Abra `scenes/prologo/prologo.tscn` e pressione F6. Espaço começa, ← sobe, ↑ acessa a galeria e X golpeia o Guardião do Trono. A vitória permite entrar no vestíbulo ou repetir. [Capturas da partida](MD-usario/relatorios/evidencias/16-prologo-jogavel.webp) · [Relatório](MD-usario/relatorios/16-prologo-jogavel.md).
+
 Metroidvania gótico original em 2.5D, feito para estudo. O nome **Catlenight** é provisório e pode ser trocado.
 
 A cena de verificação tem chão com colisão, um manequim humanoide de 1,70 m, uma plataforma, um arco de pedra, uma luz e uma câmera lateral ortográfica. O manequim cai, anda e pula, e vira o perfil para o lado da caminhada.

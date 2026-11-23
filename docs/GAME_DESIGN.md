@@ -47,3 +47,7 @@ Ficam anotados para etapas futuras, sem caminho definido pela prancha:
 ## Fora desta etapa
 
 Movimento, combate, inimigos, várias salas, interface, animação e áudio não fazem parte da fundação.
+
+## Prólogo jogável de estudo
+
+A cena `scenes/prologo/prologo.tscn` combina o personagem 3D, as colisões da planta 15-E e os painéis 2D da própria referência. A imagem de estudo é a prancha “Final Stage: Bloodlines”, mapeada por Revned com arte de Castlevania: Symphony of the Night. O combate do Guardião do Trono, o retorno após derrota e a passagem ao vestíbulo são decisões do Catlenight. [Fonte da prancha](https://revned77.github.io/games/SymphonyOfTheNight.html).

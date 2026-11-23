@@ -10,10 +10,10 @@ Use o executável com janela, sem console e sem `--headless`:
 
 Projeto: `D:\Progr\catlenight`
 
-Cena: `res://scenes/verification/15c_blockout_do_prologo.tscn`
+Cena: `res://scenes/prologo/prologo.tscn`
 
 Não mude o F5. A cena principal continua `scenes/verification/main.tscn`.
 
 Se essa janela do Godot já estiver aberta, não abra outra. Avise e pare.
 
-Caso contrário, rode o processo em segundo plano. Quando a janela existir, diga que ela abriu e lembre os controles: Espaço confirma “Novo jogo”; a seta esquerda sobe e segue até o estrado; a seta direita volta; B alterna “Blocos” e “Com arte”.
+Caso contrário, rode o processo em segundo plano. Quando a janela existir, diga que ela abriu e lembre os controles: Espaço confirma “Novo jogo”; ← sobe para o trono, Espaço pula, X golpeia e ↑ usa o acesso à galeria.
